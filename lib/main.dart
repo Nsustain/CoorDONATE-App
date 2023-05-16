@@ -1,7 +1,7 @@
 import 'package:coordonate_app/core/utils/global/environment.dart';
-import 'package:coordonate_app/features/auth/presentation/screen/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import './core/utils/constants/styles.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: Enviroment.fileName);
@@ -17,9 +17,21 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const Signup(),
+          primaryColor: kPrimaryColor,
+          colorScheme: const ColorScheme(
+            brightness: Brightness.light,
+            background: kBackgroundColor,
+            primary: kPrimaryColor,
+            onPrimary: kTextPrimaryColor,
+            secondary: kSecondaryColor,
+            onSecondary: kTextPrimaryColor,
+            error: kDangerColor,
+            onError: kPrimaryColor,
+            onBackground: kPrimaryColor,
+            surface: kWhiteColor,
+            onSurface: kTextPrimaryColor,
+          )),
+      home: const Text("home"),
     );
   }
 }
