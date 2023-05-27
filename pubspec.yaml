@@ -12,6 +12,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  flutter_svg: ^0.22.0
+
   cupertino_icons: ^1.0.2
   flutter_dotenv: ^5.0.2
 
@@ -36,6 +38,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - .env
-    - .env.development
-    - .env.production
+    - assets/images/auth/
+  #   - .env
+  #   - .env.development
+  #   - .env.production
