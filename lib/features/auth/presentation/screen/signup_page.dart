@@ -1,3 +1,4 @@
+import 'package:coordonate_app/features/auth/presentation/widgets/phone_number.dart';
 import 'package:coordonate_app/features/auth/presentation/widgets/rounded_button.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -5,13 +6,28 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:coordonate_app/features/auth/presentation/widgets/input_form.dart';
 
-class Signup extends StatelessWidget {
-  const Signup({super.key});
+class SignupPage extends StatefulWidget {
+  const SignupPage({super.key});
+
+  @override
+  State<SignupPage> createState() => _SignupPageState();
+}
+
+class _SignupPageState extends State<SignupPage> {
+  //TextControllers
+  final emailController = TextEditingController();
+  final nameController = TextEditingController();
+  final phoneController = TextEditingController();
+  final passwordController = TextEditingController();
+  //formkey
+  final formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    //Media Query
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    //page
     return Theme(
       data: Theme.of(context),
       child: Scaffold(
@@ -45,26 +61,45 @@ class Signup extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    InputForm(
-                      icon: const Icon(Icons.email),
-                      inputboxplaceholder: 'Email',
-                      width: width,
-                      type: 'email',
-                    ),
-                    InputForm(
-                      icon: const Icon(Icons.person),
-                      inputboxplaceholder: 'Name',
-                      width: width,
-                      type: 'name',
-                    ),
-                    InputForm(
-                      icon: const Icon(Icons.phone),
-                      inputboxplaceholder: 'Phone Number',
-                      width: width,
-                      type: 'phone',
+                    Form(
+                      key: formkey,
+                      autovalidateMode: AutovalidateMode.always,
+                      child: Column(
+                        children: [
+                          InputForm(
+                            icon: const Icon(Icons.email),
+                            inputboxplaceholder: 'Email',
+                            width: width,
+                            type: 'email',
+                            textInputController: emailController,
+                            height: height,
+                          ),
+                          InputForm(
+                            icon: const Icon(Icons.person),
+                            inputboxplaceholder: 'Name',
+                            width: width,
+                            type: 'name',
+                            textInputController: nameController,
+                            height: height,
+                          ),
+                          // SizedBox(
+                          //   height: height * 0.03,
+                          // ),
+                          PhoneNumber(
+                              width: width, controller: phoneController),
+                          InputForm(
+                            icon: const Icon(Icons.password),
+                            inputboxplaceholder: 'password',
+                            width: width,
+                            type: 'password',
+                            textInputController: passwordController,
+                            height: height,
+                          ),
+                        ],
+                      ),
                     ),
                     SizedBox(
-                      height: height * 0.02,
+                      height: height * 0.03,
                     ),
                     Container(
                         constraints: BoxConstraints(maxWidth: 0.8 * width),
@@ -106,12 +141,19 @@ class Signup extends StatelessWidget {
                           ),
                         )),
                     SizedBox(
-                      height: height * 0.07,
+                      height: height * 0.075,
                     ),
                     Center(
                       child: Column(
                         children: [
-                          RoundedButton(width: width, height: height),
+                          RoundedButton(
+                              width: width,
+                              height: height,
+                              onPressed: () {
+                                if (formkey.currentState!.validate()) {
+                                  //request login here
+                                }
+                              }),
                           SizedBox(
                             height: height * 0.02,
                           ),
@@ -134,7 +176,10 @@ class Signup extends StatelessWidget {
                                       })
                               ],
                             ),
-                          )
+                          ),
+                          SizedBox(
+                            height: height * 0.02,
+                          ),
                         ],
                       ),
                     )

@@ -1,4 +1,5 @@
 import 'package:coordonate_app/core/utils/global/environment.dart';
+import 'package:coordonate_app/features/auth/presentation/screen/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import './core/utils/constants/styles.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
             surface: kWhiteColor,
             onSurface: kTextPrimaryColor,
           )),
-      home: const Signup(),
+      home: SignupPage(),
     );
   }
 }
