@@ -7,10 +7,12 @@ class InputForm extends StatefulWidget {
   final double height;
   final String type;
   final TextEditingController textInputController;
+  final GlobalKey formkey;
 
   const InputForm({
     Key? key,
     required this.icon,
+    required this.formkey,
     required this.inputboxplaceholder,
     required this.width,
     required this.type,
@@ -64,26 +66,15 @@ class _InputFormState extends State<InputForm> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TextFormField(
-            controller: widget.textInputController,
-            decoration: InputDecoration(
-              prefixIcon: widget.icon,
-              labelText: widget.inputboxplaceholder,
-            ),
-            onChanged: (value) {
-              _validate(value);
-            },
-          ),
-          if (_errorMessage != null)
-            Padding(
-              padding: const EdgeInsets.only(top: 8.0),
-              child: Text(
-                _errorMessage!,
-                style: TextStyle(
-                  color: Colors.red,
-                  fontSize: 12.0,
-                ),
+              controller: widget.textInputController,
+              decoration: InputDecoration(
+                prefixIcon: widget.icon,
+                labelText: widget.inputboxplaceholder,
               ),
-            ),
+              onChanged: (value) {
+                _validate(value);
+              },
+              validator: (value) => _errorMessage),
         ],
       ),
     );
