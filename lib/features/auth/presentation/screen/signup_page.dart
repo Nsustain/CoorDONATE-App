@@ -7,11 +7,13 @@ import 'package:coordonate_app/features/auth/presentation/screen/dummy_homepage.
 import 'package:coordonate_app/features/auth/presentation/screen/login_page.dart';
 import 'package:coordonate_app/features/auth/presentation/widgets/phone_number.dart';
 import 'package:coordonate_app/features/auth/presentation/widgets/rounded_button.dart';
+import 'package:coordonate_app/utils/constants/styles.dart';
 import 'package:coordonate_app/utils/helper/pref_manager.dart';
 import 'package:fancy_password_field/fancy_password_field.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:coordonate_app/features/auth/presentation/widgets/input_form.dart';
@@ -48,8 +50,8 @@ class _SignupPageState extends State<SignupPage> {
 
   Widget buildSignupPage(BuildContext context) {
     //Media Query
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+    double height = ScreenUtil().screenHeight;
+    double width = ScreenUtil().screenWidth;
     //page
     return Theme(
       data: Theme.of(context),
@@ -67,7 +69,7 @@ class _SignupPageState extends State<SignupPage> {
                         child: Center(
                           child: LoadingAnimationWidget.flickr(
                             leftDotColor: const Color(0xFF1A1A3F),
-                            rightDotColor: const Color(0xFFEA3799),
+                            rightDotColor: kPrimaryColor,
                             size: width * 0.1,
                           ),
                         ),
@@ -83,8 +85,8 @@ class _SignupPageState extends State<SignupPage> {
                 children: [
                   Center(
                     child: SizedBox(
-                      height: height * 0.3,
-                      width: width * 0.5,
+                      height: height * 0.45,
+                      width: width * 0.7,
                       child: SvgPicture.asset(
                         'assets/images/auth/headline_image_signup.svg',
                         semanticsLabel: 'My SVG Image',
@@ -102,16 +104,9 @@ class _SignupPageState extends State<SignupPage> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => HomePage()));
-                          print('Successful');
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(content: Text('Successful')),
                           );
-
-                          // Navigator.pushReplacement(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //       builder: (context) => const HomePage()),
-                          // );
                         } else if (state is RegisterFailureState) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(content: Text(state.error)),
@@ -125,9 +120,12 @@ class _SignupPageState extends State<SignupPage> {
                             'Sign up',
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.onPrimary,
-                              fontSize: 25,
+                              fontSize: 35.h,
                               fontWeight: FontWeight.bold,
                             ),
+                          ),
+                          SizedBox(
+                            height: 5.h,
                           ),
                           Form(
                             key: formkey,
@@ -141,6 +139,7 @@ class _SignupPageState extends State<SignupPage> {
                                   type: 'email',
                                   textInputController: emailController,
                                   height: height,
+                                  formkey: formkey,
                                 ),
                                 InputForm(
                                   icon: const Icon(Icons.person),
@@ -149,28 +148,26 @@ class _SignupPageState extends State<SignupPage> {
                                   type: 'name',
                                   textInputController: nameController,
                                   height: height,
+                                  formkey: formkey,
                                 ),
-                                // SizedBox(
-                                //   height: height * 0.03,
-                                // ),
                                 PhoneNumber(
                                     width: width, controller: phoneController),
-
                                 SizedBox(
-                                  width: 0.8 * width,
+                                  width: 360.w,
                                   child: FancyPasswordField(
-                                    passwordController: passwordController,
-                                    initialValue: 'Password',
-                                  ),
-                                )
-                                // InputForm(
-                                //   icon: const Icon(Icons.password),
-                                //   inputboxplaceholder: 'password',
-                                //   width: width,
-                                //   type: 'password',
-                                //   textInputController: passwordController,
-                                //   height: height,
-                                // ),
+                                      passwordController: passwordController,
+                                      scrollPadding:
+                                          EdgeInsets.all(width * 0.2),
+                                      onFieldSubmitted: (value) {
+                                        (value) {
+                                          if (value == null) {
+                                            return 'Fill in the details';
+                                          } else {
+                                            return null;
+                                          }
+                                        };
+                                      }),
+                                ),
                               ],
                             ),
                           ),
@@ -178,69 +175,68 @@ class _SignupPageState extends State<SignupPage> {
                             height: height * 0.03,
                           ),
                           Container(
-                              constraints:
-                                  BoxConstraints(maxWidth: 0.8 * width),
-                              child: RichText(
-                                text: TextSpan(
-                                  text: 'By signing up, you agree to our ',
-                                  style: TextStyle(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .onSecondary),
-                                  children: <TextSpan>[
-                                    TextSpan(
-                                      text: 'Terms of Service',
-                                      style: const TextStyle(
-                                        color: Colors.blue,
-                                      ),
-                                      recognizer: TapGestureRecognizer()
-                                        ..onTap = () {
-                                          // logic here
-                                        },
+                            constraints: BoxConstraints(maxWidth: 0.8 * width),
+                            child: RichText(
+                              text: TextSpan(
+                                text: 'By signing up, you agree to our ',
+                                style: TextStyle(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSecondary),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                    text: 'Terms of Service',
+                                    style: const TextStyle(
+                                      color: Colors.blue,
                                     ),
-                                    TextSpan(
-                                      text: ' and ',
-                                      style: TextStyle(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .onSecondary),
-                                    ),
-                                    TextSpan(
-                                      text: 'Privacy Policy',
-                                      style: TextStyle(
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        // logic here
+                                      },
+                                  ),
+                                  TextSpan(
+                                    text: ' and ',
+                                    style: TextStyle(
                                         color: Theme.of(context)
                                             .colorScheme
-                                            .primary,
-                                      ),
-                                      recognizer: TapGestureRecognizer()
-                                        ..onTap = () {
-                                          // logic here
-                                        },
+                                            .onSecondary),
+                                  ),
+                                  TextSpan(
+                                    text: 'Privacy Policy',
+                                    style: TextStyle(
+                                      color:
+                                          Theme.of(context).colorScheme.primary,
                                     ),
-                                  ],
-                                ),
-                              )),
-                          SizedBox(
-                            height: height * 0.075,
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        // logic here
+                                      },
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
+                          SizedBox(height: 20.h),
                           Center(
                             child: Column(
                               children: [
                                 BlocBuilder<RegisterBloc, RegisterState>(
                                   builder: (context, state) {
                                     return RoundedButton(
-                                      width: width,
-                                      height: height,
+                                      width: 1.w,
+                                      height: 1.h,
                                       onPressed: () {
                                         if (formkey.currentState!.validate()) {
                                           BlocProvider.of<RegisterBloc>(context)
-                                              .add(RegisterButtonPressedEvent(
-                                            email: emailController.text,
-                                            password:
-                                                passwordController.toString(),
-                                            phoneNumber: phoneController.text,
-                                            name: nameController.text,
-                                          ));
+                                              .add(
+                                            RegisterButtonPressedEvent(
+                                              email: emailController.text,
+                                              password:
+                                                  passwordController.toString(),
+                                              phoneNumber: phoneController.text,
+                                              name: nameController.text,
+                                            ),
+                                          );
                                         }
                                       },
                                       childWidget: Text(
@@ -255,7 +251,7 @@ class _SignupPageState extends State<SignupPage> {
                                   },
                                 ),
                                 SizedBox(
-                                  height: height * 0.02,
+                                  height: 10.h,
                                 ),
                                 RichText(
                                   text: TextSpan(
@@ -285,7 +281,7 @@ class _SignupPageState extends State<SignupPage> {
                                   ),
                                 ),
                                 SizedBox(
-                                  height: height * 0.02,
+                                  height: 25.h,
                                 ),
                               ],
                             ),

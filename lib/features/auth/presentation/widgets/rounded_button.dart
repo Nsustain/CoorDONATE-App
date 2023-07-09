@@ -16,18 +16,17 @@ class RoundedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      style: ButtonStyle(
-        backgroundColor:
-            MaterialStateProperty.all(Theme.of(context).colorScheme.primary),
-        minimumSize: MaterialStateProperty.all(
-          Size(width * 0.6, height * 0.065),
+        style: ButtonStyle(
+          backgroundColor:
+              MaterialStateProperty.all(Theme.of(context).colorScheme.primary),
+          minimumSize: MaterialStateProperty.all(
+            Size(360 * width, height * 60),
+          ),
+          shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          ),
         ),
-        shape: MaterialStateProperty.all(
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-        ),
-      ),
-      onPressed: onPressed,
-      child: childWidget
-    );
+        onPressed: onPressed,
+        child: childWidget);
   }
 }
