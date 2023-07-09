@@ -1,146 +1,301 @@
+import 'package:coordonate_app/dependency_injection.dart';
+import 'package:coordonate_app/features/auth/domain/usecases/post_register.dart';
+import 'package:coordonate_app/features/auth/presentation/bloc/register/register_bloc.dart';
+import 'package:coordonate_app/features/auth/presentation/bloc/register/register_event.dart';
+import 'package:coordonate_app/features/auth/presentation/bloc/register/register_state.dart';
+import 'package:coordonate_app/features/auth/presentation/screen/dummy_homepage.dart';
+import 'package:coordonate_app/features/auth/presentation/screen/login_page.dart';
+import 'package:coordonate_app/features/auth/presentation/widgets/phone_number.dart';
 import 'package:coordonate_app/features/auth/presentation/widgets/rounded_button.dart';
+import 'package:coordonate_app/utils/helper/pref_manager.dart';
+import 'package:fancy_password_field/fancy_password_field.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:coordonate_app/features/auth/presentation/widgets/input_form.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
-class Signup extends StatelessWidget {
-  const Signup({super.key});
+class SignupPage extends StatefulWidget {
+  const SignupPage({super.key});
 
   @override
+  State<SignupPage> createState() => _SignupPageState();
+}
+
+class _SignupPageState extends State<SignupPage> {
+  //TextControllers
+  final emailController = TextEditingController();
+  final nameController = TextEditingController();
+  final phoneController = TextEditingController();
+  final passwordController = FancyPasswordController();
+  //formkey
+  final formkey = GlobalKey<FormState>();
+  @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => sl<RegisterBloc>(),
+      child: MaterialApp(
+        title: 'Signup Page',
+        theme: Theme.of(context),
+        home: Scaffold(
+          body: buildSignupPage(context),
+        ),
+      ),
+    );
+  }
+
+  Widget buildSignupPage(BuildContext context) {
+    //Media Query
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    //page
     return Theme(
       data: Theme.of(context),
       child: Scaffold(
         body: SingleChildScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: Stack(
             children: [
-              Center(
-                child: SizedBox(
-                  height: height * 0.43,
-                  width: width * 0.5,
-                  child: SvgPicture.asset(
-                    'assets/images/auth/headline_image_signup.svg',
-                    semanticsLabel: 'My SVG Image',
-                  ),
+              Positioned.fill(
+                child: BlocBuilder<RegisterBloc, RegisterState>(
+                  builder: (context, state) {
+                    if (state is RegisterLoadingState) {
+                      return Container(
+                        color: Colors.white,
+                        child: Center(
+                          child: LoadingAnimationWidget.flickr(
+                            leftDotColor: const Color(0xFF1A1A3F),
+                            rightDotColor: const Color(0xFFEA3799),
+                            size: width * 0.1,
+                          ),
+                        ),
+                      );
+                    } else {
+                      return Container();
+                    }
+                  },
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: width * 0.08,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Sign up',
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.onPrimary,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Center(
+                    child: SizedBox(
+                      height: height * 0.3,
+                      width: width * 0.5,
+                      child: SvgPicture.asset(
+                        'assets/images/auth/headline_image_signup.svg',
+                        semanticsLabel: 'My SVG Image',
                       ),
                     ),
-                    InputForm(
-                      icon: const Icon(Icons.email),
-                      inputboxplaceholder: 'Email',
-                      width: width,
-                      type: 'email',
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: width * 0.08,
                     ),
-                    InputForm(
-                      icon: const Icon(Icons.person),
-                      inputboxplaceholder: 'Name',
-                      width: width,
-                      type: 'name',
-                    ),
-                    InputForm(
-                      icon: const Icon(Icons.phone),
-                      inputboxplaceholder: 'Phone Number',
-                      width: width,
-                      type: 'phone',
-                    ),
-                    SizedBox(
-                      height: height * 0.02,
-                    ),
-                    Container(
-                        constraints: BoxConstraints(maxWidth: 0.8 * width),
-                        child: RichText(
-                          text: TextSpan(
-                            text: 'By signing up, you agree to our ',
-                            style: TextStyle(
-                                color:
-                                    Theme.of(context).colorScheme.onSecondary),
-                            children: <TextSpan>[
-                              TextSpan(
-                                text: 'Terms of Service',
-                                style: const TextStyle(
-                                  color: Colors.blue,
-                                ),
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () {
-                                    // logic here
-                                  },
-                              ),
-                              TextSpan(
-                                text: ' and ',
-                                style: TextStyle(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onSecondary),
-                              ),
-                              TextSpan(
-                                text: 'Privacy Policy',
-                                style: TextStyle(
-                                  color: Theme.of(context).colorScheme.primary,
-                                ),
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () {
-                                    // logic here
-                                  },
-                              ),
-                            ],
-                          ),
-                        )),
-                    SizedBox(
-                      height: height * 0.07,
-                    ),
-                    Center(
+                    child: BlocListener<RegisterBloc, RegisterState>(
+                      listener: (context, state) {
+                        if (state is RegisterSuccessState) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomePage()));
+                          print('Successful');
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Successful')),
+                          );
+
+                          // Navigator.pushReplacement(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //       builder: (context) => const HomePage()),
+                          // );
+                        } else if (state is RegisterFailureState) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text(state.error)),
+                          );
+                        }
+                      },
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          RoundedButton(width: width, height: height),
-                          SizedBox(
-                            height: height * 0.02,
+                          Text(
+                            'Sign up',
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.onPrimary,
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                          RichText(
-                            text: TextSpan(
-                              text: 'Already have an account?',
-                              style: TextStyle(
-                                  color:
-                                      Theme.of(context).colorScheme.onPrimary),
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text: 'Login',
-                                    style: TextStyle(
-                                      color:
-                                          Theme.of(context).colorScheme.primary,
+                          Form(
+                            key: formkey,
+                            autovalidateMode: AutovalidateMode.always,
+                            child: Column(
+                              children: [
+                                InputForm(
+                                  icon: const Icon(Icons.email),
+                                  inputboxplaceholder: 'Email',
+                                  width: width,
+                                  type: 'email',
+                                  textInputController: emailController,
+                                  height: height,
+                                ),
+                                InputForm(
+                                  icon: const Icon(Icons.person),
+                                  inputboxplaceholder: 'Name',
+                                  width: width,
+                                  type: 'name',
+                                  textInputController: nameController,
+                                  height: height,
+                                ),
+                                // SizedBox(
+                                //   height: height * 0.03,
+                                // ),
+                                PhoneNumber(
+                                    width: width, controller: phoneController),
+
+                                SizedBox(
+                                  width: 0.8 * width,
+                                  child: FancyPasswordField(
+                                    passwordController: passwordController,
+                                    initialValue: 'Password',
+                                  ),
+                                )
+                                // InputForm(
+                                //   icon: const Icon(Icons.password),
+                                //   inputboxplaceholder: 'password',
+                                //   width: width,
+                                //   type: 'password',
+                                //   textInputController: passwordController,
+                                //   height: height,
+                                // ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: height * 0.03,
+                          ),
+                          Container(
+                              constraints:
+                                  BoxConstraints(maxWidth: 0.8 * width),
+                              child: RichText(
+                                text: TextSpan(
+                                  text: 'By signing up, you agree to our ',
+                                  style: TextStyle(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onSecondary),
+                                  children: <TextSpan>[
+                                    TextSpan(
+                                      text: 'Terms of Service',
+                                      style: const TextStyle(
+                                        color: Colors.blue,
+                                      ),
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = () {
+                                          // logic here
+                                        },
                                     ),
-                                    recognizer: TapGestureRecognizer()
-                                      ..onTap = () {
-                                        // logic here
-                                      })
+                                    TextSpan(
+                                      text: ' and ',
+                                      style: TextStyle(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onSecondary),
+                                    ),
+                                    TextSpan(
+                                      text: 'Privacy Policy',
+                                      style: TextStyle(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
+                                      ),
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = () {
+                                          // logic here
+                                        },
+                                    ),
+                                  ],
+                                ),
+                              )),
+                          SizedBox(
+                            height: height * 0.075,
+                          ),
+                          Center(
+                            child: Column(
+                              children: [
+                                BlocBuilder<RegisterBloc, RegisterState>(
+                                  builder: (context, state) {
+                                    return RoundedButton(
+                                      width: width,
+                                      height: height,
+                                      onPressed: () {
+                                        if (formkey.currentState!.validate()) {
+                                          BlocProvider.of<RegisterBloc>(context)
+                                              .add(RegisterButtonPressedEvent(
+                                            email: emailController.text,
+                                            password:
+                                                passwordController.toString(),
+                                            phoneNumber: phoneController.text,
+                                            name: nameController.text,
+                                          ));
+                                        }
+                                      },
+                                      childWidget: Text(
+                                        'Continue',
+                                        style: TextStyle(
+                                            fontSize: 23,
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .surface),
+                                      ),
+                                    );
+                                  },
+                                ),
+                                SizedBox(
+                                  height: height * 0.02,
+                                ),
+                                RichText(
+                                  text: TextSpan(
+                                    text: 'Already have an account?',
+                                    style: TextStyle(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onPrimary),
+                                    children: <TextSpan>[
+                                      TextSpan(
+                                          text: 'Login',
+                                          style: TextStyle(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary,
+                                          ),
+                                          recognizer: TapGestureRecognizer()
+                                            ..onTap = () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: ((context) =>
+                                                          LoginPage())));
+                                              // logic here
+                                            })
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: height * 0.02,
+                                ),
                               ],
                             ),
                           )
                         ],
                       ),
-                    )
-                  ],
-                ),
-              )
+                    ),
+                  )
+                ],
+              ),
             ],
           ),
         ),
