@@ -139,7 +139,6 @@ class _SignupPageState extends State<SignupPage> {
                                   type: 'email',
                                   textInputController: emailController,
                                   height: height,
-                                  formkey: formkey,
                                 ),
                                 InputForm(
                                   icon: const Icon(Icons.person),
@@ -148,7 +147,6 @@ class _SignupPageState extends State<SignupPage> {
                                   type: 'name',
                                   textInputController: nameController,
                                   height: height,
-                                  formkey: formkey,
                                 ),
                                 PhoneNumber(
                                     width: width, controller: phoneController),

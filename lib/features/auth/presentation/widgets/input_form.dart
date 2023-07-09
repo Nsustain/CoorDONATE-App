@@ -7,12 +7,10 @@ class InputForm extends StatefulWidget {
   final double height;
   final String type;
   final TextEditingController textInputController;
-  final GlobalKey formkey;
 
   const InputForm({
     Key? key,
     required this.icon,
-    required this.formkey,
     required this.inputboxplaceholder,
     required this.width,
     required this.type,
