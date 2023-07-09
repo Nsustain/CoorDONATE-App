@@ -4,6 +4,7 @@ import 'package:coordonate_app/features/auth/presentation/bloc/register/register
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'utils/constants/styles.dart';
 import 'features/auth/presentation/screen/signup_page.dart';
@@ -23,24 +24,30 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-          primaryColor: kPrimaryColor,
-          colorScheme: const ColorScheme(
-            brightness: Brightness.light,
-            background: kBackgroundColor,
-            primary: kPrimaryColor,
-            onPrimary: kTextPrimaryColor,
-            secondary: kSecondaryColor,
-            onSecondary: kTextPrimaryColor,
-            error: kDangerColor,
-            onError: kPrimaryColor,
-            onBackground: kPrimaryColor,
-            surface: kWhiteColor,
-            onSurface: kTextPrimaryColor,
-          )),
-      home: const SignupPage(),
-    );
+    return ScreenUtilInit(
+        designSize: const Size(443, 962),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) {
+          return MaterialApp(
+            title: 'Flutter Demo',
+            theme: ThemeData(
+                primaryColor: kPrimaryColor,
+                colorScheme: const ColorScheme(
+                  brightness: Brightness.light,
+                  background: kBackgroundColor,
+                  primary: kPrimaryColor,
+                  onPrimary: kTextPrimaryColor,
+                  secondary: kSecondaryColor,
+                  onSecondary: kTextPrimaryColor,
+                  error: kDangerColor,
+                  onError: kPrimaryColor,
+                  onBackground: kPrimaryColor,
+                  surface: kWhiteColor,
+                  onSurface: kTextPrimaryColor,
+                )),
+            home: const SignupPage(),
+          );
+        });
   }
 }
