@@ -52,3 +52,6 @@ flutter:
   #   - .env
   #   - .env.development
   #   - .env.production
+    - assets/images/onboarding/
+    - assets/images/login/
+    - assets/images/otp/
