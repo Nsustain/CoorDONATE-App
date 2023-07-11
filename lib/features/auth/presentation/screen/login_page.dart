@@ -1,6 +1,7 @@
 import 'package:fancy_password_field/fancy_password_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:coordonate_app/features/auth/presentation/widgets/input_form.dart';
@@ -36,8 +37,8 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               Center(
                 child: SizedBox(
-                  height: height * 0.43,
-                  width: width * 0.5,
+                  height: height * 0.45,
+                  width: width * 0.7,
                   child: SvgPicture.asset(
                     'assets/images/auth/headline_image_signup.svg',
                     semanticsLabel: 'My SVG Image',
@@ -73,20 +74,11 @@ class _LoginPageState extends State<LoginPage> {
                             height: height,
                           ),
                           SizedBox(
-                            height: height,
                             width: width,
                             child: FancyPasswordField(
                               passwordController: passwordController,
                             ),
                           )
-                          // InputForm(
-                          //   icon: const Icon(Icons.password),
-                          //   inputboxplaceholder: 'Password',
-                          //   width: width,
-                          //   type: 'password',
-                          //   textInputController: passwordController,
-                          //   height: height,
-                          // ),
                         ],
                       ),
                     ),
@@ -97,8 +89,8 @@ class _LoginPageState extends State<LoginPage> {
                       child: Column(
                         children: [
                           RoundedButton(
-                            width: width,
-                            height: height,
+                            width: 1.w,
+                            height: 1.h,
                             childWidget: Text(
                               'Continue',
                               style: TextStyle(
