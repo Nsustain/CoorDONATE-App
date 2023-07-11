@@ -1,4 +1,5 @@
 import 'package:coordonate_app/dependency_injection.dart';
+import 'package:coordonate_app/features/auth/auth.dart';
 import 'package:coordonate_app/features/auth/presentation/bloc/login/login_bloc.dart';
 import 'package:coordonate_app/features/auth/presentation/bloc/register/register_bloc.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +48,7 @@ class MyApp extends StatelessWidget {
                   surface: kWhiteColor,
                   onSurface: kTextPrimaryColor,
                 )),
-            home: const SignupPage(),
+            home: const LoginPage(),
           );
         });
   }
