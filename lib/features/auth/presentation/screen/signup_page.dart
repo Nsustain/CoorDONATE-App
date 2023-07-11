@@ -4,7 +4,6 @@ import 'package:coordonate_app/features/auth/presentation/bloc/register/register
 import 'package:coordonate_app/features/auth/presentation/bloc/register/register_event.dart';
 import 'package:coordonate_app/features/auth/presentation/bloc/register/register_state.dart';
 import 'package:coordonate_app/features/auth/presentation/screen/dummy_homepage.dart';
-import 'package:coordonate_app/features/auth/presentation/screen/login_page.dart';
 import 'package:coordonate_app/features/auth/presentation/widgets/phone_number.dart';
 import 'package:coordonate_app/features/auth/presentation/widgets/rounded_button.dart';
 import 'package:coordonate_app/utils/constants/styles.dart';
@@ -268,11 +267,11 @@ class _SignupPageState extends State<SignupPage> {
                                           ),
                                           recognizer: TapGestureRecognizer()
                                             ..onTap = () {
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: ((context) =>
-                                                          LoginPage())));
+                                              // Navigator.push(
+                                              //     context,
+                                              //     MaterialPageRoute(
+                                              //         builder: ((context) =>
+                                              //             LoginPage())));
                                               // logic here
                                             })
                                     ],
