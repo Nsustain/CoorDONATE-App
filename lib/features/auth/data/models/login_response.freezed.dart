@@ -20,7 +20,7 @@ LoginResponse _$LoginResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LoginResponse {
-  int? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   String? get token => throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
 
@@ -36,7 +36,7 @@ abstract class $LoginResponseCopyWith<$Res> {
           LoginResponse value, $Res Function(LoginResponse) then) =
       _$LoginResponseCopyWithImpl<$Res, LoginResponse>;
   @useResult
-  $Res call({int? id, String? token, String? error});
+  $Res call({String? id, String? token, String? error});
 }
 
 /// @nodoc
@@ -60,7 +60,7 @@ class _$LoginResponseCopyWithImpl<$Res, $Val extends LoginResponse>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       token: freezed == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
@@ -81,7 +81,7 @@ abstract class _$$_LoginResponseCopyWith<$Res>
       __$$_LoginResponseCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, String? token, String? error});
+  $Res call({String? id, String? token, String? error});
 }
 
 /// @nodoc
@@ -103,7 +103,7 @@ class __$$_LoginResponseCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       token: freezed == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
@@ -125,7 +125,7 @@ class _$_LoginResponse extends _LoginResponse {
       _$$_LoginResponseFromJson(json);
 
   @override
-  final int? id;
+  final String? id;
   @override
   final String? token;
   @override
@@ -166,7 +166,7 @@ class _$_LoginResponse extends _LoginResponse {
 
 abstract class _LoginResponse extends LoginResponse {
   const factory _LoginResponse(
-      {final int? id,
+      {final String? id,
       final String? token,
       final String? error}) = _$_LoginResponse;
   const _LoginResponse._() : super._();
@@ -175,7 +175,7 @@ abstract class _LoginResponse extends LoginResponse {
       _$_LoginResponse.fromJson;
 
   @override
-  int? get id;
+  String? get id;
   @override
   String? get token;
   @override

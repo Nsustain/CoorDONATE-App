@@ -7,7 +7,7 @@ part 'login_response.g.dart';
 @freezed
 class LoginResponse with _$LoginResponse {
   const factory LoginResponse({
-    int? id,
+    String? id,
     String? token,
     String? error,
   }) = _LoginResponse;

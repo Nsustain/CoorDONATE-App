@@ -8,7 +8,7 @@ part of 'login_response.dart';
 
 _$_LoginResponse _$$_LoginResponseFromJson(Map<String, dynamic> json) =>
     _$_LoginResponse(
-      id: json['id'] as int?,
+      id: json['id'] as String?,
       token: json['token'] as String?,
       error: json['error'] as String?,
     );
