@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RoundedButton extends StatelessWidget {
-  final double width;
-  final double height;
   final VoidCallback onPressed;
   final Widget childWidget;
-  const RoundedButton(
-      {Key? key,
-      required this.width,
-      required this.height,
-      required this.onPressed,
-      required this.childWidget})
-      : super(key: key);
+  final Color? bgColor;
+  const RoundedButton({
+    Key? key,
+    required this.onPressed,
+    required this.childWidget,
+    this.bgColor,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
         style: ButtonStyle(
-          backgroundColor:
-              MaterialStateProperty.all(Theme.of(context).colorScheme.primary),
+          backgroundColor: MaterialStateProperty.all(
+            bgColor ?? Theme.of(context).colorScheme.primary,
+          ),
           minimumSize: MaterialStateProperty.all(
-            Size(360 * width, height * 60),
+            Size(360.w, 60.h),
           ),
           shape: MaterialStateProperty.all(
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),

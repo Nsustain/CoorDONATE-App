@@ -11,6 +11,7 @@ environment:
 dependencies:
   build_runner: ^2.4.5
   cupertino_icons: ^1.0.2
+  cupertino_onboarding: ^1.1.1
   dartz: ^0.10.1
   dio: ^5.2.1
   fancy_password_field: ^2.0.0
@@ -49,6 +50,8 @@ flutter:
 
   assets:
     - assets/images/auth/
+    - assets/images/auth/onboarding/
+
   #   - .env
   #   - .env.development
   #   - .env.production
