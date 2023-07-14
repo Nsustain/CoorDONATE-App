@@ -220,8 +220,6 @@ class _SignupPageState extends State<SignupPage> {
                                 BlocBuilder<RegisterBloc, RegisterState>(
                                   builder: (context, state) {
                                     return RoundedButton(
-                                      width: 1.w,
-                                      height: 1.h,
                                       onPressed: () {
                                         if (formkey.currentState!.validate()) {
                                           BlocProvider.of<RegisterBloc>(context)
