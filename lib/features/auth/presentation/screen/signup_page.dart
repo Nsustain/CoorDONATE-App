@@ -134,18 +134,14 @@ class _SignupPageState extends State<SignupPage> {
                                 InputForm(
                                   icon: const Icon(Icons.email),
                                   inputboxplaceholder: 'Email',
-                                  width: width,
                                   type: 'email',
                                   textInputController: emailController,
-                                  height: height,
                                 ),
                                 InputForm(
                                   icon: const Icon(Icons.person),
                                   inputboxplaceholder: 'Name',
-                                  width: width,
                                   type: 'name',
                                   textInputController: nameController,
-                                  height: height,
                                 ),
                                 PhoneNumber(
                                     width: width, controller: phoneController),

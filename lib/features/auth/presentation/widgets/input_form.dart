@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class InputForm extends StatefulWidget {
   final Icon icon;
   final String inputboxplaceholder;
-  final double width;
-  final double height;
   final String type;
   final TextEditingController textInputController;
 
@@ -12,9 +11,7 @@ class InputForm extends StatefulWidget {
     Key? key,
     required this.icon,
     required this.inputboxplaceholder,
-    required this.width,
     required this.type,
-    required this.height,
     required this.textInputController,
   }) : super(key: key);
 
@@ -59,7 +56,7 @@ class _InputFormState extends State<InputForm> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints(maxWidth: widget.width * 0.8),
+      constraints: BoxConstraints(maxWidth: 330.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
