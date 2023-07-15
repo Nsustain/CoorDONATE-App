@@ -6,14 +6,17 @@ class InputForm extends StatefulWidget {
   final String inputboxplaceholder;
   final String type;
   final TextEditingController textInputController;
-
-  const InputForm({
-    Key? key,
-    required this.icon,
-    required this.inputboxplaceholder,
-    required this.type,
-    required this.textInputController,
-  }) : super(key: key);
+  final bool? isVisible;
+  final void Function()? toggleVisibility;
+  const InputForm(
+      {Key? key,
+      required this.icon,
+      required this.inputboxplaceholder,
+      required this.type,
+      required this.textInputController,
+      this.isVisible,
+      this.toggleVisibility})
+      : super(key: key);
 
   @override
   State<InputForm> createState() => _InputFormState();
@@ -55,21 +58,44 @@ class _InputFormState extends State<InputForm> {
 
   @override
   Widget build(BuildContext context) {
+    print('overhere ${widget.isVisible!}');
     return Container(
       constraints: BoxConstraints(maxWidth: 330.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          TextFormField(
-              controller: widget.textInputController,
-              decoration: InputDecoration(
-                prefixIcon: widget.icon,
-                labelText: widget.inputboxplaceholder,
-              ),
-              onChanged: (value) {
-                _validate(value);
-              },
-              validator: (value) => _errorMessage),
+          widget.type == 'password'
+              ? TextFormField(
+                  obscureText: !widget.isVisible!,
+                  controller: widget.textInputController,
+                  decoration: InputDecoration(
+                      prefixIcon: widget.icon,
+                      labelText: widget.inputboxplaceholder,
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          widget.isVisible!
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
+                        onPressed: () {
+                          widget.toggleVisibility!();
+                        },
+                        color: Colors.grey,
+                      )),
+                  onChanged: (value) {
+                    _validate(value);
+                  },
+                  validator: (value) => _errorMessage)
+              : TextFormField(
+                  controller: widget.textInputController,
+                  decoration: InputDecoration(
+                    prefixIcon: widget.icon,
+                    labelText: widget.inputboxplaceholder,
+                  ),
+                  onChanged: (value) {
+                    _validate(value);
+                  },
+                  validator: (value) => _errorMessage),
         ],
       ),
     );
