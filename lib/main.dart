@@ -3,6 +3,7 @@ import 'package:coordonate_app/features/auth/presentation/bloc/login/login_bloc.
 import 'package:coordonate_app/features/auth/presentation/bloc/register/register_bloc.dart';
 import 'package:coordonate_app/features/auth/presentation/screen/Splash-screen.dart';
 import 'package:coordonate_app/features/auth/presentation/screen/onboarding-1.dart';
+import 'package:coordonate_app/features/feed/presentation/screen/feeds_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
         builder: (context, child) {
           return MaterialApp(
             title: 'Flutter Demo',
+            debugShowCheckedModeBanner: false,
             theme: ThemeData(
                 primaryColor: kPrimaryColor,
                 colorScheme: const ColorScheme(
@@ -49,7 +51,7 @@ class MyApp extends StatelessWidget {
                   surface: kWhiteColor,
                   onSurface: kTextPrimaryColor,
                 )),
-            home: const SplashScreen(),
+            home: FeedsPage(),
           );
         });
   }
