@@ -21,6 +21,7 @@ dependencies:
   flutter_dotenv: ^5.0.2
   flutter_screenutil: ^5.8.4
   flutter_svg: ^0.22.0
+  font_awesome: ^5.10.1
   freezed: ^2.3.5
   freezed_annotation: ^2.2.0
   get_it: ^7.6.0
@@ -53,7 +54,7 @@ flutter:
   assets:
     - assets/images/auth/
     - assets/images/auth/onboarding/
-
+    - assets/images/feeds/
   #   - .env
   #   - .env.development
   #   - .env.production

@@ -1,7 +1,9 @@
-import 'package:coordonate_app/features/feed/presentation/widgets/category/category_list.dart';
+import 'package:coordonate_app/core/common/bottom_navigation_bar.dart';
+import 'package:coordonate_app/features/feed/presentation/widgets/category_list.dart';
 import 'package:coordonate_app/features/feed/presentation/widgets/logo_button.dart';
 import 'package:coordonate_app/features/feed/presentation/widgets/message_button.dart';
 import 'package:coordonate_app/features/feed/presentation/widgets/notifications_button.dart';
+import 'package:coordonate_app/features/feed/presentation/widgets/post_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -41,10 +43,15 @@ class _FeedsPageState extends State<FeedsPage> {
                 MessageButton(),
               ],
             ),
-            CategoryList(categoryItems: widget.categoriesList)
+            CategoryList(categoryItems: widget.categoriesList),
+            SizedBox(
+              height: 30.h,
+            ),
+            PostCard()
           ],
         ),
       ),
+      bottomNavigationBar: coorDonateBottomNavigationBar(),
     );
   }
 }

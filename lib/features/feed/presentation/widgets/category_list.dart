@@ -31,6 +31,7 @@ class _CategoryListState extends State<CategoryList> {
                     });
                   },
                   style: ElevatedButton.styleFrom(
+                    splashFactory: NoSplash.splashFactory,
                     backgroundColor:
                         _selectedIndex == index ? Colors.red : Colors.white,
                     shadowColor: Colors.black,
