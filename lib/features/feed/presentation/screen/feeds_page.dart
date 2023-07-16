@@ -41,9 +41,7 @@ class _FeedsPageState extends State<FeedsPage> {
                 MessageButton(),
               ],
             ),
-            Expanded(
-              child: CategoryList(categoryItems: widget.categoriesList),
-            )
+            CategoryList(categoryItems: widget.categoriesList)
           ],
         ),
       ),
