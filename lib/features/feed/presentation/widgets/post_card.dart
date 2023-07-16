@@ -1,7 +1,11 @@
+import 'package:coordonate_app/features/feed/presentation/widgets/post.dart';
+import 'package:coordonate_app/features/feed/presentation/widgets/post_user.dart';
 import 'package:flutter/material.dart';
 
 class PostCard extends StatefulWidget {
-  const PostCard({super.key});
+  const PostCard({
+    super.key,
+  });
 
   @override
   State<PostCard> createState() => _PostCardState();
@@ -10,6 +14,11 @@ class PostCard extends StatefulWidget {
 class _PostCardState extends State<PostCard> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Column(
+      children: [
+        PostUser(),
+        Post(),
+      ],
+    );
   }
 }

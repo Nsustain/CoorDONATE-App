@@ -12,6 +12,7 @@ class _MessageButtonState extends State<MessageButton> {
   @override
   Widget build(BuildContext context) {
     return IconButton(
+      splashColor: Colors.transparent,
       style: ButtonStyle(splashFactory: NoSplash.splashFactory),
       onPressed: () {},
       icon: Stack(

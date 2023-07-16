@@ -7,6 +7,7 @@ class NotificationsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
+      splashColor: Colors.transparent,
       onPressed: () {},
       icon: Icon(
         Icons.notifications_outlined,
