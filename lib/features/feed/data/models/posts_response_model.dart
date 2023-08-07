@@ -18,12 +18,18 @@ class PostsModel with _$PostsModel {
 }
 
 PostsEntity toPostsEntity(PostsModel postsModel) {
-  final listPosts = postsModel.posts!.map<PostEntity>((model) => PostEntity(
-      postId: model.postId,
-      postUserEntity: toPostUserEntity(model.postUserModel),
-      tags: model.tags,
-      like: model.like,
-      comments: model.comments,
-      bookMarked: model.bookMarked));
-  return PostsEntity(posts: listPosts as List<PostEntity>);
+  final listPosts = postsModel.posts!
+      .map<PostEntity>((model) => PostEntity(
+          postId: model.postId,
+          postUserEntity: toPostUserEntity(model.postUserModel),
+          postImageUrl: model.postImageUrl,
+          postText: model.postText,
+          tags: model.tags,
+          like: model.like,
+          comments: model.comments,
+          bookMarked: model.bookMarked,
+          liked: model.liked,
+          postCreated: model.postCreated))
+      .toList();
+  return PostsEntity(posts: listPosts);
 }

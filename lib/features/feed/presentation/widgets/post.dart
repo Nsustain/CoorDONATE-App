@@ -1,32 +1,35 @@
+import 'package:coordonate_app/features/feed/domain/entities/post_entity.dart';
 import 'package:coordonate_app/features/feed/presentation/widgets/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Post extends StatefulWidget {
   final bool isExpanded = false;
-  const Post({super.key});
+  final PostEntity postEntity;
+  const Post({super.key, required this.postEntity});
 
   @override
   State<Post> createState() => _PostState();
 }
 
 class _PostState extends State<Post> {
-  final String postText =
-      'Adipisicing eu esse exercitation laborum eiusmod minim laborum consectetur. Amet adipisicing commodo ad eu eiusmod nisi cillum. Officia voluptate quis consequat mollit culpa culpa nulla enim laboris aute non ullamco exercitation. Exercitation Lorem eiusmod reprehenderit consectetur tempor culpa ad. Fugiat exercitation sunt cupidatat reprehenderit ad. Quis sunt amet dolor do nostrud.';
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.only(top: 20.h),
+          padding: EdgeInsets.only(top: 20.h, bottom: 10.h),
           child: SizedBox(
             width: double.infinity,
-            child: postText.length > 50
-                ? ExpandableText(text: postText)
-                : Text('$postText'),
+            child: widget.postEntity.postText!.length > 50
+                ? ExpandableText(text: widget.postEntity.postText!)
+                : Text('${widget.postEntity.postText}'),
           ),
         ),
-        Image.asset('assets/images/feeds/nelson-observer.jpg'),
+        // Image.network(
+        //   '${widget.postEntity.postImageUrl![0]}',
+        // )
+        Image.asset('assets/images/feeds/nelson-mandela.jpg')
       ],
     );
   }

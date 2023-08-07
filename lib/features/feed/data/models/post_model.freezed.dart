@@ -21,6 +21,7 @@ PostModel _$PostModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$PostModel {
   String get postId => throw _privateConstructorUsedError;
+  String get postCreated => throw _privateConstructorUsedError;
   PostUserModel get postUserModel => throw _privateConstructorUsedError;
   List<String> get tags => throw _privateConstructorUsedError;
   List<String>? get postImageUrl => throw _privateConstructorUsedError;
@@ -28,6 +29,7 @@ mixin _$PostModel {
   int get like => throw _privateConstructorUsedError;
   int get comments => throw _privateConstructorUsedError;
   bool get bookMarked => throw _privateConstructorUsedError;
+  bool get liked => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,13 +44,15 @@ abstract class $PostModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String postId,
+      String postCreated,
       PostUserModel postUserModel,
       List<String> tags,
       List<String>? postImageUrl,
       String? postText,
       int like,
       int comments,
-      bool bookMarked});
+      bool bookMarked,
+      bool liked});
 
   $PostUserModelCopyWith<$Res> get postUserModel;
 }
@@ -67,6 +71,7 @@ class _$PostModelCopyWithImpl<$Res, $Val extends PostModel>
   @override
   $Res call({
     Object? postId = null,
+    Object? postCreated = null,
     Object? postUserModel = null,
     Object? tags = null,
     Object? postImageUrl = freezed,
@@ -74,11 +79,16 @@ class _$PostModelCopyWithImpl<$Res, $Val extends PostModel>
     Object? like = null,
     Object? comments = null,
     Object? bookMarked = null,
+    Object? liked = null,
   }) {
     return _then(_value.copyWith(
       postId: null == postId
           ? _value.postId
           : postId // ignore: cast_nullable_to_non_nullable
+              as String,
+      postCreated: null == postCreated
+          ? _value.postCreated
+          : postCreated // ignore: cast_nullable_to_non_nullable
               as String,
       postUserModel: null == postUserModel
           ? _value.postUserModel
@@ -108,6 +118,10 @@ class _$PostModelCopyWithImpl<$Res, $Val extends PostModel>
           ? _value.bookMarked
           : bookMarked // ignore: cast_nullable_to_non_nullable
               as bool,
+      liked: null == liked
+          ? _value.liked
+          : liked // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -129,13 +143,15 @@ abstract class _$$_PostModelCopyWith<$Res> implements $PostModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String postId,
+      String postCreated,
       PostUserModel postUserModel,
       List<String> tags,
       List<String>? postImageUrl,
       String? postText,
       int like,
       int comments,
-      bool bookMarked});
+      bool bookMarked,
+      bool liked});
 
   @override
   $PostUserModelCopyWith<$Res> get postUserModel;
@@ -153,6 +169,7 @@ class __$$_PostModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? postId = null,
+    Object? postCreated = null,
     Object? postUserModel = null,
     Object? tags = null,
     Object? postImageUrl = freezed,
@@ -160,11 +177,16 @@ class __$$_PostModelCopyWithImpl<$Res>
     Object? like = null,
     Object? comments = null,
     Object? bookMarked = null,
+    Object? liked = null,
   }) {
     return _then(_$_PostModel(
       postId: null == postId
           ? _value.postId
           : postId // ignore: cast_nullable_to_non_nullable
+              as String,
+      postCreated: null == postCreated
+          ? _value.postCreated
+          : postCreated // ignore: cast_nullable_to_non_nullable
               as String,
       postUserModel: null == postUserModel
           ? _value.postUserModel
@@ -194,30 +216,39 @@ class __$$_PostModelCopyWithImpl<$Res>
           ? _value.bookMarked
           : bookMarked // ignore: cast_nullable_to_non_nullable
               as bool,
+      liked: null == liked
+          ? _value.liked
+          : liked // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_PostModel implements _PostModel {
+class _$_PostModel extends _PostModel {
   const _$_PostModel(
       {required this.postId,
+      required this.postCreated,
       required this.postUserModel,
       required final List<String> tags,
       final List<String>? postImageUrl,
       this.postText,
       required this.like,
       required this.comments,
-      required this.bookMarked})
+      required this.bookMarked,
+      required this.liked})
       : _tags = tags,
-        _postImageUrl = postImageUrl;
+        _postImageUrl = postImageUrl,
+        super._();
 
   factory _$_PostModel.fromJson(Map<String, dynamic> json) =>
       _$$_PostModelFromJson(json);
 
   @override
   final String postId;
+  @override
+  final String postCreated;
   @override
   final PostUserModel postUserModel;
   final List<String> _tags;
@@ -246,10 +277,12 @@ class _$_PostModel implements _PostModel {
   final int comments;
   @override
   final bool bookMarked;
+  @override
+  final bool liked;
 
   @override
   String toString() {
-    return 'PostModel(postId: $postId, postUserModel: $postUserModel, tags: $tags, postImageUrl: $postImageUrl, postText: $postText, like: $like, comments: $comments, bookMarked: $bookMarked)';
+    return 'PostModel(postId: $postId, postCreated: $postCreated, postUserModel: $postUserModel, tags: $tags, postImageUrl: $postImageUrl, postText: $postText, like: $like, comments: $comments, bookMarked: $bookMarked, liked: $liked)';
   }
 
   @override
@@ -258,6 +291,8 @@ class _$_PostModel implements _PostModel {
         (other.runtimeType == runtimeType &&
             other is _$_PostModel &&
             (identical(other.postId, postId) || other.postId == postId) &&
+            (identical(other.postCreated, postCreated) ||
+                other.postCreated == postCreated) &&
             (identical(other.postUserModel, postUserModel) ||
                 other.postUserModel == postUserModel) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
@@ -269,7 +304,8 @@ class _$_PostModel implements _PostModel {
             (identical(other.comments, comments) ||
                 other.comments == comments) &&
             (identical(other.bookMarked, bookMarked) ||
-                other.bookMarked == bookMarked));
+                other.bookMarked == bookMarked) &&
+            (identical(other.liked, liked) || other.liked == liked));
   }
 
   @JsonKey(ignore: true)
@@ -277,13 +313,15 @@ class _$_PostModel implements _PostModel {
   int get hashCode => Object.hash(
       runtimeType,
       postId,
+      postCreated,
       postUserModel,
       const DeepCollectionEquality().hash(_tags),
       const DeepCollectionEquality().hash(_postImageUrl),
       postText,
       like,
       comments,
-      bookMarked);
+      bookMarked,
+      liked);
 
   @JsonKey(ignore: true)
   @override
@@ -299,22 +337,27 @@ class _$_PostModel implements _PostModel {
   }
 }
 
-abstract class _PostModel implements PostModel {
+abstract class _PostModel extends PostModel {
   const factory _PostModel(
       {required final String postId,
+      required final String postCreated,
       required final PostUserModel postUserModel,
       required final List<String> tags,
       final List<String>? postImageUrl,
       final String? postText,
       required final int like,
       required final int comments,
-      required final bool bookMarked}) = _$_PostModel;
+      required final bool bookMarked,
+      required final bool liked}) = _$_PostModel;
+  const _PostModel._() : super._();
 
   factory _PostModel.fromJson(Map<String, dynamic> json) =
       _$_PostModel.fromJson;
 
   @override
   String get postId;
+  @override
+  String get postCreated;
   @override
   PostUserModel get postUserModel;
   @override
@@ -329,6 +372,8 @@ abstract class _PostModel implements PostModel {
   int get comments;
   @override
   bool get bookMarked;
+  @override
+  bool get liked;
   @override
   @JsonKey(ignore: true)
   _$$_PostModelCopyWith<_$_PostModel> get copyWith =>
