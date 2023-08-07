@@ -9,6 +9,7 @@ part 'post_model.g.dart';
 class PostModel with _$PostModel {
   const factory PostModel({
     required String postId,
+    required String postCreated,
     required PostUserModel postUserModel,
     required List<String> tags,
     List<String>? postImageUrl,
@@ -16,6 +17,7 @@ class PostModel with _$PostModel {
     required int like,
     required int comments,
     required bool bookMarked,
+    required bool liked,
   }) = _PostModel;
 
   const PostModel._();
@@ -27,8 +29,12 @@ PostEntity toPostEntity(PostModel model) {
   return PostEntity(
       postId: model.postId,
       postUserEntity: toPostUserEntity(model.postUserModel),
+      postImageUrl: model.postImageUrl,
+      postText: model.postText,
+      postCreated: model.postCreated,
       tags: model.tags,
       like: model.like,
       comments: model.comments,
-      bookMarked: model.bookMarked);
+      bookMarked: model.bookMarked,
+      liked: model.liked);
 }

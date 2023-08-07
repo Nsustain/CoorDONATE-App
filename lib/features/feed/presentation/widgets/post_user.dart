@@ -1,8 +1,12 @@
+import 'package:coordonate_app/features/feed/domain/entities/post_user_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PostUser extends StatelessWidget {
-  const PostUser({super.key});
+  final PostUserEntity postUserEntity;
+  final String postCreated;
+  const PostUser(
+      {super.key, required this.postUserEntity, required this.postCreated});
 
   @override
   Widget build(BuildContext context) {
@@ -11,24 +15,24 @@ class PostUser extends StatelessWidget {
         Row(
           children: [
             CircleAvatar(
-              backgroundImage:
-                  AssetImage('assets/images/feeds/nelson-mandela.jpg'),
+              backgroundImage: NetworkImage(postUserEntity.profileImageUrl),
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 6.w),
               child: Text(
-                'Nelson Mandela Foundation',
+                postUserEntity.fullname,
                 style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
               ),
             ),
-            Icon(
-              Icons.verified,
-              color: Theme.of(context).primaryColor,
-              size: 20.h,
-            ),
-            SizedBox(
-              width: 4.w,
-            ),
+            if (postUserEntity.isVerified)
+              Padding(
+                padding: EdgeInsets.only(right: 4.w),
+                child: Icon(
+                  Icons.verified,
+                  color: Theme.of(context).primaryColor,
+                  size: 20.h,
+                ),
+              ),
             Container(
               height: 5.h,
               width: 5.w,
@@ -41,7 +45,7 @@ class PostUser extends StatelessWidget {
               width: 4.w,
             ),
             Text(
-              '1d',
+              postCreated,
               style: TextStyle(fontSize: 13.sp),
             )
           ],
@@ -50,7 +54,7 @@ class PostUser extends StatelessWidget {
           top: 30.h,
           left: 50.h,
           child: Text(
-            '@nelsonmandelafoundation',
+            postUserEntity.username,
             style: TextStyle(
                 fontSize: 13.sp, color: Colors.black.withOpacity(0.5)),
           ),

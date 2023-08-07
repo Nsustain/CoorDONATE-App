@@ -8,7 +8,7 @@ import 'dart:convert';
 typedef ResponseConverter<T> = T Function(dynamic response);
 
 class DioClient {
-  String baseUrl = "https://bb935d3e-3a5f-40fe-996f-64af5e0aaacb.mock.pstmn.io";
+  String baseUrl = "https://mocki.io/v1/8361d646-511a-4eba-bde4-dd3fca3c57b2";
 
   String? _auth;
   bool _isUnitTest = false;

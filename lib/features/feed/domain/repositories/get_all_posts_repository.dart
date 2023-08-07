@@ -4,4 +4,5 @@ import 'package:dartz/dartz.dart';
 
 abstract class GetAllPostsRepository {
   Future<Either<Failure, PostsEntity>> getAllPosts();
+  Future<Either<Failure, PostsEntity>> createPost();
 }

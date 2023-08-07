@@ -18,12 +18,14 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$PostEntity {
   String get postId => throw _privateConstructorUsedError;
   PostUserEntity get postUserEntity => throw _privateConstructorUsedError;
+  String get postCreated => throw _privateConstructorUsedError;
   List<String> get tags => throw _privateConstructorUsedError;
   List<String>? get postImageUrl => throw _privateConstructorUsedError;
   String? get postText => throw _privateConstructorUsedError;
   int get like => throw _privateConstructorUsedError;
   int get comments => throw _privateConstructorUsedError;
   bool get bookMarked => throw _privateConstructorUsedError;
+  bool get liked => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PostEntityCopyWith<PostEntity> get copyWith =>
@@ -39,12 +41,14 @@ abstract class $PostEntityCopyWith<$Res> {
   $Res call(
       {String postId,
       PostUserEntity postUserEntity,
+      String postCreated,
       List<String> tags,
       List<String>? postImageUrl,
       String? postText,
       int like,
       int comments,
-      bool bookMarked});
+      bool bookMarked,
+      bool liked});
 
   $PostUserEntityCopyWith<$Res> get postUserEntity;
 }
@@ -64,12 +68,14 @@ class _$PostEntityCopyWithImpl<$Res, $Val extends PostEntity>
   $Res call({
     Object? postId = null,
     Object? postUserEntity = null,
+    Object? postCreated = null,
     Object? tags = null,
     Object? postImageUrl = freezed,
     Object? postText = freezed,
     Object? like = null,
     Object? comments = null,
     Object? bookMarked = null,
+    Object? liked = null,
   }) {
     return _then(_value.copyWith(
       postId: null == postId
@@ -80,6 +86,10 @@ class _$PostEntityCopyWithImpl<$Res, $Val extends PostEntity>
           ? _value.postUserEntity
           : postUserEntity // ignore: cast_nullable_to_non_nullable
               as PostUserEntity,
+      postCreated: null == postCreated
+          ? _value.postCreated
+          : postCreated // ignore: cast_nullable_to_non_nullable
+              as String,
       tags: null == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
@@ -104,6 +114,10 @@ class _$PostEntityCopyWithImpl<$Res, $Val extends PostEntity>
           ? _value.bookMarked
           : bookMarked // ignore: cast_nullable_to_non_nullable
               as bool,
+      liked: null == liked
+          ? _value.liked
+          : liked // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -127,12 +141,14 @@ abstract class _$$_PostEntityCopyWith<$Res>
   $Res call(
       {String postId,
       PostUserEntity postUserEntity,
+      String postCreated,
       List<String> tags,
       List<String>? postImageUrl,
       String? postText,
       int like,
       int comments,
-      bool bookMarked});
+      bool bookMarked,
+      bool liked});
 
   @override
   $PostUserEntityCopyWith<$Res> get postUserEntity;
@@ -151,12 +167,14 @@ class __$$_PostEntityCopyWithImpl<$Res>
   $Res call({
     Object? postId = null,
     Object? postUserEntity = null,
+    Object? postCreated = null,
     Object? tags = null,
     Object? postImageUrl = freezed,
     Object? postText = freezed,
     Object? like = null,
     Object? comments = null,
     Object? bookMarked = null,
+    Object? liked = null,
   }) {
     return _then(_$_PostEntity(
       postId: null == postId
@@ -167,6 +185,10 @@ class __$$_PostEntityCopyWithImpl<$Res>
           ? _value.postUserEntity
           : postUserEntity // ignore: cast_nullable_to_non_nullable
               as PostUserEntity,
+      postCreated: null == postCreated
+          ? _value.postCreated
+          : postCreated // ignore: cast_nullable_to_non_nullable
+              as String,
       tags: null == tags
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
@@ -191,6 +213,10 @@ class __$$_PostEntityCopyWithImpl<$Res>
           ? _value.bookMarked
           : bookMarked // ignore: cast_nullable_to_non_nullable
               as bool,
+      liked: null == liked
+          ? _value.liked
+          : liked // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -201,12 +227,14 @@ class _$_PostEntity implements _PostEntity {
   const _$_PostEntity(
       {required this.postId,
       required this.postUserEntity,
+      required this.postCreated,
       required final List<String> tags,
       final List<String>? postImageUrl,
       this.postText,
       required this.like,
       required this.comments,
-      required this.bookMarked})
+      required this.bookMarked,
+      required this.liked})
       : _tags = tags,
         _postImageUrl = postImageUrl;
 
@@ -214,6 +242,8 @@ class _$_PostEntity implements _PostEntity {
   final String postId;
   @override
   final PostUserEntity postUserEntity;
+  @override
+  final String postCreated;
   final List<String> _tags;
   @override
   List<String> get tags {
@@ -240,10 +270,12 @@ class _$_PostEntity implements _PostEntity {
   final int comments;
   @override
   final bool bookMarked;
+  @override
+  final bool liked;
 
   @override
   String toString() {
-    return 'PostEntity(postId: $postId, postUserEntity: $postUserEntity, tags: $tags, postImageUrl: $postImageUrl, postText: $postText, like: $like, comments: $comments, bookMarked: $bookMarked)';
+    return 'PostEntity(postId: $postId, postUserEntity: $postUserEntity, postCreated: $postCreated, tags: $tags, postImageUrl: $postImageUrl, postText: $postText, like: $like, comments: $comments, bookMarked: $bookMarked, liked: $liked)';
   }
 
   @override
@@ -254,6 +286,8 @@ class _$_PostEntity implements _PostEntity {
             (identical(other.postId, postId) || other.postId == postId) &&
             (identical(other.postUserEntity, postUserEntity) ||
                 other.postUserEntity == postUserEntity) &&
+            (identical(other.postCreated, postCreated) ||
+                other.postCreated == postCreated) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
             const DeepCollectionEquality()
                 .equals(other._postImageUrl, _postImageUrl) &&
@@ -263,7 +297,8 @@ class _$_PostEntity implements _PostEntity {
             (identical(other.comments, comments) ||
                 other.comments == comments) &&
             (identical(other.bookMarked, bookMarked) ||
-                other.bookMarked == bookMarked));
+                other.bookMarked == bookMarked) &&
+            (identical(other.liked, liked) || other.liked == liked));
   }
 
   @override
@@ -271,12 +306,14 @@ class _$_PostEntity implements _PostEntity {
       runtimeType,
       postId,
       postUserEntity,
+      postCreated,
       const DeepCollectionEquality().hash(_tags),
       const DeepCollectionEquality().hash(_postImageUrl),
       postText,
       like,
       comments,
-      bookMarked);
+      bookMarked,
+      liked);
 
   @JsonKey(ignore: true)
   @override
@@ -289,17 +326,21 @@ abstract class _PostEntity implements PostEntity {
   const factory _PostEntity(
       {required final String postId,
       required final PostUserEntity postUserEntity,
+      required final String postCreated,
       required final List<String> tags,
       final List<String>? postImageUrl,
       final String? postText,
       required final int like,
       required final int comments,
-      required final bool bookMarked}) = _$_PostEntity;
+      required final bool bookMarked,
+      required final bool liked}) = _$_PostEntity;
 
   @override
   String get postId;
   @override
   PostUserEntity get postUserEntity;
+  @override
+  String get postCreated;
   @override
   List<String> get tags;
   @override
@@ -312,6 +353,8 @@ abstract class _PostEntity implements PostEntity {
   int get comments;
   @override
   bool get bookMarked;
+  @override
+  bool get liked;
   @override
   @JsonKey(ignore: true)
   _$$_PostEntityCopyWith<_$_PostEntity> get copyWith =>
