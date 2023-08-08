@@ -1,14 +1,19 @@
 import 'package:shared_preferences/shared_preferences.dart';
+
 class PrefManager {
-  String kIsLogin = "isLogin";
+  String kIsLoggedin = "isLogin";
   String kToken = "token";
   String kUserID = "userID";
+  String kFirstTimeOpened = "firsttimeopened";
 
   SharedPreferences preferences;
   PrefManager(this.preferences);
   //for Bloc.Bloc.login
-  set isLogin(bool value) => preferences.setBool(kIsLogin, value);
-  bool get isLogin => preferences.getBool(kIsLogin) ?? false;
+  set isLoggedin(bool value) => preferences.setBool(kIsLoggedin, value);
+  bool get isLoggedin => preferences.getBool(kIsLoggedin) ?? false;
+  set isFirstTimeOpened(bool value) =>
+      preferences.setBool(kFirstTimeOpened, value);
+  bool get isFirstTimeOpened => preferences.getBool(kFirstTimeOpened) ?? false;
   set token(String? value) => preferences.setString(kToken, value ?? "");
   String? get token => preferences.getString(kToken);
   set userId(String? value) => preferences.setString(kUserID, value ?? "");

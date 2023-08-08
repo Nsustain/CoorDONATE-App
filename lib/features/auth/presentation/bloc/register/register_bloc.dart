@@ -25,7 +25,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       result.fold(
         (error) => emit(RegisterFailureState(error: error.toString())),
         (register) {
-          _prefManager.isLogin = true;
+          _prefManager.isLoggedin = true;
           _prefManager.token = register.token;
           emit(RegisterSuccessState());
         },

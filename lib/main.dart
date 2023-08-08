@@ -3,7 +3,10 @@ import 'package:coordonate_app/features/auth/presentation/bloc/login/login_bloc.
 import 'package:coordonate_app/features/auth/presentation/bloc/register/register_bloc.dart';
 import 'package:coordonate_app/features/auth/presentation/screen/Splash-screen.dart';
 import 'package:coordonate_app/features/auth/presentation/screen/onboarding-1.dart';
+import 'package:coordonate_app/features/feed/presentation/bloc/feed/feed_bloc.dart';
 import 'package:coordonate_app/features/feed/presentation/screen/feeds_page.dart';
+import 'package:coordonate_app/router/main_router.dart';
+import 'package:coordonate_app/utils/helper/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -33,26 +36,17 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
-          return MaterialApp(
-            title: 'Flutter Demo',
-            debugShowCheckedModeBanner: false,
-            theme: ThemeData(
-                primaryColor: kPrimaryColor,
-                colorScheme: const ColorScheme(
-                  brightness: Brightness.light,
-                  background: kBackgroundColor,
-                  primary: kPrimaryColor,
-                  onPrimary: kTextPrimaryColor,
-                  secondary: kSecondaryColor,
-                  onSecondary: kTextPrimaryColor,
-                  error: kDangerColor,
-                  onError: kPrimaryColor,
-                  onBackground: kPrimaryColor,
-                  surface: kWhiteColor,
-                  onSurface: kTextPrimaryColor,
-                )),
-            home: FeedsPage(),
-          );
+          return MultiBlocProvider(providers: [
+            BlocProvider<RegisterBloc>(
+              create: (context) => di.sl<RegisterBloc>(),
+            ),
+            BlocProvider<LoginBloc>(
+              create: (context) => di.sl<LoginBloc>(),
+            ),
+            BlocProvider<FeedBloc>(
+              create: (context) => di.sl<FeedBloc>(),
+            ),
+          ], child: MainRouter());
         });
   }
 }

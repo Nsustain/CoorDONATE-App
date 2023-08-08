@@ -1,3 +1,5 @@
+import 'package:coordonate_app/features/auth/auth.dart';
+import 'package:coordonate_app/features/feed/presentation/screen/feeds_page.dart';
 import 'package:flutter/material.dart';
 
 class coorDonateBottomNavigationBar extends StatefulWidget {
@@ -17,6 +19,7 @@ class _coorDonateBottomNavigationBar
     Icons.notifications,
     Icons.account_circle,
   ];
+  List<Widget> pages = [FeedsPage()];
 
   void _onItemTapped(int index) {
     setState(() {

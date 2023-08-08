@@ -22,7 +22,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       result.fold(
         (error) => emit(LoginFailureState(error: error.toString())),
         (login) {
-          _prefManager.isLogin = true;
+          _prefManager.isLoggedin = true;
           _prefManager.token = login
               .token; 
           emit(LoginSuccessState());
