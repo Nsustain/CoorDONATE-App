@@ -8,14 +8,12 @@ part of 'register_response.dart';
 
 _$_RegisterResponse _$$_RegisterResponseFromJson(Map<String, dynamic> json) =>
     _$_RegisterResponse(
-      id: json['id'] as String?,
-      token: json['token'] as String?,
-      error: json['error'] as String?,
+      status: json['status'] as String,
+      data: Data.fromJson(json['data'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_RegisterResponseToJson(_$_RegisterResponse instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'token': instance.token,
-      'error': instance.error,
+      'status': instance.status,
+      'data': instance.data,
     };

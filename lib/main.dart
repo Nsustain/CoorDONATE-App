@@ -50,3 +50,18 @@ class MyApp extends StatelessWidget {
         });
   }
 }
+
+// class MyApp extends StatelessWidget {
+//   const MyApp({Key? key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return ScreenUtilInit(
+//         designSize: const Size(443, 962),
+//         minTextAdapt: true,
+//         splitScreenMode: true,
+//         builder: (context, child) {
+//           return MainRouter();
+//         });
+//   }
+// }

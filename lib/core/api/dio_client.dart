@@ -8,7 +8,7 @@ import 'dart:convert';
 typedef ResponseConverter<T> = T Function(dynamic response);
 
 class DioClient {
-  String baseUrl = "https://mocki.io/v1/8361d646-511a-4eba-bde4-dd3fca3c57b2";
+  String baseUrl = "https://coordonate-backend-abrishatlaw-gmailcom.vercel.app";
 
   String? _auth;
   bool _isUnitTest = false;
@@ -18,7 +18,7 @@ class DioClient {
     _isUnitTest = isUnitTest;
 
     try {
-      _auth = sl<PrefManager>().token;
+      _auth = sl<PrefManager>().accessToken;
     } catch (_) {}
 
     _dio = _createDio();
@@ -33,7 +33,7 @@ class DioClient {
     } else {
       /// We need to recreate dio to avoid token issue after login
       try {
-        _auth = sl<PrefManager>().token;
+        _auth = sl<PrefManager>().accessToken;
       } catch (_) {}
 
       final dio = _createDio();
@@ -51,11 +51,12 @@ class DioClient {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
             if (_auth != null) ...{
-              'Authorization': _auth,
+              'Authorization':
+                  'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIyLCJpYXQiOjE2OTI2MzY1MTUsImV4cCI6MTY5MjYzNzQxNX0.OkvthS4JV_QLts3iNMS47Bn27K6D--9rZoapd2XsMdRfGy0dOPQZeEw15cFkyNVtEMjCif9DAnXoCmUJByAboFgKaiL0P-62cJkbwAa7p7rHqjNwhgXQP3rYAhPO1cu7hsI_ic8p-aKi5NO4uqoUkOqXj8Njzru9nm1kSKCiGMvTkFcwqY9pEIeCeuzGWTKI3V1eOSJehYAt3EYEAgrgN1QvVx1Xh62Xrh4ppvARcuL38DqE2BZ645sMW_3zRpWE4d10HBzV0mv1rx4HZ4Fv0zxVbLhWWi68PAAZoR-cDTCRI2H8bf-_IWER-Y2pHjvytOpOeB31_eBBvIZ12bceClHoLdVLxNTzI5qGV_JIQT38l5dgZUIi61JhDWlUSqRR7H03skkbBY1YaSq1Qu2kprC-2tME4kBr4rLfGznoQnbDW6K90cr06JOAqVXMeSb3G_-tibb0d61tJ75Fq9IcpSeZYyrcdJJW12i32M-90Gsk_L3qOJY_Z8H63tPGJ7FmZ766uWHlDM7F5vEM8izSCVKjHOdPxwasRDhABlL2j1FhQVMFEI1yFzdPQhv5F1DAGLIoSzc2ceXUcTV6LecWAyK287G9KVpDS9cakLc_3mzMp09mPPgQMTFFxL1uDZ5ywTYBVH5imLEtMWY9ErAhpp2DGaijk84Az0pKeUQKkOA',
             },
           },
-          receiveTimeout: const Duration(seconds: 20),
-          connectTimeout: const Duration(seconds: 20),
+          receiveTimeout: const Duration(seconds: 30),
+          connectTimeout: const Duration(seconds: 30),
           validateStatus: (int? status) {
             return status! > 0;
           },
@@ -66,6 +67,7 @@ class DioClient {
     String url, {
     Map<String, dynamic>? queryParameters,
     required ResponseConverter<T> converter,
+    ResponseConverter<T>? listResponseConverter,
     bool isIsolate = true,
   }) async {
     try {
@@ -82,9 +84,9 @@ class DioClient {
         return Right(converter(response.data));
       }
       final isolateParse = IsolateParser<T>(
-        response.data as Map<String, dynamic>,
-        converter,
-      );
+          json: response.data,
+          converter: converter,
+          listResponseConverter: listResponseConverter);
       final result = await isolateParse.parseInBackground();
       return Right(result);
     } on DioException catch (e) {
@@ -100,6 +102,7 @@ class DioClient {
     String url, {
     Map<String, dynamic>? data,
     required ResponseConverter<T> converter,
+    ResponseConverter<T>? listResponseConverter,
     bool isIsolate = true,
   }) async {
     try {
@@ -115,10 +118,14 @@ class DioClient {
       if (!isIsolate) {
         return Right(converter(response.data));
       }
+      // print(response);
+      // print(response.data);
+      // final jsonResponse = jsonDecode(response.data);
+      // print(jsonResponse);
       final isolateParse = IsolateParser<T>(
-        jsonDecode(response.data) as Map<String, dynamic>,
-        converter,
-      );
+          json: response.data,
+          converter: converter,
+          listResponseConverter: listResponseConverter);
       final result = await isolateParse.parseInBackground();
       return Right(result);
     } on DioException catch (e) {

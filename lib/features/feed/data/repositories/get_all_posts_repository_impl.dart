@@ -17,7 +17,7 @@ class GetAllPostsRepositoryImpl implements GetAllPostsRepository {
       if (r.posts?.isEmpty ?? true) {
         return Left(NoDataFailure());
       }
-      print(Right(toPostsEntity(PostsModel(posts: r.posts))));
+      // print(Right(toPostsEntity(PostsModel(posts: r.posts))));
       return Right(toPostsEntity(PostsModel(posts: r.posts)));
     });
   }

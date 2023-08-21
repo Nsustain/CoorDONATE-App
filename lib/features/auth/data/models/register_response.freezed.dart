@@ -20,9 +20,8 @@ RegisterResponse _$RegisterResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$RegisterResponse {
-  String? get id => throw _privateConstructorUsedError;
-  String? get token => throw _privateConstructorUsedError;
-  String? get error => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
+  Data get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +35,9 @@ abstract class $RegisterResponseCopyWith<$Res> {
           RegisterResponse value, $Res Function(RegisterResponse) then) =
       _$RegisterResponseCopyWithImpl<$Res, RegisterResponse>;
   @useResult
-  $Res call({String? id, String? token, String? error});
+  $Res call({String status, Data data});
+
+  $DataCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -52,24 +53,27 @@ class _$RegisterResponseCopyWithImpl<$Res, $Val extends RegisterResponse>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? token = freezed,
-    Object? error = freezed,
+    Object? status = null,
+    Object? data = null,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      token: freezed == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String?,
-      error: freezed == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as String?,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as Data,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $DataCopyWith<$Res> get data {
+    return $DataCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value) as $Val);
+    });
   }
 }
 
@@ -81,7 +85,10 @@ abstract class _$$_RegisterResponseCopyWith<$Res>
       __$$_RegisterResponseCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? id, String? token, String? error});
+  $Res call({String status, Data data});
+
+  @override
+  $DataCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -95,23 +102,18 @@ class __$$_RegisterResponseCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? token = freezed,
-    Object? error = freezed,
+    Object? status = null,
+    Object? data = null,
   }) {
     return _then(_$_RegisterResponse(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      token: freezed == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String?,
-      error: freezed == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as String?,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as Data,
     ));
   }
 }
@@ -119,21 +121,20 @@ class __$$_RegisterResponseCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_RegisterResponse extends _RegisterResponse {
-  const _$_RegisterResponse({this.id, this.token, this.error}) : super._();
+  const _$_RegisterResponse({required this.status, required this.data})
+      : super._();
 
   factory _$_RegisterResponse.fromJson(Map<String, dynamic> json) =>
       _$$_RegisterResponseFromJson(json);
 
   @override
-  final String? id;
+  final String status;
   @override
-  final String? token;
-  @override
-  final String? error;
+  final Data data;
 
   @override
   String toString() {
-    return 'RegisterResponse(id: $id, token: $token, error: $error)';
+    return 'RegisterResponse(status: $status, data: $data)';
   }
 
   @override
@@ -141,14 +142,13 @@ class _$_RegisterResponse extends _RegisterResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_RegisterResponse &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.token, token) || other.token == token) &&
-            (identical(other.error, error) || other.error == error));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.data, data) || other.data == data));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, token, error);
+  int get hashCode => Object.hash(runtimeType, status, data);
 
   @JsonKey(ignore: true)
   @override
@@ -166,20 +166,17 @@ class _$_RegisterResponse extends _RegisterResponse {
 
 abstract class _RegisterResponse extends RegisterResponse {
   const factory _RegisterResponse(
-      {final String? id,
-      final String? token,
-      final String? error}) = _$_RegisterResponse;
+      {required final String status,
+      required final Data data}) = _$_RegisterResponse;
   const _RegisterResponse._() : super._();
 
   factory _RegisterResponse.fromJson(Map<String, dynamic> json) =
       _$_RegisterResponse.fromJson;
 
   @override
-  String? get id;
+  String get status;
   @override
-  String? get token;
-  @override
-  String? get error;
+  Data get data;
   @override
   @JsonKey(ignore: true)
   _$$_RegisterResponseCopyWith<_$_RegisterResponse> get copyWith =>

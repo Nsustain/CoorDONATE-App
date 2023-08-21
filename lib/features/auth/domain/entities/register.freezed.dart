@@ -16,7 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Register {
-  String? get token => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RegisterCopyWith<Register> get copyWith =>
@@ -28,7 +29,7 @@ abstract class $RegisterCopyWith<$Res> {
   factory $RegisterCopyWith(Register value, $Res Function(Register) then) =
       _$RegisterCopyWithImpl<$Res, Register>;
   @useResult
-  $Res call({String? token});
+  $Res call({String email, String password});
 }
 
 /// @nodoc
@@ -44,13 +45,18 @@ class _$RegisterCopyWithImpl<$Res, $Val extends Register>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? token = freezed,
+    Object? email = null,
+    Object? password = null,
   }) {
     return _then(_value.copyWith(
-      token: freezed == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String?,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -62,7 +68,7 @@ abstract class _$$_RegisterCopyWith<$Res> implements $RegisterCopyWith<$Res> {
       __$$_RegisterCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? token});
+  $Res call({String email, String password});
 }
 
 /// @nodoc
@@ -76,13 +82,18 @@ class __$$_RegisterCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? token = freezed,
+    Object? email = null,
+    Object? password = null,
   }) {
     return _then(_$_Register(
-      token: freezed == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String?,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -90,14 +101,16 @@ class __$$_RegisterCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Register extends _Register {
-  const _$_Register({this.token}) : super._();
+  const _$_Register({required this.email, required this.password}) : super._();
 
   @override
-  final String? token;
+  final String email;
+  @override
+  final String password;
 
   @override
   String toString() {
-    return 'Register(token: $token)';
+    return 'Register(email: $email, password: $password)';
   }
 
   @override
@@ -105,11 +118,13 @@ class _$_Register extends _Register {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Register &&
-            (identical(other.token, token) || other.token == token));
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.password, password) ||
+                other.password == password));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, token);
+  int get hashCode => Object.hash(runtimeType, email, password);
 
   @JsonKey(ignore: true)
   @override
@@ -119,11 +134,15 @@ class _$_Register extends _Register {
 }
 
 abstract class _Register extends Register {
-  const factory _Register({final String? token}) = _$_Register;
+  const factory _Register(
+      {required final String email,
+      required final String password}) = _$_Register;
   const _Register._() : super._();
 
   @override
-  String? get token;
+  String get email;
+  @override
+  String get password;
   @override
   @JsonKey(ignore: true)
   _$$_RegisterCopyWith<_$_Register> get copyWith =>

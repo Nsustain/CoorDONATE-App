@@ -9,7 +9,8 @@ class AuthRepositoryImpl implements AuthRepository {
   const AuthRepositoryImpl(this.authRemoteDatasource);
 
   @override
-  Future<Either<Failure, Login>> login(LoginParams loginParams) async {
+  Future<Either<Failure, LoginResponseEntity>> login(
+      LoginParams loginParams) async {
     final response = await authRemoteDatasource.login(loginParams);
 
     return response.fold(
@@ -21,7 +22,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, Register>> register(
+  Future<Either<Failure, RegisterResponse>> register(
     RegisterParams registerParams,
   ) async {
     final response = await authRemoteDatasource.register(registerParams);
@@ -29,7 +30,7 @@ class AuthRepositoryImpl implements AuthRepository {
     return response.fold(
       (failure) => Left(failure),
       (registerResponse) {
-        return Right(registerResponse.toEntity());
+        return Right(registerResponse);
       },
     );
   }

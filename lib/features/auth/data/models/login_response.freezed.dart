@@ -21,7 +21,8 @@ LoginResponse _$LoginResponseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$LoginResponse {
   int? get id => throw _privateConstructorUsedError;
-  String? get token => throw _privateConstructorUsedError;
+  String get accessToken => throw _privateConstructorUsedError;
+  String get refreshToken => throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +37,7 @@ abstract class $LoginResponseCopyWith<$Res> {
           LoginResponse value, $Res Function(LoginResponse) then) =
       _$LoginResponseCopyWithImpl<$Res, LoginResponse>;
   @useResult
-  $Res call({int? id, String? token, String? error});
+  $Res call({int? id, String accessToken, String refreshToken, String? error});
 }
 
 /// @nodoc
@@ -53,7 +54,8 @@ class _$LoginResponseCopyWithImpl<$Res, $Val extends LoginResponse>
   @override
   $Res call({
     Object? id = freezed,
-    Object? token = freezed,
+    Object? accessToken = null,
+    Object? refreshToken = null,
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
@@ -61,10 +63,14 @@ class _$LoginResponseCopyWithImpl<$Res, $Val extends LoginResponse>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      token: freezed == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String?,
+      accessToken: null == accessToken
+          ? _value.accessToken
+          : accessToken // ignore: cast_nullable_to_non_nullable
+              as String,
+      refreshToken: null == refreshToken
+          ? _value.refreshToken
+          : refreshToken // ignore: cast_nullable_to_non_nullable
+              as String,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -81,7 +87,7 @@ abstract class _$$_LoginResponseCopyWith<$Res>
       __$$_LoginResponseCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, String? token, String? error});
+  $Res call({int? id, String accessToken, String refreshToken, String? error});
 }
 
 /// @nodoc
@@ -96,7 +102,8 @@ class __$$_LoginResponseCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? token = freezed,
+    Object? accessToken = null,
+    Object? refreshToken = null,
     Object? error = freezed,
   }) {
     return _then(_$_LoginResponse(
@@ -104,10 +111,14 @@ class __$$_LoginResponseCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      token: freezed == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String?,
+      accessToken: null == accessToken
+          ? _value.accessToken
+          : accessToken // ignore: cast_nullable_to_non_nullable
+              as String,
+      refreshToken: null == refreshToken
+          ? _value.refreshToken
+          : refreshToken // ignore: cast_nullable_to_non_nullable
+              as String,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -119,7 +130,12 @@ class __$$_LoginResponseCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_LoginResponse extends _LoginResponse {
-  const _$_LoginResponse({this.id, this.token, this.error}) : super._();
+  const _$_LoginResponse(
+      {this.id,
+      required this.accessToken,
+      required this.refreshToken,
+      this.error})
+      : super._();
 
   factory _$_LoginResponse.fromJson(Map<String, dynamic> json) =>
       _$$_LoginResponseFromJson(json);
@@ -127,13 +143,15 @@ class _$_LoginResponse extends _LoginResponse {
   @override
   final int? id;
   @override
-  final String? token;
+  final String accessToken;
+  @override
+  final String refreshToken;
   @override
   final String? error;
 
   @override
   String toString() {
-    return 'LoginResponse(id: $id, token: $token, error: $error)';
+    return 'LoginResponse(id: $id, accessToken: $accessToken, refreshToken: $refreshToken, error: $error)';
   }
 
   @override
@@ -142,13 +160,17 @@ class _$_LoginResponse extends _LoginResponse {
         (other.runtimeType == runtimeType &&
             other is _$_LoginResponse &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.token, token) || other.token == token) &&
+            (identical(other.accessToken, accessToken) ||
+                other.accessToken == accessToken) &&
+            (identical(other.refreshToken, refreshToken) ||
+                other.refreshToken == refreshToken) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, token, error);
+  int get hashCode =>
+      Object.hash(runtimeType, id, accessToken, refreshToken, error);
 
   @JsonKey(ignore: true)
   @override
@@ -167,7 +189,8 @@ class _$_LoginResponse extends _LoginResponse {
 abstract class _LoginResponse extends LoginResponse {
   const factory _LoginResponse(
       {final int? id,
-      final String? token,
+      required final String accessToken,
+      required final String refreshToken,
       final String? error}) = _$_LoginResponse;
   const _LoginResponse._() : super._();
 
@@ -177,7 +200,9 @@ abstract class _LoginResponse extends LoginResponse {
   @override
   int? get id;
   @override
-  String? get token;
+  String get accessToken;
+  @override
+  String get refreshToken;
   @override
   String? get error;
   @override

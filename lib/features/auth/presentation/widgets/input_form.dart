@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class InputForm extends StatefulWidget {
   final Icon icon;
@@ -14,7 +13,7 @@ class InputForm extends StatefulWidget {
       required this.inputboxplaceholder,
       required this.type,
       required this.textInputController,
-      this.isVisible,
+      this.isVisible = false,
       this.toggleVisibility})
       : super(key: key);
 
@@ -60,13 +59,13 @@ class _InputFormState extends State<InputForm> {
   Widget build(BuildContext context) {
     print('overhere ${widget.isVisible!}');
     return Container(
-      constraints: BoxConstraints(maxWidth: 330.w),
+      constraints: const BoxConstraints(maxWidth: double.infinity),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           widget.type == 'password'
               ? TextFormField(
-                  obscureText: !widget.isVisible!,
+                  obscureText: widget.isVisible!,
                   controller: widget.textInputController,
                   decoration: InputDecoration(
                       prefixIcon: widget.icon,
@@ -93,6 +92,7 @@ class _InputFormState extends State<InputForm> {
                     labelText: widget.inputboxplaceholder,
                   ),
                   onChanged: (value) {
+                    print('printed');
                     _validate(value);
                   },
                   validator: (value) => _errorMessage),

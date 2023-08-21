@@ -8,7 +8,8 @@ part 'login_response.g.dart';
 class LoginResponse with _$LoginResponse {
   const factory LoginResponse({
     int? id,
-    String? token,
+    required String accessToken,
+    required String refreshToken,
     String? error,
   }) = _LoginResponse;
 
@@ -17,5 +18,6 @@ class LoginResponse with _$LoginResponse {
   factory LoginResponse.fromJson(Map<String, dynamic> json) =>
       _$LoginResponseFromJson(json);
 
-  Login toEntity() => Login(token: token);
+  LoginResponseEntity toEntity() =>
+      LoginResponseEntity(accessToken: accessToken, refreshToken: refreshToken);
 }

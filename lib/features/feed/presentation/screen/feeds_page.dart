@@ -66,15 +66,15 @@ class _FeedsPageState extends State<FeedsPage> {
                           child: LoadingAnimationWidget.flickr(
                             leftDotColor: const Color(0xFF1A1A3F),
                             rightDotColor: kPrimaryColor,
-                            size: 50.h,
+                            size: 35.h,
                           ),
                         ),
                       ],
                     );
                   } else if (state is LoadedFeedState) {
-                    print('============================================');
-                    print(state.postsEntity.posts!.length);
-                    print(state.postsEntity);
+                    // print('============================================');
+                    // print(state.postsEntity.posts!.length);
+                    // print(state.postsEntity);
                     return ListView.builder(
                         shrinkWrap: true,
                         physics: NeverScrollableScrollPhysics(),

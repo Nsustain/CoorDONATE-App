@@ -6,13 +6,13 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'post_login.freezed.dart';
 part 'post_login.g.dart';
 
-class PostLogin extends UseCase<Login, LoginParams> {
+class PostLogin extends UseCase<LoginResponseEntity, LoginParams> {
   final AuthRepository _repo;
 
   PostLogin(this._repo);
 
   @override
-  Future<Either<Failure, Login>> call(LoginParams params) =>
+  Future<Either<Failure, LoginResponseEntity>> call(LoginParams params) =>
       _repo.login(params);
 }
 
