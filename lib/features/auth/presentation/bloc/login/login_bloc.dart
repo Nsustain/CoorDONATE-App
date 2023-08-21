@@ -23,8 +23,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         (error) => emit(LoginFailureState(error: error.toString())),
         (login) {
           _prefManager.isLoggedin = true;
-          _prefManager.token = login
-              .token; 
+          _prefManager.accessToken = login.accessToken;
+          _prefManager.refreshToken = login.refreshToken;
+          print(_prefManager.accessToken);
           emit(LoginSuccessState());
         },
       );

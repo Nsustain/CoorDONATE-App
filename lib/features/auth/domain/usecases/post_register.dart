@@ -6,13 +6,13 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'post_register.freezed.dart';
 part 'post_register.g.dart';
 
-class PostRegister extends UseCase<Register, RegisterParams> {
+class PostRegister extends UseCase<RegisterResponse, RegisterParams> {
   final AuthRepository _repo;
 
   PostRegister(this._repo);
 
   @override
-  Future<Either<Failure, Register>> call(RegisterParams params) =>
+  Future<Either<Failure, RegisterResponse>> call(RegisterParams params) =>
       _repo.register(params);
 }
 

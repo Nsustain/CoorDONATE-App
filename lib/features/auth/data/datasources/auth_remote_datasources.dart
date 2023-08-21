@@ -21,10 +21,9 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
   Future<Either<Failure, RegisterResponse>> register(
       RegisterParams registerParams) async {
     final response = await _client.postRequest(
-      ListAPI.register,
+      "/api/auth/register",
       data: registerParams.toJson(),
-      converter: (response) =>
-          RegisterResponse.fromJson(response as Map<String, dynamic>),
+      converter: (response) => RegisterResponse.fromJson(response),
     );
 
     return response;
@@ -33,10 +32,10 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
   @override
   Future<Either<Failure, LoginResponse>> login(LoginParams loginParams) async {
     final response = await _client.postRequest(
-      ListAPI.login,
+      "/api/auth/login",
       data: loginParams.toJson(),
-      converter: (response) =>
-          LoginResponse.fromJson(response as Map<String, dynamic>),
+      converter: (response) => LoginResponse.fromJson(response),
+      
     );
 
     return response;

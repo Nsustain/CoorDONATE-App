@@ -2,7 +2,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class PrefManager {
   String kIsLoggedin = "isLogin";
-  String kToken = "token";
+  String kAccessToken = "accessToken";
+  String kRefreshToken = "refreshToken";
   String kUserID = "userID";
   String kFirstTimeOpened = "firsttimeopened";
 
@@ -14,8 +15,12 @@ class PrefManager {
   set isFirstTimeOpened(bool value) =>
       preferences.setBool(kFirstTimeOpened, value);
   bool get isFirstTimeOpened => preferences.getBool(kFirstTimeOpened) ?? false;
-  set token(String? value) => preferences.setString(kToken, value ?? "");
-  String? get token => preferences.getString(kToken);
+  set accessToken(String? value) =>
+      preferences.setString(kAccessToken, value ?? "");
+  String? get accessToken => preferences.getString(kAccessToken);
+  set refreshToken(String? value) =>
+      preferences.setString(kRefreshToken, value ?? "");
+  String? get refreshToken => preferences.getString(kRefreshToken);
   set userId(String? value) => preferences.setString(kUserID, value ?? "");
   String? get userID => preferences.getString(kUserID);
   void logout() => preferences.clear();

@@ -76,6 +76,7 @@ void useCase() {
 
 void bloc() {
   sl.registerFactory(() => LoginBloc(postLogin: sl(), prefManager: sl()));
-  sl.registerFactory(() => RegisterBloc(postRegister: sl(), prefManager: sl()));
+  sl.registerFactory(() =>
+      RegisterBloc(postRegister: sl(), prefManager: sl(), postLogin: sl()));
   sl.registerFactory(() => FeedBloc(getAllPosts: sl()));
 }

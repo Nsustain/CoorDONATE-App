@@ -41,6 +41,7 @@ class DioInterceptor extends Interceptor {
 
   @override
   void onError(DioException dioException, ErrorInterceptorHandler handler) {
+    print(dioException);
     log.e(
       "$dioException",
       "<-- ${dioException.message} ${dioException.response?.requestOptions != null ? (dioException.response!.requestOptions.baseUrl + dioException.response!.requestOptions.path) : 'URL'}\n\n"

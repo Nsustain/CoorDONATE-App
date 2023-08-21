@@ -37,7 +37,8 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('User ID: ${prefManager.userID}'),
-            Text('Token: ${prefManager.token}'),
+            Text('Token: ${prefManager.accessToken}'),
+            Text('Token: ${prefManager.refreshToken}'),
           ],
         ),
       ),
