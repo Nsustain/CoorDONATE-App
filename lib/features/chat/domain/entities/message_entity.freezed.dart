@@ -15,26 +15,29 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$Message {
+mixin _$ChatMessage {
   String? get msg => throw _privateConstructorUsedError;
   DateTime? get time => throw _privateConstructorUsedError;
+  String? get type => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $MessageCopyWith<Message> get copyWith => throw _privateConstructorUsedError;
+  $ChatMessageCopyWith<ChatMessage> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MessageCopyWith<$Res> {
-  factory $MessageCopyWith(Message value, $Res Function(Message) then) =
-      _$MessageCopyWithImpl<$Res, Message>;
+abstract class $ChatMessageCopyWith<$Res> {
+  factory $ChatMessageCopyWith(
+          ChatMessage value, $Res Function(ChatMessage) then) =
+      _$ChatMessageCopyWithImpl<$Res, ChatMessage>;
   @useResult
-  $Res call({String? msg, DateTime? time});
+  $Res call({String? msg, DateTime? time, String? type});
 }
 
 /// @nodoc
-class _$MessageCopyWithImpl<$Res, $Val extends Message>
-    implements $MessageCopyWith<$Res> {
-  _$MessageCopyWithImpl(this._value, this._then);
+class _$ChatMessageCopyWithImpl<$Res, $Val extends ChatMessage>
+    implements $ChatMessageCopyWith<$Res> {
+  _$ChatMessageCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -46,6 +49,7 @@ class _$MessageCopyWithImpl<$Res, $Val extends Message>
   $Res call({
     Object? msg = freezed,
     Object? time = freezed,
+    Object? type = freezed,
   }) {
     return _then(_value.copyWith(
       msg: freezed == msg
@@ -56,25 +60,31 @@ class _$MessageCopyWithImpl<$Res, $Val extends Message>
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_MessageCopyWith<$Res> implements $MessageCopyWith<$Res> {
-  factory _$$_MessageCopyWith(
-          _$_Message value, $Res Function(_$_Message) then) =
-      __$$_MessageCopyWithImpl<$Res>;
+abstract class _$$_ChatMessageCopyWith<$Res>
+    implements $ChatMessageCopyWith<$Res> {
+  factory _$$_ChatMessageCopyWith(
+          _$_ChatMessage value, $Res Function(_$_ChatMessage) then) =
+      __$$_ChatMessageCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? msg, DateTime? time});
+  $Res call({String? msg, DateTime? time, String? type});
 }
 
 /// @nodoc
-class __$$_MessageCopyWithImpl<$Res>
-    extends _$MessageCopyWithImpl<$Res, _$_Message>
-    implements _$$_MessageCopyWith<$Res> {
-  __$$_MessageCopyWithImpl(_$_Message _value, $Res Function(_$_Message) _then)
+class __$$_ChatMessageCopyWithImpl<$Res>
+    extends _$ChatMessageCopyWithImpl<$Res, _$_ChatMessage>
+    implements _$$_ChatMessageCopyWith<$Res> {
+  __$$_ChatMessageCopyWithImpl(
+      _$_ChatMessage _value, $Res Function(_$_ChatMessage) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -82,8 +92,9 @@ class __$$_MessageCopyWithImpl<$Res>
   $Res call({
     Object? msg = freezed,
     Object? time = freezed,
+    Object? type = freezed,
   }) {
-    return _then(_$_Message(
+    return _then(_$_ChatMessage(
       msg: freezed == msg
           ? _value.msg
           : msg // ignore: cast_nullable_to_non_nullable
@@ -92,63 +103,75 @@ class __$$_MessageCopyWithImpl<$Res>
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_Message with DiagnosticableTreeMixin implements _Message {
-  const _$_Message({this.msg, this.time});
+class _$_ChatMessage with DiagnosticableTreeMixin implements _ChatMessage {
+  const _$_ChatMessage({this.msg, this.time, this.type});
 
   @override
   final String? msg;
   @override
   final DateTime? time;
+  @override
+  final String? type;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Message(msg: $msg, time: $time)';
+    return 'ChatMessage(msg: $msg, time: $time, type: $type)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'Message'))
+      ..add(DiagnosticsProperty('type', 'ChatMessage'))
       ..add(DiagnosticsProperty('msg', msg))
-      ..add(DiagnosticsProperty('time', time));
+      ..add(DiagnosticsProperty('time', time))
+      ..add(DiagnosticsProperty('type', type));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Message &&
+            other is _$_ChatMessage &&
             (identical(other.msg, msg) || other.msg == msg) &&
-            (identical(other.time, time) || other.time == time));
+            (identical(other.time, time) || other.time == time) &&
+            (identical(other.type, type) || other.type == type));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, msg, time);
+  int get hashCode => Object.hash(runtimeType, msg, time, type);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MessageCopyWith<_$_Message> get copyWith =>
-      __$$_MessageCopyWithImpl<_$_Message>(this, _$identity);
+  _$$_ChatMessageCopyWith<_$_ChatMessage> get copyWith =>
+      __$$_ChatMessageCopyWithImpl<_$_ChatMessage>(this, _$identity);
 }
 
-abstract class _Message implements Message {
-  const factory _Message({final String? msg, final DateTime? time}) =
-      _$_Message;
+abstract class _ChatMessage implements ChatMessage {
+  const factory _ChatMessage(
+      {final String? msg,
+      final DateTime? time,
+      final String? type}) = _$_ChatMessage;
 
   @override
   String? get msg;
   @override
   DateTime? get time;
   @override
+  String? get type;
+  @override
   @JsonKey(ignore: true)
-  _$$_MessageCopyWith<_$_Message> get copyWith =>
+  _$$_ChatMessageCopyWith<_$_ChatMessage> get copyWith =>
       throw _privateConstructorUsedError;
 }
