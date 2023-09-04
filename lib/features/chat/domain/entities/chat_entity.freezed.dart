@@ -17,13 +17,13 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$Chat {
   String? get id => throw _privateConstructorUsedError;
-  String? get sender => throw _privateConstructorUsedError;
-  String? get recipient => throw _privateConstructorUsedError;
+  String? get senderName => throw _privateConstructorUsedError;
+  String? get recipientName => throw _privateConstructorUsedError;
+  ChatMessage get msg => throw _privateConstructorUsedError;
   DateTime? get time => throw _privateConstructorUsedError;
   String? get icon => throw _privateConstructorUsedError;
   bool? get selected => throw _privateConstructorUsedError;
   bool? get status => throw _privateConstructorUsedError;
-  String? get chat => throw _privateConstructorUsedError;
   bool? get isGroup => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -37,14 +37,16 @@ abstract class $ChatCopyWith<$Res> {
   @useResult
   $Res call(
       {String? id,
-      String? sender,
-      String? recipient,
+      String? senderName,
+      String? recipientName,
+      ChatMessage msg,
       DateTime? time,
       String? icon,
       bool? selected,
       bool? status,
-      String? chat,
       bool? isGroup});
+
+  $ChatMessageCopyWith<$Res> get msg;
 }
 
 /// @nodoc
@@ -61,13 +63,13 @@ class _$ChatCopyWithImpl<$Res, $Val extends Chat>
   @override
   $Res call({
     Object? id = freezed,
-    Object? sender = freezed,
-    Object? recipient = freezed,
+    Object? senderName = freezed,
+    Object? recipientName = freezed,
+    Object? msg = null,
     Object? time = freezed,
     Object? icon = freezed,
     Object? selected = freezed,
     Object? status = freezed,
-    Object? chat = freezed,
     Object? isGroup = freezed,
   }) {
     return _then(_value.copyWith(
@@ -75,14 +77,18 @@ class _$ChatCopyWithImpl<$Res, $Val extends Chat>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      sender: freezed == sender
-          ? _value.sender
-          : sender // ignore: cast_nullable_to_non_nullable
+      senderName: freezed == senderName
+          ? _value.senderName
+          : senderName // ignore: cast_nullable_to_non_nullable
               as String?,
-      recipient: freezed == recipient
-          ? _value.recipient
-          : recipient // ignore: cast_nullable_to_non_nullable
+      recipientName: freezed == recipientName
+          ? _value.recipientName
+          : recipientName // ignore: cast_nullable_to_non_nullable
               as String?,
+      msg: null == msg
+          ? _value.msg
+          : msg // ignore: cast_nullable_to_non_nullable
+              as ChatMessage,
       time: freezed == time
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
@@ -99,15 +105,19 @@ class _$ChatCopyWithImpl<$Res, $Val extends Chat>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as bool?,
-      chat: freezed == chat
-          ? _value.chat
-          : chat // ignore: cast_nullable_to_non_nullable
-              as String?,
       isGroup: freezed == isGroup
           ? _value.isGroup
           : isGroup // ignore: cast_nullable_to_non_nullable
               as bool?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageCopyWith<$Res> get msg {
+    return $ChatMessageCopyWith<$Res>(_value.msg, (value) {
+      return _then(_value.copyWith(msg: value) as $Val);
+    });
   }
 }
 
@@ -119,14 +129,17 @@ abstract class _$$_ChatCopyWith<$Res> implements $ChatCopyWith<$Res> {
   @useResult
   $Res call(
       {String? id,
-      String? sender,
-      String? recipient,
+      String? senderName,
+      String? recipientName,
+      ChatMessage msg,
       DateTime? time,
       String? icon,
       bool? selected,
       bool? status,
-      String? chat,
       bool? isGroup});
+
+  @override
+  $ChatMessageCopyWith<$Res> get msg;
 }
 
 /// @nodoc
@@ -139,13 +152,13 @@ class __$$_ChatCopyWithImpl<$Res> extends _$ChatCopyWithImpl<$Res, _$_Chat>
   @override
   $Res call({
     Object? id = freezed,
-    Object? sender = freezed,
-    Object? recipient = freezed,
+    Object? senderName = freezed,
+    Object? recipientName = freezed,
+    Object? msg = null,
     Object? time = freezed,
     Object? icon = freezed,
     Object? selected = freezed,
     Object? status = freezed,
-    Object? chat = freezed,
     Object? isGroup = freezed,
   }) {
     return _then(_$_Chat(
@@ -153,14 +166,18 @@ class __$$_ChatCopyWithImpl<$Res> extends _$ChatCopyWithImpl<$Res, _$_Chat>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      sender: freezed == sender
-          ? _value.sender
-          : sender // ignore: cast_nullable_to_non_nullable
+      senderName: freezed == senderName
+          ? _value.senderName
+          : senderName // ignore: cast_nullable_to_non_nullable
               as String?,
-      recipient: freezed == recipient
-          ? _value.recipient
-          : recipient // ignore: cast_nullable_to_non_nullable
+      recipientName: freezed == recipientName
+          ? _value.recipientName
+          : recipientName // ignore: cast_nullable_to_non_nullable
               as String?,
+      msg: null == msg
+          ? _value.msg
+          : msg // ignore: cast_nullable_to_non_nullable
+              as ChatMessage,
       time: freezed == time
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
@@ -177,10 +194,6 @@ class __$$_ChatCopyWithImpl<$Res> extends _$ChatCopyWithImpl<$Res, _$_Chat>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as bool?,
-      chat: freezed == chat
-          ? _value.chat
-          : chat // ignore: cast_nullable_to_non_nullable
-              as String?,
       isGroup: freezed == isGroup
           ? _value.isGroup
           : isGroup // ignore: cast_nullable_to_non_nullable
@@ -191,59 +204,40 @@ class __$$_ChatCopyWithImpl<$Res> extends _$ChatCopyWithImpl<$Res, _$_Chat>
 
 /// @nodoc
 
-class _$_Chat with DiagnosticableTreeMixin implements _Chat {
+class _$_Chat implements _Chat {
   const _$_Chat(
       {this.id,
-      this.sender,
-      this.recipient,
+      this.senderName,
+      this.recipientName,
+      required this.msg,
       this.time,
       this.icon,
-      this.selected = false,
-      this.status = false,
-      this.chat,
-      this.isGroup = false});
+      this.selected,
+      this.status,
+      this.isGroup});
 
   @override
   final String? id;
   @override
-  final String? sender;
+  final String? senderName;
   @override
-  final String? recipient;
+  final String? recipientName;
+  @override
+  final ChatMessage msg;
   @override
   final DateTime? time;
   @override
   final String? icon;
   @override
-  @JsonKey()
   final bool? selected;
   @override
-  @JsonKey()
   final bool? status;
   @override
-  final String? chat;
-  @override
-  @JsonKey()
   final bool? isGroup;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Chat(id: $id, sender: $sender, recipient: $recipient, time: $time, icon: $icon, selected: $selected, status: $status, chat: $chat, isGroup: $isGroup)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'Chat'))
-      ..add(DiagnosticsProperty('id', id))
-      ..add(DiagnosticsProperty('sender', sender))
-      ..add(DiagnosticsProperty('recipient', recipient))
-      ..add(DiagnosticsProperty('time', time))
-      ..add(DiagnosticsProperty('icon', icon))
-      ..add(DiagnosticsProperty('selected', selected))
-      ..add(DiagnosticsProperty('status', status))
-      ..add(DiagnosticsProperty('chat', chat))
-      ..add(DiagnosticsProperty('isGroup', isGroup));
+  String toString() {
+    return 'Chat(id: $id, senderName: $senderName, recipientName: $recipientName, msg: $msg, time: $time, icon: $icon, selected: $selected, status: $status, isGroup: $isGroup)';
   }
 
   @override
@@ -252,21 +246,22 @@ class _$_Chat with DiagnosticableTreeMixin implements _Chat {
         (other.runtimeType == runtimeType &&
             other is _$_Chat &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.sender, sender) || other.sender == sender) &&
-            (identical(other.recipient, recipient) ||
-                other.recipient == recipient) &&
+            (identical(other.senderName, senderName) ||
+                other.senderName == senderName) &&
+            (identical(other.recipientName, recipientName) ||
+                other.recipientName == recipientName) &&
+            (identical(other.msg, msg) || other.msg == msg) &&
             (identical(other.time, time) || other.time == time) &&
             (identical(other.icon, icon) || other.icon == icon) &&
             (identical(other.selected, selected) ||
                 other.selected == selected) &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.chat, chat) || other.chat == chat) &&
             (identical(other.isGroup, isGroup) || other.isGroup == isGroup));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, sender, recipient, time,
-      icon, selected, status, chat, isGroup);
+  int get hashCode => Object.hash(runtimeType, id, senderName, recipientName,
+      msg, time, icon, selected, status, isGroup);
 
   @JsonKey(ignore: true)
   @override
@@ -278,21 +273,23 @@ class _$_Chat with DiagnosticableTreeMixin implements _Chat {
 abstract class _Chat implements Chat {
   const factory _Chat(
       {final String? id,
-      final String? sender,
-      final String? recipient,
+      final String? senderName,
+      final String? recipientName,
+      required final ChatMessage msg,
       final DateTime? time,
       final String? icon,
       final bool? selected,
       final bool? status,
-      final String? chat,
       final bool? isGroup}) = _$_Chat;
 
   @override
   String? get id;
   @override
-  String? get sender;
+  String? get senderName;
   @override
-  String? get recipient;
+  String? get recipientName;
+  @override
+  ChatMessage get msg;
   @override
   DateTime? get time;
   @override
@@ -301,8 +298,6 @@ abstract class _Chat implements Chat {
   bool? get selected;
   @override
   bool? get status;
-  @override
-  String? get chat;
   @override
   bool? get isGroup;
   @override
