@@ -25,6 +25,8 @@ dependencies:
   freezed_annotation: ^2.2.0
   get_it: ^7.6.0
   intl_phone_field: ^3.1.0
+  json_annotation: ^4.8.1
+  json_serializable: ^6.7.1
   loading_animation_widget: ^1.2.0+4
   logger: ^1.4.0
   pin_code_fields: ^8.0.1
@@ -41,19 +43,12 @@ dev_dependencies:
 flutter:
   fonts:
     - family: Poppins
-      fonts:
-        - asset: assets/fonts/poppins/Poppins-Light.ttf
-          weight: 100
-        - asset: assets/fonts/poppins/Poppins-Medium.ttf
-          weight: 400
-        - asset: assets/fonts/poppins/Poppins-Bold.ttf
-          weight: 600
+      fonts: null
+
   uses-material-design: true
 
   assets:
-    - assets/images/auth/
-    - assets/images/auth/onboarding/
-
+    - assets
   #   - .env
   #   - .env.development
   #   - .env.production
