@@ -1,4 +1,5 @@
 import 'package:coordonate_app/features/chat/data/models/message_model.dart';
+import 'package:coordonate_app/features/chat/domain/entities/chat_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'chat_model.freezed.dart';
@@ -10,7 +11,7 @@ class ChatModel with _$ChatModel {
     String? id,
     String? senderName,
     String? recipientName,
-    required ChatMessageModel msg,
+    ChatMessageModel? msg,
     DateTime? time,
     String? icon,
     bool? selected,
@@ -22,4 +23,18 @@ class ChatModel with _$ChatModel {
 
   factory ChatModel.fromJson(Map<String, dynamic> json) =>
       _$ChatModelFromJson(json);
+
+
+  Chat toEntity() => Chat(
+  id: id,
+  senderName: senderName,
+  recipientName: recipientName,
+  msg: msg!.toEntity(),
+  time: time,
+  icon: icon,
+  selected: selected,
+  status: status,
+  isGroup: isGroup,
+);
+
 }
