@@ -1,4 +1,5 @@
 import 'package:coordonate_app/core/core.dart';
+import 'package:coordonate_app/features/feed/domain/entities/post_entity.dart';
 import 'package:coordonate_app/features/feed/domain/entities/posts_entity.dart';
 import 'package:coordonate_app/features/feed/domain/usecases/get_all_posts.dart';
 import 'package:equatable/equatable.dart';

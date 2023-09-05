@@ -8,27 +8,27 @@ part 'post_user_response_model.g.dart';
 @JsonSerializable()
 class PostUserModel with _$PostUserModel {
   const factory PostUserModel({
-    required String fullname,
-    required String username,
-    required String profileImageUrl,
-    required bool isVerified,
-    required String email,
-    required String role,
-    required int id,
+    required String? name,
+    required String? username,
+    required String? photo,
+    required String? verified,
+    required String? email,
+    required String? role,
+    required int? id,
   }) = _PostUserModel;
 
   factory PostUserModel.fromJson(Map<String, dynamic> json) =>
       _$PostUserModelFromJson(json);
-
- 
 }
- PostUserEntity toPostUserEntity(PostUserModel model) {
-    return PostUserEntity(
-        fullname: model.fullname,
-        username: model.username,
-        profileImageUrl: model.profileImageUrl,
-        isVerified: model.isVerified,
-        email: model.email,
-        role: model.role,
-        id: model.id);
-  }
+
+PostUserEntity toPostUserEntity(PostUserModel model) {
+  return PostUserEntity(
+    fullname: model.name != null ? model.name! : '',
+    username: model.username != null ? model.username! : '',
+    profileImageUrl: model.photo != null ? model.photo! : '',
+    isVerified: model.verified != null ? true : false,
+    email: model.email != null ? model.email! : '',
+    role: model.role != null ? model.role! : '',
+    id: model.id != null ? model.id! : 0,
+  );
+}

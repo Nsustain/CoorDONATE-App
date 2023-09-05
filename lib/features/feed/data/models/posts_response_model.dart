@@ -20,16 +20,18 @@ class PostsModel with _$PostsModel {
 PostsEntity toPostsEntity(PostsModel postsModel) {
   final listPosts = postsModel.posts!
       .map<PostEntity>((model) => PostEntity(
-          postId: model.postId,
-          postUserEntity: toPostUserEntity(model.postUserModel),
-          postImageUrl: model.postImageUrl,
-          postText: model.postText,
+          postId: model.id,
+          postUserEntity: toPostUserEntity(model.user),
+          postImageUrl: model.images!,
+          postText: model.text,
           tags: model.tags,
-          like: model.like,
+          like: model.likes,
           comments: model.comments,
-          bookMarked: model.bookMarked,
+          bookMarked: model.bookMarked!,
           liked: model.liked,
-          postCreated: model.postCreated))
+          postCreated: model.postCreated != null
+              ? model.postCreated!
+              : DateTime.now().toString()))
       .toList();
   return PostsEntity(posts: listPosts);
 }

@@ -1,5 +1,4 @@
 import 'package:coordonate_app/core/api/dio_client.dart';
-import 'package:coordonate_app/core/api/list_api.dart';
 import 'package:coordonate_app/core/error/failure.dart';
 import 'package:coordonate_app/features/auth/auth.dart';
 import 'package:dartz/dartz.dart';
@@ -35,7 +34,6 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
       "/api/auth/login",
       data: loginParams.toJson(),
       converter: (response) => LoginResponse.fromJson(response),
-      
     );
 
     return response;

@@ -84,7 +84,7 @@ class _InputFormState extends State<InputForm> {
                   onChanged: (value) {
                     _validate(value);
                   },
-                  validator: (value) => _errorMessage)
+                  validator: (_) => _errorMessage)
               : TextFormField(
                   controller: widget.textInputController,
                   decoration: InputDecoration(

@@ -13,7 +13,7 @@ class InitialFeedState extends FeedState {}
 class LoadingFeedState extends FeedState {}
 
 class LoadedFeedState extends FeedState {
-  final PostsEntity postsEntity;
+  final List<PostEntity> postsEntity;
   const LoadedFeedState({required this.postsEntity});
 
   @override

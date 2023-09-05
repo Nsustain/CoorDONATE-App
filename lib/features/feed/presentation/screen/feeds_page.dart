@@ -78,12 +78,12 @@ class _FeedsPageState extends State<FeedsPage> {
                     return ListView.builder(
                         shrinkWrap: true,
                         physics: NeverScrollableScrollPhysics(),
-                        itemCount: state.postsEntity.posts!.length,
+                        itemCount: state.postsEntity.length,
                         itemBuilder: (context, index) {
                           return PostCard(
-                              postUserEntity: state
-                                  .postsEntity.posts![index].postUserEntity,
-                              postEntity: state.postsEntity.posts![index]);
+                              postUserEntity:
+                                  state.postsEntity[index].postUserEntity,
+                              postEntity: state.postsEntity[index]);
                         });
                     // PostsList(postsEntity: state.postsEntity);
                   } else if (state is ErrorFeedState) {
@@ -98,7 +98,6 @@ class _FeedsPageState extends State<FeedsPage> {
             ),
           ),
         ),
-        bottomNavigationBar: coorDonateBottomNavigationBar(),
       ),
     );
   }

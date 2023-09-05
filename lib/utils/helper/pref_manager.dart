@@ -6,6 +6,8 @@ class PrefManager {
   String kRefreshToken = "refreshToken";
   String kUserID = "userID";
   String kFirstTimeOpened = "firsttimeopened";
+  String kUserProfilePhoto = "userprofilephoto";
+  String kUserProfilename = "userprofilename";
 
   SharedPreferences preferences;
   PrefManager(this.preferences);
@@ -24,4 +26,10 @@ class PrefManager {
   set userId(String? value) => preferences.setString(kUserID, value ?? "");
   String? get userID => preferences.getString(kUserID);
   void logout() => preferences.clear();
+  set userProfilePhoto(String? value) =>
+      preferences.setString(kUserProfilePhoto, value ?? "");
+  String? get userProfilePhoto => preferences.getString(kUserProfilePhoto);
+  set userProfileName(String? value) =>
+      preferences.setString(kUserProfilename, value ?? "");
+  String? get userProfileName => preferences.getString(kUserProfilename);
 }
