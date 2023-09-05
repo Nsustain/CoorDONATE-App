@@ -25,6 +25,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           _prefManager.isLoggedin = true;
           _prefManager.accessToken = login.accessToken;
           _prefManager.refreshToken = login.refreshToken;
+          _prefManager.userProfileName = "Jermaine Cole";
+          _prefManager.userProfilePhoto = "default.png";
           print(_prefManager.accessToken);
           emit(LoginSuccessState());
         },

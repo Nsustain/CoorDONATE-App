@@ -6,12 +6,14 @@ part of 'post_user_response_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+
+
 Map<String, dynamic> _$PostUserModelToJson(PostUserModel instance) =>
     <String, dynamic>{
-      'fullname': instance.fullname,
+      'name': instance.name,
       'username': instance.username,
-      'profileImageUrl': instance.profileImageUrl,
-      'isVerified': instance.isVerified,
+      'photo': instance.photo,
+      'verified': instance.verified,
       'email': instance.email,
       'role': instance.role,
       'id': instance.id,
@@ -19,21 +21,21 @@ Map<String, dynamic> _$PostUserModelToJson(PostUserModel instance) =>
 
 _$_PostUserModel _$$_PostUserModelFromJson(Map<String, dynamic> json) =>
     _$_PostUserModel(
-      fullname: json['fullname'] as String,
-      username: json['username'] as String,
-      profileImageUrl: json['profileImageUrl'] as String,
-      isVerified: json['isVerified'] as bool,
-      email: json['email'] as String,
-      role: json['role'] as String,
-      id: json['id'] as int,
+      name: json['name'] as String?,
+      username: json['username'] as String?,
+      photo: json['photo'] as String?,
+      verified: json['verified'] as String?,
+      email: json['email'] as String?,
+      role: json['role'] as String?,
+      id: json['id'] as int?,
     );
 
 Map<String, dynamic> _$$_PostUserModelToJson(_$_PostUserModel instance) =>
     <String, dynamic>{
-      'fullname': instance.fullname,
+      'name': instance.name,
       'username': instance.username,
-      'profileImageUrl': instance.profileImageUrl,
-      'isVerified': instance.isVerified,
+      'photo': instance.photo,
+      'verified': instance.verified,
       'email': instance.email,
       'role': instance.role,
       'id': instance.id,

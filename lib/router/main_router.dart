@@ -1,6 +1,8 @@
+import 'package:coordonate_app/core/common/bottom_navigation_bar.dart';
 import 'package:coordonate_app/dependency_injection.dart';
 import 'package:coordonate_app/features/auth/auth.dart';
 import 'package:coordonate_app/features/auth/presentation/screen/login_page.dart';
+import 'package:coordonate_app/features/feed/presentation/screen/create_post_page.dart';
 import 'package:coordonate_app/features/feed/presentation/screen/feeds_page.dart';
 import 'package:coordonate_app/router/routes.dart';
 import 'package:coordonate_app/utils/constants/styles.dart';
@@ -18,32 +20,54 @@ class MainRouter extends StatelessWidget {
   MainRouter({super.key}) {
     final prefManger = sl<PrefManager>();
     final isLoggedIn = prefManger.isLoggedin;
-    // final isLoggedIn = false;
+
     _router = GoRouter(
-        redirect: (context, state) {
-          if (isLoggedIn) {
-            return AppRoutes.Feed;
-          } else {
-            return AppRoutes.LoginPage;
-          }
-        },
-        initialLocation: isLoggedIn ? AppRoutes.Feed : AppRoutes.LoginPage,
+        // redirect: (context, state) {
+        //   if (isLoggedIn) {
+        //     return AppRoutes.CoorDonateBottomNavigationBar;
+        //   } else {
+        //     return AppRoutes.LoginPage;
+        //   }
+        // },
+        initialLocation: isLoggedIn
+            ? AppRoutes.CoorDonateBottomNavigationBar
+            : AppRoutes.LoginPage,
         routes: <GoRoute>[
           GoRoute(
-              path: AppRoutes.SignupPage,
-              name: AppRoutes.SignupPage,
-              pageBuilder: (context, state) =>
-                  MaterialPage(child: SignupPage())),
+            path: AppRoutes.SignupPage,
+            name: AppRoutes.SignupPage,
+            pageBuilder: (context, state) => MaterialPage(
+              child: SignupPage(),
+            ),
+          ),
           GoRoute(
             path: AppRoutes.Feed,
             name: AppRoutes.Feed,
-            pageBuilder: (context, state) => MaterialPage(child: FeedsPage()),
+            pageBuilder: (context, state) => MaterialPage(
+              child: FeedsPage(),
+            ),
           ),
           GoRoute(
-              path: AppRoutes.LoginPage,
-              name: AppRoutes.LoginPage,
-              pageBuilder: (context, state) =>
-                  const MaterialPage(child: LoginPage()))
+            path: AppRoutes.CoorDonateBottomNavigationBar,
+            name: AppRoutes.CoorDonateBottomNavigationBar,
+            pageBuilder: (context, state) => MaterialPage(
+              child: CoorDonateBottomNavigationBar(),
+            ),
+          ),
+          GoRoute(
+            path: AppRoutes.LoginPage,
+            name: AppRoutes.LoginPage,
+            pageBuilder: (context, state) => const MaterialPage(
+              child: LoginPage(),
+            ),
+          ),
+          GoRoute(
+            path: AppRoutes.CreatePostPage,
+            name: AppRoutes.CreatePostPage,
+            pageBuilder: (context, state) => MaterialPage(
+              child: CreatePostPage(prefManager: prefManger),
+            ),
+          ),
         ]);
   }
 

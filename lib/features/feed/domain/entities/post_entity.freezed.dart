@@ -16,16 +16,16 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$PostEntity {
-  String get postId => throw _privateConstructorUsedError;
+  int get postId => throw _privateConstructorUsedError;
   PostUserEntity get postUserEntity => throw _privateConstructorUsedError;
   String get postCreated => throw _privateConstructorUsedError;
-  List<String> get tags => throw _privateConstructorUsedError;
-  List<String>? get postImageUrl => throw _privateConstructorUsedError;
+  List<String>? get tags => throw _privateConstructorUsedError;
+  List<String> get postImageUrl => throw _privateConstructorUsedError;
   String? get postText => throw _privateConstructorUsedError;
   int get like => throw _privateConstructorUsedError;
   int get comments => throw _privateConstructorUsedError;
   bool get bookMarked => throw _privateConstructorUsedError;
-  bool get liked => throw _privateConstructorUsedError;
+  bool? get liked => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PostEntityCopyWith<PostEntity> get copyWith =>
@@ -39,16 +39,16 @@ abstract class $PostEntityCopyWith<$Res> {
       _$PostEntityCopyWithImpl<$Res, PostEntity>;
   @useResult
   $Res call(
-      {String postId,
+      {int postId,
       PostUserEntity postUserEntity,
       String postCreated,
-      List<String> tags,
-      List<String>? postImageUrl,
+      List<String>? tags,
+      List<String> postImageUrl,
       String? postText,
       int like,
       int comments,
       bool bookMarked,
-      bool liked});
+      bool? liked});
 
   $PostUserEntityCopyWith<$Res> get postUserEntity;
 }
@@ -69,19 +69,19 @@ class _$PostEntityCopyWithImpl<$Res, $Val extends PostEntity>
     Object? postId = null,
     Object? postUserEntity = null,
     Object? postCreated = null,
-    Object? tags = null,
-    Object? postImageUrl = freezed,
+    Object? tags = freezed,
+    Object? postImageUrl = null,
     Object? postText = freezed,
     Object? like = null,
     Object? comments = null,
     Object? bookMarked = null,
-    Object? liked = null,
+    Object? liked = freezed,
   }) {
     return _then(_value.copyWith(
       postId: null == postId
           ? _value.postId
           : postId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       postUserEntity: null == postUserEntity
           ? _value.postUserEntity
           : postUserEntity // ignore: cast_nullable_to_non_nullable
@@ -90,14 +90,14 @@ class _$PostEntityCopyWithImpl<$Res, $Val extends PostEntity>
           ? _value.postCreated
           : postCreated // ignore: cast_nullable_to_non_nullable
               as String,
-      tags: null == tags
+      tags: freezed == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      postImageUrl: freezed == postImageUrl
+              as List<String>?,
+      postImageUrl: null == postImageUrl
           ? _value.postImageUrl
           : postImageUrl // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<String>,
       postText: freezed == postText
           ? _value.postText
           : postText // ignore: cast_nullable_to_non_nullable
@@ -114,10 +114,10 @@ class _$PostEntityCopyWithImpl<$Res, $Val extends PostEntity>
           ? _value.bookMarked
           : bookMarked // ignore: cast_nullable_to_non_nullable
               as bool,
-      liked: null == liked
+      liked: freezed == liked
           ? _value.liked
           : liked // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
     ) as $Val);
   }
 
@@ -139,16 +139,16 @@ abstract class _$$_PostEntityCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String postId,
+      {int postId,
       PostUserEntity postUserEntity,
       String postCreated,
-      List<String> tags,
-      List<String>? postImageUrl,
+      List<String>? tags,
+      List<String> postImageUrl,
       String? postText,
       int like,
       int comments,
       bool bookMarked,
-      bool liked});
+      bool? liked});
 
   @override
   $PostUserEntityCopyWith<$Res> get postUserEntity;
@@ -168,19 +168,19 @@ class __$$_PostEntityCopyWithImpl<$Res>
     Object? postId = null,
     Object? postUserEntity = null,
     Object? postCreated = null,
-    Object? tags = null,
-    Object? postImageUrl = freezed,
+    Object? tags = freezed,
+    Object? postImageUrl = null,
     Object? postText = freezed,
     Object? like = null,
     Object? comments = null,
     Object? bookMarked = null,
-    Object? liked = null,
+    Object? liked = freezed,
   }) {
     return _then(_$_PostEntity(
       postId: null == postId
           ? _value.postId
           : postId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       postUserEntity: null == postUserEntity
           ? _value.postUserEntity
           : postUserEntity // ignore: cast_nullable_to_non_nullable
@@ -189,14 +189,14 @@ class __$$_PostEntityCopyWithImpl<$Res>
           ? _value.postCreated
           : postCreated // ignore: cast_nullable_to_non_nullable
               as String,
-      tags: null == tags
+      tags: freezed == tags
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      postImageUrl: freezed == postImageUrl
+              as List<String>?,
+      postImageUrl: null == postImageUrl
           ? _value._postImageUrl
           : postImageUrl // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<String>,
       postText: freezed == postText
           ? _value.postText
           : postText // ignore: cast_nullable_to_non_nullable
@@ -213,10 +213,10 @@ class __$$_PostEntityCopyWithImpl<$Res>
           ? _value.bookMarked
           : bookMarked // ignore: cast_nullable_to_non_nullable
               as bool,
-      liked: null == liked
+      liked: freezed == liked
           ? _value.liked
           : liked // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
     ));
   }
 }
@@ -228,8 +228,8 @@ class _$_PostEntity implements _PostEntity {
       {required this.postId,
       required this.postUserEntity,
       required this.postCreated,
-      required final List<String> tags,
-      final List<String>? postImageUrl,
+      required final List<String>? tags,
+      required final List<String> postImageUrl,
       this.postText,
       required this.like,
       required this.comments,
@@ -239,27 +239,27 @@ class _$_PostEntity implements _PostEntity {
         _postImageUrl = postImageUrl;
 
   @override
-  final String postId;
+  final int postId;
   @override
   final PostUserEntity postUserEntity;
   @override
   final String postCreated;
-  final List<String> _tags;
+  final List<String>? _tags;
   @override
-  List<String> get tags {
+  List<String>? get tags {
+    final value = _tags;
+    if (value == null) return null;
     if (_tags is EqualUnmodifiableListView) return _tags;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_tags);
+    return EqualUnmodifiableListView(value);
   }
 
-  final List<String>? _postImageUrl;
+  final List<String> _postImageUrl;
   @override
-  List<String>? get postImageUrl {
-    final value = _postImageUrl;
-    if (value == null) return null;
+  List<String> get postImageUrl {
     if (_postImageUrl is EqualUnmodifiableListView) return _postImageUrl;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_postImageUrl);
   }
 
   @override
@@ -271,7 +271,7 @@ class _$_PostEntity implements _PostEntity {
   @override
   final bool bookMarked;
   @override
-  final bool liked;
+  final bool? liked;
 
   @override
   String toString() {
@@ -324,27 +324,27 @@ class _$_PostEntity implements _PostEntity {
 
 abstract class _PostEntity implements PostEntity {
   const factory _PostEntity(
-      {required final String postId,
+      {required final int postId,
       required final PostUserEntity postUserEntity,
       required final String postCreated,
-      required final List<String> tags,
-      final List<String>? postImageUrl,
+      required final List<String>? tags,
+      required final List<String> postImageUrl,
       final String? postText,
       required final int like,
       required final int comments,
       required final bool bookMarked,
-      required final bool liked}) = _$_PostEntity;
+      required final bool? liked}) = _$_PostEntity;
 
   @override
-  String get postId;
+  int get postId;
   @override
   PostUserEntity get postUserEntity;
   @override
   String get postCreated;
   @override
-  List<String> get tags;
+  List<String>? get tags;
   @override
-  List<String>? get postImageUrl;
+  List<String> get postImageUrl;
   @override
   String? get postText;
   @override
@@ -354,7 +354,7 @@ abstract class _PostEntity implements PostEntity {
   @override
   bool get bookMarked;
   @override
-  bool get liked;
+  bool? get liked;
   @override
   @JsonKey(ignore: true)
   _$$_PostEntityCopyWith<_$_PostEntity> get copyWith =>

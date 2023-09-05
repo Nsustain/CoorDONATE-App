@@ -20,13 +20,13 @@ PostUserModel _$PostUserModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PostUserModel {
-  String get fullname => throw _privateConstructorUsedError;
-  String get username => throw _privateConstructorUsedError;
-  String get profileImageUrl => throw _privateConstructorUsedError;
-  bool get isVerified => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
-  String get role => throw _privateConstructorUsedError;
-  int get id => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get username => throw _privateConstructorUsedError;
+  String? get photo => throw _privateConstructorUsedError;
+  String? get verified => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
+  String? get role => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,13 +41,13 @@ abstract class $PostUserModelCopyWith<$Res> {
       _$PostUserModelCopyWithImpl<$Res, PostUserModel>;
   @useResult
   $Res call(
-      {String fullname,
-      String username,
-      String profileImageUrl,
-      bool isVerified,
-      String email,
-      String role,
-      int id});
+      {String? name,
+      String? username,
+      String? photo,
+      String? verified,
+      String? email,
+      String? role,
+      int? id});
 }
 
 /// @nodoc
@@ -63,43 +63,43 @@ class _$PostUserModelCopyWithImpl<$Res, $Val extends PostUserModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fullname = null,
-    Object? username = null,
-    Object? profileImageUrl = null,
-    Object? isVerified = null,
-    Object? email = null,
-    Object? role = null,
-    Object? id = null,
+    Object? name = freezed,
+    Object? username = freezed,
+    Object? photo = freezed,
+    Object? verified = freezed,
+    Object? email = freezed,
+    Object? role = freezed,
+    Object? id = freezed,
   }) {
     return _then(_value.copyWith(
-      fullname: null == fullname
-          ? _value.fullname
-          : fullname // ignore: cast_nullable_to_non_nullable
-              as String,
-      username: null == username
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      username: freezed == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
-              as String,
-      profileImageUrl: null == profileImageUrl
-          ? _value.profileImageUrl
-          : profileImageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      isVerified: null == isVerified
-          ? _value.isVerified
-          : isVerified // ignore: cast_nullable_to_non_nullable
-              as bool,
-      email: null == email
+              as String?,
+      photo: freezed == photo
+          ? _value.photo
+          : photo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      verified: freezed == verified
+          ? _value.verified
+          : verified // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      role: null == role
+              as String?,
+      role: freezed == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
-              as String,
-      id: null == id
+              as String?,
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ) as $Val);
   }
 }
@@ -113,13 +113,13 @@ abstract class _$$_PostUserModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String fullname,
-      String username,
-      String profileImageUrl,
-      bool isVerified,
-      String email,
-      String role,
-      int id});
+      {String? name,
+      String? username,
+      String? photo,
+      String? verified,
+      String? email,
+      String? role,
+      int? id});
 }
 
 /// @nodoc
@@ -133,43 +133,43 @@ class __$$_PostUserModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fullname = null,
-    Object? username = null,
-    Object? profileImageUrl = null,
-    Object? isVerified = null,
-    Object? email = null,
-    Object? role = null,
-    Object? id = null,
+    Object? name = freezed,
+    Object? username = freezed,
+    Object? photo = freezed,
+    Object? verified = freezed,
+    Object? email = freezed,
+    Object? role = freezed,
+    Object? id = freezed,
   }) {
     return _then(_$_PostUserModel(
-      fullname: null == fullname
-          ? _value.fullname
-          : fullname // ignore: cast_nullable_to_non_nullable
-              as String,
-      username: null == username
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      username: freezed == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
-              as String,
-      profileImageUrl: null == profileImageUrl
-          ? _value.profileImageUrl
-          : profileImageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      isVerified: null == isVerified
-          ? _value.isVerified
-          : isVerified // ignore: cast_nullable_to_non_nullable
-              as bool,
-      email: null == email
+              as String?,
+      photo: freezed == photo
+          ? _value.photo
+          : photo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      verified: freezed == verified
+          ? _value.verified
+          : verified // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      role: null == role
+              as String?,
+      role: freezed == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
-              as String,
-      id: null == id
+              as String?,
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -178,10 +178,10 @@ class __$$_PostUserModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_PostUserModel implements _PostUserModel {
   const _$_PostUserModel(
-      {required this.fullname,
+      {required this.name,
       required this.username,
-      required this.profileImageUrl,
-      required this.isVerified,
+      required this.photo,
+      required this.verified,
       required this.email,
       required this.role,
       required this.id});
@@ -190,23 +190,23 @@ class _$_PostUserModel implements _PostUserModel {
       _$$_PostUserModelFromJson(json);
 
   @override
-  final String fullname;
+  final String? name;
   @override
-  final String username;
+  final String? username;
   @override
-  final String profileImageUrl;
+  final String? photo;
   @override
-  final bool isVerified;
+  final String? verified;
   @override
-  final String email;
+  final String? email;
   @override
-  final String role;
+  final String? role;
   @override
-  final int id;
+  final int? id;
 
   @override
   String toString() {
-    return 'PostUserModel(fullname: $fullname, username: $username, profileImageUrl: $profileImageUrl, isVerified: $isVerified, email: $email, role: $role, id: $id)';
+    return 'PostUserModel(name: $name, username: $username, photo: $photo, verified: $verified, email: $email, role: $role, id: $id)';
   }
 
   @override
@@ -214,14 +214,12 @@ class _$_PostUserModel implements _PostUserModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PostUserModel &&
-            (identical(other.fullname, fullname) ||
-                other.fullname == fullname) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.username, username) ||
                 other.username == username) &&
-            (identical(other.profileImageUrl, profileImageUrl) ||
-                other.profileImageUrl == profileImageUrl) &&
-            (identical(other.isVerified, isVerified) ||
-                other.isVerified == isVerified) &&
+            (identical(other.photo, photo) || other.photo == photo) &&
+            (identical(other.verified, verified) ||
+                other.verified == verified) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.role, role) || other.role == role) &&
             (identical(other.id, id) || other.id == id));
@@ -229,8 +227,8 @@ class _$_PostUserModel implements _PostUserModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, fullname, username,
-      profileImageUrl, isVerified, email, role, id);
+  int get hashCode => Object.hash(
+      runtimeType, name, username, photo, verified, email, role, id);
 
   @JsonKey(ignore: true)
   @override
@@ -248,31 +246,31 @@ class _$_PostUserModel implements _PostUserModel {
 
 abstract class _PostUserModel implements PostUserModel {
   const factory _PostUserModel(
-      {required final String fullname,
-      required final String username,
-      required final String profileImageUrl,
-      required final bool isVerified,
-      required final String email,
-      required final String role,
-      required final int id}) = _$_PostUserModel;
+      {required final String? name,
+      required final String? username,
+      required final String? photo,
+      required final String? verified,
+      required final String? email,
+      required final String? role,
+      required final int? id}) = _$_PostUserModel;
 
   factory _PostUserModel.fromJson(Map<String, dynamic> json) =
       _$_PostUserModel.fromJson;
 
   @override
-  String get fullname;
+  String? get name;
   @override
-  String get username;
+  String? get username;
   @override
-  String get profileImageUrl;
+  String? get photo;
   @override
-  bool get isVerified;
+  String? get verified;
   @override
-  String get email;
+  String? get email;
   @override
-  String get role;
+  String? get role;
   @override
-  int get id;
+  int? get id;
   @override
   @JsonKey(ignore: true)
   _$$_PostUserModelCopyWith<_$_PostUserModel> get copyWith =>

@@ -20,16 +20,16 @@ PostModel _$PostModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PostModel {
-  String get postId => throw _privateConstructorUsedError;
-  String get postCreated => throw _privateConstructorUsedError;
-  PostUserModel get postUserModel => throw _privateConstructorUsedError;
-  List<String> get tags => throw _privateConstructorUsedError;
-  List<String>? get postImageUrl => throw _privateConstructorUsedError;
-  String? get postText => throw _privateConstructorUsedError;
-  int get like => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  String? get postCreated => throw _privateConstructorUsedError;
+  PostUserModel get user => throw _privateConstructorUsedError;
+  List<String>? get tags => throw _privateConstructorUsedError;
+  List<String>? get images => throw _privateConstructorUsedError;
+  String? get text => throw _privateConstructorUsedError;
+  int get likes => throw _privateConstructorUsedError;
   int get comments => throw _privateConstructorUsedError;
-  bool get bookMarked => throw _privateConstructorUsedError;
-  bool get liked => throw _privateConstructorUsedError;
+  bool? get bookMarked => throw _privateConstructorUsedError;
+  bool? get liked => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,18 +43,18 @@ abstract class $PostModelCopyWith<$Res> {
       _$PostModelCopyWithImpl<$Res, PostModel>;
   @useResult
   $Res call(
-      {String postId,
-      String postCreated,
-      PostUserModel postUserModel,
-      List<String> tags,
-      List<String>? postImageUrl,
-      String? postText,
-      int like,
+      {int id,
+      String? postCreated,
+      PostUserModel user,
+      List<String>? tags,
+      List<String>? images,
+      String? text,
+      int likes,
       int comments,
-      bool bookMarked,
-      bool liked});
+      bool? bookMarked,
+      bool? liked});
 
-  $PostUserModelCopyWith<$Res> get postUserModel;
+  $PostUserModelCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -70,66 +70,66 @@ class _$PostModelCopyWithImpl<$Res, $Val extends PostModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? postId = null,
-    Object? postCreated = null,
-    Object? postUserModel = null,
-    Object? tags = null,
-    Object? postImageUrl = freezed,
-    Object? postText = freezed,
-    Object? like = null,
+    Object? id = null,
+    Object? postCreated = freezed,
+    Object? user = null,
+    Object? tags = freezed,
+    Object? images = freezed,
+    Object? text = freezed,
+    Object? likes = null,
     Object? comments = null,
-    Object? bookMarked = null,
-    Object? liked = null,
+    Object? bookMarked = freezed,
+    Object? liked = freezed,
   }) {
     return _then(_value.copyWith(
-      postId: null == postId
-          ? _value.postId
-          : postId // ignore: cast_nullable_to_non_nullable
-              as String,
-      postCreated: null == postCreated
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      postCreated: freezed == postCreated
           ? _value.postCreated
           : postCreated // ignore: cast_nullable_to_non_nullable
-              as String,
-      postUserModel: null == postUserModel
-          ? _value.postUserModel
-          : postUserModel // ignore: cast_nullable_to_non_nullable
+              as String?,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
               as PostUserModel,
-      tags: null == tags
+      tags: freezed == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      postImageUrl: freezed == postImageUrl
-          ? _value.postImageUrl
-          : postImageUrl // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      postText: freezed == postText
-          ? _value.postText
-          : postText // ignore: cast_nullable_to_non_nullable
+      images: freezed == images
+          ? _value.images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      text: freezed == text
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
               as String?,
-      like: null == like
-          ? _value.like
-          : like // ignore: cast_nullable_to_non_nullable
+      likes: null == likes
+          ? _value.likes
+          : likes // ignore: cast_nullable_to_non_nullable
               as int,
       comments: null == comments
           ? _value.comments
           : comments // ignore: cast_nullable_to_non_nullable
               as int,
-      bookMarked: null == bookMarked
+      bookMarked: freezed == bookMarked
           ? _value.bookMarked
           : bookMarked // ignore: cast_nullable_to_non_nullable
-              as bool,
-      liked: null == liked
+              as bool?,
+      liked: freezed == liked
           ? _value.liked
           : liked // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $PostUserModelCopyWith<$Res> get postUserModel {
-    return $PostUserModelCopyWith<$Res>(_value.postUserModel, (value) {
-      return _then(_value.copyWith(postUserModel: value) as $Val);
+  $PostUserModelCopyWith<$Res> get user {
+    return $PostUserModelCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
     });
   }
 }
@@ -142,19 +142,19 @@ abstract class _$$_PostModelCopyWith<$Res> implements $PostModelCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String postId,
-      String postCreated,
-      PostUserModel postUserModel,
-      List<String> tags,
-      List<String>? postImageUrl,
-      String? postText,
-      int like,
+      {int id,
+      String? postCreated,
+      PostUserModel user,
+      List<String>? tags,
+      List<String>? images,
+      String? text,
+      int likes,
       int comments,
-      bool bookMarked,
-      bool liked});
+      bool? bookMarked,
+      bool? liked});
 
   @override
-  $PostUserModelCopyWith<$Res> get postUserModel;
+  $PostUserModelCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -168,58 +168,58 @@ class __$$_PostModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? postId = null,
-    Object? postCreated = null,
-    Object? postUserModel = null,
-    Object? tags = null,
-    Object? postImageUrl = freezed,
-    Object? postText = freezed,
-    Object? like = null,
+    Object? id = null,
+    Object? postCreated = freezed,
+    Object? user = null,
+    Object? tags = freezed,
+    Object? images = freezed,
+    Object? text = freezed,
+    Object? likes = null,
     Object? comments = null,
-    Object? bookMarked = null,
-    Object? liked = null,
+    Object? bookMarked = freezed,
+    Object? liked = freezed,
   }) {
     return _then(_$_PostModel(
-      postId: null == postId
-          ? _value.postId
-          : postId // ignore: cast_nullable_to_non_nullable
-              as String,
-      postCreated: null == postCreated
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      postCreated: freezed == postCreated
           ? _value.postCreated
           : postCreated // ignore: cast_nullable_to_non_nullable
-              as String,
-      postUserModel: null == postUserModel
-          ? _value.postUserModel
-          : postUserModel // ignore: cast_nullable_to_non_nullable
+              as String?,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
               as PostUserModel,
-      tags: null == tags
+      tags: freezed == tags
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      postImageUrl: freezed == postImageUrl
-          ? _value._postImageUrl
-          : postImageUrl // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      postText: freezed == postText
-          ? _value.postText
-          : postText // ignore: cast_nullable_to_non_nullable
+      images: freezed == images
+          ? _value._images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      text: freezed == text
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
               as String?,
-      like: null == like
-          ? _value.like
-          : like // ignore: cast_nullable_to_non_nullable
+      likes: null == likes
+          ? _value.likes
+          : likes // ignore: cast_nullable_to_non_nullable
               as int,
       comments: null == comments
           ? _value.comments
           : comments // ignore: cast_nullable_to_non_nullable
               as int,
-      bookMarked: null == bookMarked
+      bookMarked: freezed == bookMarked
           ? _value.bookMarked
           : bookMarked // ignore: cast_nullable_to_non_nullable
-              as bool,
-      liked: null == liked
+              as bool?,
+      liked: freezed == liked
           ? _value.liked
           : liked // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
     ));
   }
 }
@@ -228,61 +228,63 @@ class __$$_PostModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_PostModel extends _PostModel {
   const _$_PostModel(
-      {required this.postId,
+      {required this.id,
       required this.postCreated,
-      required this.postUserModel,
-      required final List<String> tags,
-      final List<String>? postImageUrl,
-      this.postText,
-      required this.like,
+      required this.user,
+      required final List<String>? tags,
+      required final List<String>? images,
+      this.text,
+      required this.likes,
       required this.comments,
       required this.bookMarked,
       required this.liked})
       : _tags = tags,
-        _postImageUrl = postImageUrl,
+        _images = images,
         super._();
 
   factory _$_PostModel.fromJson(Map<String, dynamic> json) =>
       _$$_PostModelFromJson(json);
 
   @override
-  final String postId;
+  final int id;
   @override
-  final String postCreated;
+  final String? postCreated;
   @override
-  final PostUserModel postUserModel;
-  final List<String> _tags;
+  final PostUserModel user;
+  final List<String>? _tags;
   @override
-  List<String> get tags {
+  List<String>? get tags {
+    final value = _tags;
+    if (value == null) return null;
     if (_tags is EqualUnmodifiableListView) return _tags;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_tags);
+    return EqualUnmodifiableListView(value);
   }
 
-  final List<String>? _postImageUrl;
+  final List<String>? _images;
   @override
-  List<String>? get postImageUrl {
-    final value = _postImageUrl;
+  List<String>? get images {
+    final value = _images;
     if (value == null) return null;
-    if (_postImageUrl is EqualUnmodifiableListView) return _postImageUrl;
+    if (_images is EqualUnmodifiableListView) return _images;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
   @override
-  final String? postText;
+  final String? text;
   @override
-  final int like;
+  final int likes;
   @override
   final int comments;
   @override
-  final bool bookMarked;
+  final bool? bookMarked;
   @override
-  final bool liked;
+  final bool? liked;
 
   @override
   String toString() {
-    return 'PostModel(postId: $postId, postCreated: $postCreated, postUserModel: $postUserModel, tags: $tags, postImageUrl: $postImageUrl, postText: $postText, like: $like, comments: $comments, bookMarked: $bookMarked, liked: $liked)';
+    return 'PostModel(id: $id, postCreated: $postCreated, user: $user, tags: $tags, images: $images, text: $text, likes: $likes, comments: $comments, bookMarked: $bookMarked, liked: $liked)';
   }
 
   @override
@@ -290,17 +292,14 @@ class _$_PostModel extends _PostModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PostModel &&
-            (identical(other.postId, postId) || other.postId == postId) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.postCreated, postCreated) ||
                 other.postCreated == postCreated) &&
-            (identical(other.postUserModel, postUserModel) ||
-                other.postUserModel == postUserModel) &&
+            (identical(other.user, user) || other.user == user) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
-            const DeepCollectionEquality()
-                .equals(other._postImageUrl, _postImageUrl) &&
-            (identical(other.postText, postText) ||
-                other.postText == postText) &&
-            (identical(other.like, like) || other.like == like) &&
+            const DeepCollectionEquality().equals(other._images, _images) &&
+            (identical(other.text, text) || other.text == text) &&
+            (identical(other.likes, likes) || other.likes == likes) &&
             (identical(other.comments, comments) ||
                 other.comments == comments) &&
             (identical(other.bookMarked, bookMarked) ||
@@ -312,13 +311,13 @@ class _$_PostModel extends _PostModel {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      postId,
+      id,
       postCreated,
-      postUserModel,
+      user,
       const DeepCollectionEquality().hash(_tags),
-      const DeepCollectionEquality().hash(_postImageUrl),
-      postText,
-      like,
+      const DeepCollectionEquality().hash(_images),
+      text,
+      likes,
       comments,
       bookMarked,
       liked);
@@ -339,41 +338,41 @@ class _$_PostModel extends _PostModel {
 
 abstract class _PostModel extends PostModel {
   const factory _PostModel(
-      {required final String postId,
-      required final String postCreated,
-      required final PostUserModel postUserModel,
-      required final List<String> tags,
-      final List<String>? postImageUrl,
-      final String? postText,
-      required final int like,
+      {required final int id,
+      required final String? postCreated,
+      required final PostUserModel user,
+      required final List<String>? tags,
+      required final List<String>? images,
+      final String? text,
+      required final int likes,
       required final int comments,
-      required final bool bookMarked,
-      required final bool liked}) = _$_PostModel;
+      required final bool? bookMarked,
+      required final bool? liked}) = _$_PostModel;
   const _PostModel._() : super._();
 
   factory _PostModel.fromJson(Map<String, dynamic> json) =
       _$_PostModel.fromJson;
 
   @override
-  String get postId;
+  int get id;
   @override
-  String get postCreated;
+  String? get postCreated;
   @override
-  PostUserModel get postUserModel;
+  PostUserModel get user;
   @override
-  List<String> get tags;
+  List<String>? get tags;
   @override
-  List<String>? get postImageUrl;
+  List<String>? get images;
   @override
-  String? get postText;
+  String? get text;
   @override
-  int get like;
+  int get likes;
   @override
   int get comments;
   @override
-  bool get bookMarked;
+  bool? get bookMarked;
   @override
-  bool get liked;
+  bool? get liked;
   @override
   @JsonKey(ignore: true)
   _$$_PostModelCopyWith<_$_PostModel> get copyWith =>

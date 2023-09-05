@@ -6,7 +6,7 @@ import 'package:coordonate_app/utils/helper/helper.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class PostRemoteDatasource {
-  Future<Either<Failure, PostsModel>> getAllPosts();
+  Future<Either<Failure, Iterable<PostModel>>> getAllPosts();
   Future<void> createPost();
 }
 
@@ -16,13 +16,12 @@ class PostRemoteDatasourceImpl implements PostRemoteDatasource {
   const PostRemoteDatasourceImpl(this._client);
 
   @override
-  Future<Either<Failure, PostsModel>> getAllPosts() async {
-    final response = await _client.getRequest(
-      '/api/post/feed',
-      converter: ((response) => PostsModel.fromJson(response)),
-    );
-    // print(response);
+  Future<Either<Failure, List<PostModel>>> getAllPosts() async {
+    final response = await _client.getAllRequest(
+        'https://coordonate-backend-abrishatlaw-gmailcom.vercel.app/api/post/feed',
+        converter: (post) => PostModel.fromJson(post));
     return response;
+    // return Right(response) as List<PostModel>;
   }
 
   @override

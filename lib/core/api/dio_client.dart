@@ -3,7 +3,6 @@ import 'package:coordonate_app/dependency_injection.dart';
 import 'package:coordonate_app/utils/helper/pref_manager.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'dart:convert';
 
 typedef ResponseConverter<T> = T Function(dynamic response);
 
@@ -52,22 +51,63 @@ class DioClient {
             'Accept': 'application/json',
             if (_auth != null) ...{
               'Authorization':
-                  'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIyLCJpYXQiOjE2OTI2MzY1MTUsImV4cCI6MTY5MjYzNzQxNX0.OkvthS4JV_QLts3iNMS47Bn27K6D--9rZoapd2XsMdRfGy0dOPQZeEw15cFkyNVtEMjCif9DAnXoCmUJByAboFgKaiL0P-62cJkbwAa7p7rHqjNwhgXQP3rYAhPO1cu7hsI_ic8p-aKi5NO4uqoUkOqXj8Njzru9nm1kSKCiGMvTkFcwqY9pEIeCeuzGWTKI3V1eOSJehYAt3EYEAgrgN1QvVx1Xh62Xrh4ppvARcuL38DqE2BZ645sMW_3zRpWE4d10HBzV0mv1rx4HZ4Fv0zxVbLhWWi68PAAZoR-cDTCRI2H8bf-_IWER-Y2pHjvytOpOeB31_eBBvIZ12bceClHoLdVLxNTzI5qGV_JIQT38l5dgZUIi61JhDWlUSqRR7H03skkbBY1YaSq1Qu2kprC-2tME4kBr4rLfGznoQnbDW6K90cr06JOAqVXMeSb3G_-tibb0d61tJ75Fq9IcpSeZYyrcdJJW12i32M-90Gsk_L3qOJY_Z8H63tPGJ7FmZ766uWHlDM7F5vEM8izSCVKjHOdPxwasRDhABlL2j1FhQVMFEI1yFzdPQhv5F1DAGLIoSzc2ceXUcTV6LecWAyK287G9KVpDS9cakLc_3mzMp09mPPgQMTFFxL1uDZ5ywTYBVH5imLEtMWY9ErAhpp2DGaijk84Az0pKeUQKkOA',
+                  'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIyLCJpYXQiOjE2OTM4MTYzMjgsImV4cCI6MTY5MzgxNzIyOH0.O1ZozeMKBHqxfklafHnaAlhzXaO5WPXr1o8iIn8lnGZOk2AD4llOYdBwLt50Caq33pEBrfhqwFWV2XXGBdAJ1slyJs-pJ809DF9i1r5QLB_g33pLO2sWqWJhTQPyK0Y_8sagjCT5Db0dObziDaDLeFq0rR3quHSgoFQh9gUzJr37inuk2_TaNM1G0VVQhwXiXTFx4KacxSskgm8A5_VW6JjOOIsf_g4WQQTHYlckJi1Fuc7X2gjV7jnbVa_FUn-cmAtbRaLG6YA-ZphUztOtKc718bS2pZh4nSbY9trUum6P-BQfEubd4jteHCsp6o9M5v2OTKMAS3Hy-D47d70b6lXOdmljrjVhp7b86ML051WqARHDgz4OSP988S0wgU53VLuYubuGWq81Yn2c7QlOeckNnQbcKofQIs0foJ6C66Qoi3u86SkiiqFz3Mx0zF5x9EXjXa2kQM1wmXt5cRUlWszkyfYhdRhvPP5bCTPLMC3mOPgBybLR3k5NiM30osXfjfHoGCadjzPcyzUk3QOa6MQdj9VdWd7DwfrNCB1OGam94F7PaPTcndimqax4NmyDNNzV1xod0Lq_F0S2ntZI78JyBXr0AP2zA4FKnmbnjIX_m0oEVVGirpAG8MjujzPsYBUN5H6NTkfo5rdLz3HaiBBHCj8pr84UxgEaV14iDDA',
             },
           },
-          receiveTimeout: const Duration(seconds: 30),
-          connectTimeout: const Duration(seconds: 30),
+          receiveTimeout: const Duration(seconds: 20),
+          connectTimeout: const Duration(seconds: 20),
           validateStatus: (int? status) {
             return status! > 0;
           },
         ),
       );
 
+  Future<Either<Failure, List<T>>> getAllRequest<T>(
+    String url, {
+    Map<String, dynamic>? queryParameters,
+    required ResponseConverter<T> converter,
+    bool isIsolate = true,
+  }) async {
+    try {
+      final response = await dio.get(url, queryParameters: queryParameters);
+      if ((response.statusCode ?? 0) < 200 ||
+          (response.statusCode ?? 0) > 201) {
+        throw DioException(
+          requestOptions: response.requestOptions,
+          response: response,
+        );
+      }
+
+      final List<dynamic> responseData = response.data;
+
+      if (!isIsolate) {
+        final List<T> convertedData =
+            responseData.map((item) => converter(item)).toList();
+        return Right(convertedData);
+      }
+
+      final List<T> convertedData = [];
+
+      for (var item in responseData) {
+        final isolateParse = IsolateParser<T>(item, converter);
+        final T result = await isolateParse.parseInBackground();
+        convertedData.add(result);
+      }
+
+      return Right(convertedData);
+    } on DioException catch (e) {
+      return Left(
+        ServerFailure(
+          e.response?.data['description'] as String? ?? e.message,
+        ),
+      );
+    }
+  }
+
   Future<Either<Failure, T>> getRequest<T>(
     String url, {
     Map<String, dynamic>? queryParameters,
     required ResponseConverter<T> converter,
-    ResponseConverter<T>? listResponseConverter,
     bool isIsolate = true,
   }) async {
     try {
@@ -83,10 +123,7 @@ class DioClient {
       if (!isIsolate) {
         return Right(converter(response.data));
       }
-      final isolateParse = IsolateParser<T>(
-          json: response.data,
-          converter: converter,
-          listResponseConverter: listResponseConverter);
+      final isolateParse = IsolateParser<T>(response.data, converter);
       final result = await isolateParse.parseInBackground();
       return Right(result);
     } on DioException catch (e) {
@@ -102,7 +139,6 @@ class DioClient {
     String url, {
     Map<String, dynamic>? data,
     required ResponseConverter<T> converter,
-    ResponseConverter<T>? listResponseConverter,
     bool isIsolate = true,
   }) async {
     try {
@@ -122,10 +158,7 @@ class DioClient {
       // print(response.data);
       // final jsonResponse = jsonDecode(response.data);
       // print(jsonResponse);
-      final isolateParse = IsolateParser<T>(
-          json: response.data,
-          converter: converter,
-          listResponseConverter: listResponseConverter);
+      final isolateParse = IsolateParser<T>(response.data, converter);
       final result = await isolateParse.parseInBackground();
       return Right(result);
     } on DioException catch (e) {

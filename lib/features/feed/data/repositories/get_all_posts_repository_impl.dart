@@ -1,6 +1,8 @@
 import 'package:coordonate_app/core/error/failure.dart';
 import 'package:coordonate_app/features/feed/data/datasources/posts_remote_datasource.dart';
+import 'package:coordonate_app/features/feed/data/models/post_model.dart';
 import 'package:coordonate_app/features/feed/data/models/posts_response_model.dart';
+import 'package:coordonate_app/features/feed/domain/entities/post_entity.dart';
 import 'package:coordonate_app/features/feed/domain/entities/posts_entity.dart';
 import 'package:coordonate_app/features/feed/domain/repositories/get_all_posts_repository.dart';
 import 'package:dartz/dartz.dart';
@@ -11,25 +13,25 @@ class GetAllPostsRepositoryImpl implements GetAllPostsRepository {
   const GetAllPostsRepositoryImpl(this.getAllPostsRemoteDatasource);
 
   @override
-  Future<Either<Failure, PostsEntity>> getAllPosts() async {
+  Future<Either<Failure, List<PostEntity>>> getAllPosts() async {
     final response = await getAllPostsRemoteDatasource.getAllPosts();
     return response.fold((l) => Left(ServerFailure('fetch failed')), (r) {
-      if (r.posts?.isEmpty ?? true) {
+      if (r.isEmpty) {
         return Left(NoDataFailure());
       }
       // print(Right(toPostsEntity(PostsModel(posts: r.posts))));
-      return Right(toPostsEntity(PostsModel(posts: r.posts)));
+      return Right((r.map((post) => toPostEntity(post)).toList()));
     });
   }
 
   @override
-  Future<Either<Failure, PostsEntity>> createPost() async {
+  Future<Either<Failure, List<PostEntity>>> createPost() async {
     final response = await getAllPostsRemoteDatasource.getAllPosts();
     return response.fold((l) => Left(ServerFailure('fetch failed')), (r) {
-      if (r.posts?.isEmpty ?? true) {
+      if (r.isEmpty) {
         return Left(NoDataFailure());
       }
-      return Right(toPostsEntity(PostsModel(posts: r.posts)));
+      return Right((r.map((post) => toPostEntity(post)).toList()));
     });
   }
 }

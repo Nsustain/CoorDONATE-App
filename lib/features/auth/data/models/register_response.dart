@@ -1,4 +1,3 @@
-import 'package:coordonate_app/features/auth/auth.dart';
 import 'package:coordonate_app/features/auth/data/models/data.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

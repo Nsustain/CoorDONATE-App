@@ -1,10 +1,6 @@
-import 'package:coordonate_app/dependency_injection.dart';
-import 'package:coordonate_app/features/auth/auth.dart';
-import 'package:coordonate_app/features/auth/domain/usecases/post_register.dart';
 import 'package:coordonate_app/features/auth/presentation/bloc/register/register_bloc.dart';
 import 'package:coordonate_app/features/auth/presentation/bloc/register/register_event.dart';
 import 'package:coordonate_app/features/auth/presentation/bloc/register/register_state.dart';
-import 'package:coordonate_app/features/auth/presentation/screen/dummy_homepage.dart';
 import 'package:coordonate_app/features/auth/presentation/screen/login_page.dart';
 import 'package:coordonate_app/features/auth/presentation/widgets/phone_number.dart';
 import 'package:coordonate_app/features/auth/presentation/widgets/rounded_button.dart';
@@ -37,15 +33,10 @@ class SignupPage extends StatefulWidget {
 
 class _SignupPageState extends State<SignupPage> {
   //TextControllers
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Theme(
+    return Theme(
       data: Theme.of(context),
       child: Scaffold(
         body: SingleChildScrollView(
@@ -92,11 +83,7 @@ class _SignupPageState extends State<SignupPage> {
                     child: BlocListener<RegisterBloc, RegisterState>(
                       listener: (context, state) {
                         if (state is RegisterSuccessState) {
-                          print("-------------------Sucess-------------------");
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: ((context) => FeedsPage())));
+                          context.go(AppRoutes.Feed);
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(content: Text('Successful')),
                           );
@@ -260,11 +247,7 @@ class _SignupPageState extends State<SignupPage> {
                                           ),
                                           recognizer: TapGestureRecognizer()
                                             ..onTap = () {
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: ((context) =>
-                                                          LoginPage())));
+                                              context.go(AppRoutes.LoginPage);
                                             })
                                     ],
                                   ),
@@ -285,11 +268,6 @@ class _SignupPageState extends State<SignupPage> {
           ),
         ),
       ),
-    ));
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
+    );
   }
 }

@@ -8,16 +8,16 @@ part 'post_model.g.dart';
 @freezed
 class PostModel with _$PostModel {
   const factory PostModel({
-    required String postId,
-    required String postCreated,
-    required PostUserModel postUserModel,
-    required List<String> tags,
-    List<String>? postImageUrl,
-    String? postText,
-    required int like,
+    required int id,
+    required String? postCreated,
+    required PostUserModel user,
+    required List<String>? tags,
+    required List<String>? images,
+    String? text,
+    required int likes,
     required int comments,
-    required bool bookMarked,
-    required bool liked,
+    required bool? bookMarked,
+    required bool? liked,
   }) = _PostModel;
 
   const PostModel._();
@@ -27,14 +27,16 @@ class PostModel with _$PostModel {
 
 PostEntity toPostEntity(PostModel model) {
   return PostEntity(
-      postId: model.postId,
-      postUserEntity: toPostUserEntity(model.postUserModel),
-      postImageUrl: model.postImageUrl,
-      postText: model.postText,
-      postCreated: model.postCreated,
+      postId: model.id,
+      postUserEntity: toPostUserEntity(model.user),
+      postImageUrl: model.images!,
+      postText: model.text,
+      postCreated: model.postCreated != null
+          ? model.postCreated!
+          : DateTime.now().toString(),
       tags: model.tags,
-      like: model.like,
+      like: model.likes,
       comments: model.comments,
-      bookMarked: model.bookMarked,
+      bookMarked: model.bookMarked != null ? false : true,
       liked: model.liked);
 }

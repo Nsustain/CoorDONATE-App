@@ -23,7 +23,7 @@ class _PostCardState extends State<PostCard> {
       children: [
         PostUser(
           postUserEntity: widget.postUserEntity,
-          postCreated: widget.postEntity.postCreated,
+          postCreated: widget.postEntity.postCreated!,
         ),
         Post(
           postEntity: widget.postEntity,
