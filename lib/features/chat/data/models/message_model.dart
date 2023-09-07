@@ -11,6 +11,7 @@ class ChatMessageModel with _$ChatMessageModel {
       _ChatMessageModel;
 
   const ChatMessageModel._();
+  
 
   factory ChatMessageModel.fromJson(Map<String, dynamic> json) =>
       _$ChatMessageModelFromJson(json);

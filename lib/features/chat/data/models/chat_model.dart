@@ -24,7 +24,6 @@ class ChatModel with _$ChatModel {
   factory ChatModel.fromJson(Map<String, dynamic> json) =>
       _$ChatModelFromJson(json);
 
-
   Chat toEntity() => Chat(
   id: id,
   senderName: senderName,
