@@ -18,18 +18,23 @@ class _PostState extends State<Post> {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.only(top: 20.h, bottom: 10.h),
+          padding:
+              EdgeInsets.only(top: 10.h, bottom: 5.h, left: 20.w, right: 20.w),
           child: SizedBox(
             width: double.infinity,
-            child: widget.postEntity.postText!.length > 50
-                ? ExpandableText(text: widget.postEntity.postText!)
-                : Text('${widget.postEntity.postText}'),
+            child: widget.postEntity.postText != null
+                ? (widget.postEntity.postText!.length > 50
+                    ? ExpandableText(text: widget.postEntity.postText!)
+                    : Text('${widget.postEntity.postText}'))
+                : SizedBox.shrink(),
           ),
         ),
-        // Image.network(
-        //   '${widget.postEntity.postImageUrl![0]}',
-        // )
-        Image.asset('assets/images/feeds/nelson-mandela.jpg')
+        // Text('${widget.postEntity.postImageUrl[0]}'),
+        Image.network(
+          '${widget.postEntity.postImageUrl[0]}',
+          fit: BoxFit.cover,
+        )
+        // Image.asset('assets/images/feeds/nelson-mandela.jpg')
       ],
     );
   }

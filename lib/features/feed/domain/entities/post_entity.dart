@@ -12,7 +12,7 @@ class PostEntity with _$PostEntity {
     required List<String>? tags,
     required List<String> postImageUrl,
     String? postText,
-    required int like,
+    required int likes,
     required int comments,
     required bool bookMarked,
     required bool? liked,

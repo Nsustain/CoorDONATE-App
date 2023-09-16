@@ -92,11 +92,11 @@ class WelcomeScreen extends StatelessWidget {
               ),
               RoundedButton(
                 onPressed: () => {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => SignupPage(),
-                      ))
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //       builder: (context) => SignupPage(),
+                  //     ))
                 },
                 childWidget: Text(
                   'Sign Up',

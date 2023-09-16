@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 // Import your page classes here
 import 'package:coordonate_app/features/feed/presentation/screen/feeds_page.dart';
 
-
 class CoorDonateBottomNavigationBar extends StatefulWidget {
   static final prefManager = sl<PrefManager>();
   @override
@@ -17,7 +16,7 @@ class CoorDonateBottomNavigationBar extends StatefulWidget {
 
 class _CoorDonateBottomNavigationBarState
     extends State<CoorDonateBottomNavigationBar> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 2;
 
   static List<Widget> _pages = [
     FeedsPage(),

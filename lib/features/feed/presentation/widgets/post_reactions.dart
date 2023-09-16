@@ -26,6 +26,9 @@ class PostReactionsState extends State<PostReactions> {
       children: [
         Row(
           children: [
+            SizedBox(
+              width: 10.w,
+            ),
             IconButton(
               onPressed: toggleLike,
               icon: Icon(
@@ -90,7 +93,7 @@ class PostReactionsState extends State<PostReactions> {
           ],
         ),
         SizedBox(
-          width: 25.w,
+          width: 35.w,
         ),
         IconButton.outlined(
           onPressed: () {},

@@ -17,8 +17,7 @@ class PostRemoteDatasourceImpl implements PostRemoteDatasource {
 
   @override
   Future<Either<Failure, List<PostModel>>> getAllPosts() async {
-    final response = await _client.getAllRequest(
-        'https://coordonate-backend-abrishatlaw-gmailcom.vercel.app/api/post/feed',
+    final response = await _client.getAllRequest('/api/post/feed',
         converter: (post) => PostModel.fromJson(post));
     return response;
     // return Right(response) as List<PostModel>;

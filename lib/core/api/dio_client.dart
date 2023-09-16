@@ -7,7 +7,7 @@ import 'package:dio/dio.dart';
 typedef ResponseConverter<T> = T Function(dynamic response);
 
 class DioClient {
-  String baseUrl = "https://coordonate-backend-abrishatlaw-gmailcom.vercel.app";
+  String baseUrl = "https://coordonate-api-coordonatedevs-gmailcom.vercel.app";
 
   String? _auth;
   bool _isUnitTest = false;
@@ -50,8 +50,7 @@ class DioClient {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
             if (_auth != null) ...{
-              'Authorization':
-                  'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIyLCJpYXQiOjE2OTM4MTYzMjgsImV4cCI6MTY5MzgxNzIyOH0.O1ZozeMKBHqxfklafHnaAlhzXaO5WPXr1o8iIn8lnGZOk2AD4llOYdBwLt50Caq33pEBrfhqwFWV2XXGBdAJ1slyJs-pJ809DF9i1r5QLB_g33pLO2sWqWJhTQPyK0Y_8sagjCT5Db0dObziDaDLeFq0rR3quHSgoFQh9gUzJr37inuk2_TaNM1G0VVQhwXiXTFx4KacxSskgm8A5_VW6JjOOIsf_g4WQQTHYlckJi1Fuc7X2gjV7jnbVa_FUn-cmAtbRaLG6YA-ZphUztOtKc718bS2pZh4nSbY9trUum6P-BQfEubd4jteHCsp6o9M5v2OTKMAS3Hy-D47d70b6lXOdmljrjVhp7b86ML051WqARHDgz4OSP988S0wgU53VLuYubuGWq81Yn2c7QlOeckNnQbcKofQIs0foJ6C66Qoi3u86SkiiqFz3Mx0zF5x9EXjXa2kQM1wmXt5cRUlWszkyfYhdRhvPP5bCTPLMC3mOPgBybLR3k5NiM30osXfjfHoGCadjzPcyzUk3QOa6MQdj9VdWd7DwfrNCB1OGam94F7PaPTcndimqax4NmyDNNzV1xod0Lq_F0S2ntZI78JyBXr0AP2zA4FKnmbnjIX_m0oEVVGirpAG8MjujzPsYBUN5H6NTkfo5rdLz3HaiBBHCj8pr84UxgEaV14iDDA',
+              'Authorization': 'Bearer $_auth',
             },
           },
           receiveTimeout: const Duration(seconds: 20),

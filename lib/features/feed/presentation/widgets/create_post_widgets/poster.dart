@@ -14,17 +14,64 @@ class Poster extends StatelessWidget {
           children: [
             if (userPhoto != null)
               CircleAvatar(
+                minRadius: 25.h,
                 backgroundImage: NetworkImage(userPhoto!),
               ),
+            SizedBox(
+              width: 10.w,
+            ),
             if (userName != null)
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 6.w),
-                child: Text(
-                  userName!,
-                  style:
-                      TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      userName!,
+                      style: TextStyle(
+                          fontSize: 18.sp, fontWeight: FontWeight.bold),
+                    ),
+                    Row(
+                      children: [
+                        ElevatedButton(
+                          style: ButtonStyle(
+                              minimumSize:
+                                  MaterialStateProperty.all(Size(8.w, 8.h)),
+                              backgroundColor: MaterialStateProperty.all(
+                                  const Color.fromARGB(255, 210, 210, 210))),
+                          onPressed: () {},
+                          child: const Row(
+                            children: [
+                              Icon(Icons.people),
+                              Text("Friends"),
+                              Icon(Icons.arrow_drop_down)
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        ElevatedButton(
+                          style: ButtonStyle(
+                              minimumSize: MaterialStateProperty.all(
+                                Size(8.w, 8.h),
+                              ),
+                              backgroundColor: MaterialStateProperty.all(
+                                  const Color.fromARGB(255, 210, 210, 210))),
+                          onPressed: () {},
+                          child: const Row(
+                            children: [
+                              Icon(Icons.add),
+                              Text("Album"),
+                              Icon(Icons.arrow_drop_down)
+                            ],
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
                 ),
-              ),
+              )
           ],
         ),
       ],

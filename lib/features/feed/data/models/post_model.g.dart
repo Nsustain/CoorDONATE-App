@@ -9,13 +9,18 @@ part of 'post_model.dart';
 _$_PostModel _$$_PostModelFromJson(Map<String, dynamic> json) => _$_PostModel(
       id: json['id'] as int,
       postCreated: json['postCreated'] as String?,
-      user: PostUserModel.fromJson(json['user'] as Map<String, dynamic>),
+      postedBy:
+          PostUserModel.fromJson(json['postedBy'] as Map<String, dynamic>),
       tags: (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList(),
       images:
           (json['images'] as List<dynamic>?)?.map((e) => e as String).toList(),
-      text: json['text'] as String?,
-      likes: json['likes'] as int,
-      comments: json['comments'] as int,
+      contentText: json['contentText'] as String?,
+      likes: (json['likes'] as List<dynamic>)
+          .map((e) => LikeModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      comments: (json['comments'] as List<dynamic>)
+          .map((e) => CommentModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
       bookMarked: json['bookMarked'] as bool?,
       liked: json['liked'] as bool?,
     );
@@ -24,10 +29,10 @@ Map<String, dynamic> _$$_PostModelToJson(_$_PostModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'postCreated': instance.postCreated,
-      'user': instance.user,
+      'postedBy': instance.postedBy,
       'tags': instance.tags,
       'images': instance.images,
-      'text': instance.text,
+      'contentText': instance.contentText,
       'likes': instance.likes,
       'comments': instance.comments,
       'bookMarked': instance.bookMarked,

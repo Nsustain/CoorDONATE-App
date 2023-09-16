@@ -23,7 +23,7 @@ mixin _$PostUserModel {
   String? get name => throw _privateConstructorUsedError;
   String? get username => throw _privateConstructorUsedError;
   String? get photo => throw _privateConstructorUsedError;
-  String? get verified => throw _privateConstructorUsedError;
+  bool? get verified => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   String? get role => throw _privateConstructorUsedError;
   int? get id => throw _privateConstructorUsedError;
@@ -44,7 +44,7 @@ abstract class $PostUserModelCopyWith<$Res> {
       {String? name,
       String? username,
       String? photo,
-      String? verified,
+      bool? verified,
       String? email,
       String? role,
       int? id});
@@ -87,7 +87,7 @@ class _$PostUserModelCopyWithImpl<$Res, $Val extends PostUserModel>
       verified: freezed == verified
           ? _value.verified
           : verified // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as bool?,
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -116,7 +116,7 @@ abstract class _$$_PostUserModelCopyWith<$Res>
       {String? name,
       String? username,
       String? photo,
-      String? verified,
+      bool? verified,
       String? email,
       String? role,
       int? id});
@@ -157,7 +157,7 @@ class __$$_PostUserModelCopyWithImpl<$Res>
       verified: freezed == verified
           ? _value.verified
           : verified // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as bool?,
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -196,7 +196,7 @@ class _$_PostUserModel implements _PostUserModel {
   @override
   final String? photo;
   @override
-  final String? verified;
+  final bool? verified;
   @override
   final String? email;
   @override
@@ -249,7 +249,7 @@ abstract class _PostUserModel implements PostUserModel {
       {required final String? name,
       required final String? username,
       required final String? photo,
-      required final String? verified,
+      required final bool? verified,
       required final String? email,
       required final String? role,
       required final int? id}) = _$_PostUserModel;
@@ -264,7 +264,7 @@ abstract class _PostUserModel implements PostUserModel {
   @override
   String? get photo;
   @override
-  String? get verified;
+  bool? get verified;
   @override
   String? get email;
   @override

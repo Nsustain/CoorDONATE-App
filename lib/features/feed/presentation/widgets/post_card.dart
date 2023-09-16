@@ -3,6 +3,7 @@ import 'package:coordonate_app/features/feed/domain/entities/post_user_entity.da
 import 'package:coordonate_app/features/feed/presentation/widgets/post.dart';
 import 'package:coordonate_app/features/feed/presentation/widgets/post_reactions.dart';
 import 'package:coordonate_app/features/feed/presentation/widgets/post_user.dart';
+import 'package:coordonate_app/features/feed/presentation/widgets/reaction_results.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -21,14 +22,22 @@ class _PostCardState extends State<PostCard> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        PostUser(
-          postUserEntity: widget.postUserEntity,
-          postCreated: widget.postEntity.postCreated!,
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
+          child: PostUser(
+            postUserEntity: widget.postUserEntity,
+            postCreated: widget.postEntity.postCreated,
+          ),
         ),
         Post(
           postEntity: widget.postEntity,
         ),
-        PostReactions(),
+        if (widget.postEntity.likes != 0 || widget.postEntity.comments != 0)
+          ReactionResults(
+            likes: widget.postEntity.likes,
+            comments: widget.postEntity.comments,
+          ),
+        const PostReactions(),
         SizedBox(
           height: 20.h,
         ),

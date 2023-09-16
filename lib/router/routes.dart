@@ -7,4 +7,7 @@ class AppRoutes {
   static const SplashPage = '/splash-page';
   static const CreatePostPage = '/createpost-page';
   static const CoorDonateBottomNavigationBar = '/coordonate-bottom';
+  static const SearchPage = '/search-page';
+  static const ProfilePage = '/profile-page';
+  static const NotificationsPage = '/noitifications-page';
 }

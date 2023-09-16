@@ -21,12 +21,12 @@ PostsEntity toPostsEntity(PostsModel postsModel) {
   final listPosts = postsModel.posts!
       .map<PostEntity>((model) => PostEntity(
           postId: model.id,
-          postUserEntity: toPostUserEntity(model.user),
+          postUserEntity: toPostUserEntity(model.postedBy),
           postImageUrl: model.images!,
-          postText: model.text,
+          postText: model.contentText,
           tags: model.tags,
-          like: model.likes,
-          comments: model.comments,
+          likes: model.likes.length,
+          comments: model.comments.length,
           bookMarked: model.bookMarked!,
           liked: model.liked,
           postCreated: model.postCreated != null

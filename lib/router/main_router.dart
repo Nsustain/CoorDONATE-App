@@ -1,80 +1,127 @@
 import 'package:coordonate_app/core/common/bottom_navigation_bar.dart';
-import 'package:coordonate_app/dependency_injection.dart';
+import 'package:coordonate_app/core/common/scaffold_with_nested_navigation.dart';
+import 'package:coordonate_app/dependency_injection.dart' as di;
 import 'package:coordonate_app/features/auth/auth.dart';
 import 'package:coordonate_app/features/auth/presentation/screen/login_page.dart';
 import 'package:coordonate_app/features/feed/presentation/screen/create_post_page.dart';
 import 'package:coordonate_app/features/feed/presentation/screen/feeds_page.dart';
+import 'package:coordonate_app/features/feed/presentation/screen/notifications_page.dart';
+import 'package:coordonate_app/features/feed/presentation/screen/profile_page.dart';
+import 'package:coordonate_app/features/feed/presentation/screen/search_page.dart';
 import 'package:coordonate_app/router/routes.dart';
 import 'package:coordonate_app/utils/constants/styles.dart';
 import 'package:coordonate_app/utils/helper/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class MainRouter extends StatelessWidget {
-  late final GoRouter _router;
+class MainRouter extends StatefulWidget {
+  final prefManager = di.sl<PrefManager>();
+  MainRouter({super.key});
 
-  String? redirector(state) {
-    return null;
-  }
+  @override
+  State<MainRouter> createState() => _MainRouterState();
+}
 
-  MainRouter({super.key}) {
-    final prefManger = sl<PrefManager>();
-    final isLoggedIn = prefManger.isLoggedin;
-
-    _router = GoRouter(
-        // redirect: (context, state) {
-        //   if (isLoggedIn) {
-        //     return AppRoutes.CoorDonateBottomNavigationBar;
-        //   } else {
-        //     return AppRoutes.LoginPage;
-        //   }
-        // },
-        initialLocation: isLoggedIn
-            ? AppRoutes.CoorDonateBottomNavigationBar
+class _MainRouterState extends State<MainRouter> {
+  late final GoRouter router;
+  final _rootNavigatorKey = GlobalKey<NavigatorState>();
+  final _shellNavigatorKeyFeed = GlobalKey<NavigatorState>();
+  final _shellNavigatorKeySearch = GlobalKey<NavigatorState>();
+  final _shellNavigatorKeyPost = GlobalKey<NavigatorState>();
+  final _shellNavigatorKeyNotification = GlobalKey<NavigatorState>();
+  final _shellNavigatorKeyProfile = GlobalKey<NavigatorState>();
+  @override
+  void initState() {
+    super.initState();
+    router = GoRouter(
+        navigatorKey: _rootNavigatorKey,
+        debugLogDiagnostics: true,
+        initialLocation: widget.prefManager.isLoggedin
+            ? AppRoutes.CreatePostPage
             : AppRoutes.LoginPage,
-        routes: <GoRoute>[
+        routes: [
+          StatefulShellRoute.indexedStack(
+            builder: (context, state, navigationShell) {
+              return ScaffoldWithNestedNavigation(
+                  navigationShell: navigationShell);
+            },
+            branches: [
+              StatefulShellBranch(
+                navigatorKey: _shellNavigatorKeyFeed,
+                routes: [
+                  GoRoute(
+                    path: AppRoutes.Feed,
+                    name: AppRoutes.Feed,
+                    pageBuilder: (context, state) =>
+                        NoTransitionPage(child: FeedsPage()),
+                  )
+                ],
+              ),
+              StatefulShellBranch(
+                  navigatorKey: _shellNavigatorKeySearch,
+                  routes: [
+                    GoRoute(
+                      path: AppRoutes.SearchPage,
+                      name: AppRoutes.SearchPage,
+                      pageBuilder: (context, state) =>
+                          NoTransitionPage(child: SearchPage()),
+                    )
+                  ]),
+              StatefulShellBranch(
+                  navigatorKey: _shellNavigatorKeyPost,
+                  routes: [
+                    GoRoute(
+                        path: AppRoutes.CreatePostPage,
+                        name: AppRoutes.CreatePostPage,
+                        pageBuilder: ((context, state) => NoTransitionPage(
+                              child: CreatePostPage(
+                                  prefManager: widget.prefManager),
+                            ))),
+                  ]),
+              StatefulShellBranch(
+                  navigatorKey: _shellNavigatorKeyNotification,
+                  routes: [
+                    GoRoute(
+                      path: AppRoutes.NotificationsPage,
+                      name: AppRoutes.NotificationsPage,
+                      pageBuilder: (context, state) =>
+                          NoTransitionPage(child: NotificationsPage()),
+                    )
+                  ]),
+              StatefulShellBranch(
+                  navigatorKey: _shellNavigatorKeyProfile,
+                  routes: [
+                    GoRoute(
+                      path: AppRoutes.ProfilePage,
+                      name: AppRoutes.ProfilePage,
+                      pageBuilder: (context, state) =>
+                          NoTransitionPage(child: ProfilePage()),
+                    )
+                  ])
+            ],
+          ),
           GoRoute(
             path: AppRoutes.SignupPage,
             name: AppRoutes.SignupPage,
-            pageBuilder: (context, state) => MaterialPage(
-              child: SignupPage(),
-            ),
-          ),
-          GoRoute(
-            path: AppRoutes.Feed,
-            name: AppRoutes.Feed,
-            pageBuilder: (context, state) => MaterialPage(
-              child: FeedsPage(),
-            ),
-          ),
-          GoRoute(
-            path: AppRoutes.CoorDonateBottomNavigationBar,
-            name: AppRoutes.CoorDonateBottomNavigationBar,
-            pageBuilder: (context, state) => MaterialPage(
-              child: CoorDonateBottomNavigationBar(),
-            ),
+            builder: (context, state) => SignupPage(),
           ),
           GoRoute(
             path: AppRoutes.LoginPage,
             name: AppRoutes.LoginPage,
-            pageBuilder: (context, state) => const MaterialPage(
-              child: LoginPage(),
-            ),
+            builder: (context, state) => LoginPage(),
           ),
-          GoRoute(
-            path: AppRoutes.CreatePostPage,
-            name: AppRoutes.CreatePostPage,
-            pageBuilder: (context, state) => MaterialPage(
-              child: CreatePostPage(prefManager: prefManger),
-            ),
-          ),
-        ]);
+        ],
+        errorBuilder: (context, state) => const Scaffold(
+              body: Center(
+                child: Text('No page found'),
+              ),
+            ));
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      routerConfig: _router,
+      routerConfig: router,
       title: 'CoorDonate',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

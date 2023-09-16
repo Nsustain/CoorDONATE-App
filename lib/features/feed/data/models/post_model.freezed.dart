@@ -22,12 +22,12 @@ PostModel _$PostModelFromJson(Map<String, dynamic> json) {
 mixin _$PostModel {
   int get id => throw _privateConstructorUsedError;
   String? get postCreated => throw _privateConstructorUsedError;
-  PostUserModel get user => throw _privateConstructorUsedError;
+  PostUserModel get postedBy => throw _privateConstructorUsedError;
   List<String>? get tags => throw _privateConstructorUsedError;
   List<String>? get images => throw _privateConstructorUsedError;
-  String? get text => throw _privateConstructorUsedError;
-  int get likes => throw _privateConstructorUsedError;
-  int get comments => throw _privateConstructorUsedError;
+  String? get contentText => throw _privateConstructorUsedError;
+  List<LikeModel> get likes => throw _privateConstructorUsedError;
+  List<CommentModel> get comments => throw _privateConstructorUsedError;
   bool? get bookMarked => throw _privateConstructorUsedError;
   bool? get liked => throw _privateConstructorUsedError;
 
@@ -45,16 +45,16 @@ abstract class $PostModelCopyWith<$Res> {
   $Res call(
       {int id,
       String? postCreated,
-      PostUserModel user,
+      PostUserModel postedBy,
       List<String>? tags,
       List<String>? images,
-      String? text,
-      int likes,
-      int comments,
+      String? contentText,
+      List<LikeModel> likes,
+      List<CommentModel> comments,
       bool? bookMarked,
       bool? liked});
 
-  $PostUserModelCopyWith<$Res> get user;
+  $PostUserModelCopyWith<$Res> get postedBy;
 }
 
 /// @nodoc
@@ -72,10 +72,10 @@ class _$PostModelCopyWithImpl<$Res, $Val extends PostModel>
   $Res call({
     Object? id = null,
     Object? postCreated = freezed,
-    Object? user = null,
+    Object? postedBy = null,
     Object? tags = freezed,
     Object? images = freezed,
-    Object? text = freezed,
+    Object? contentText = freezed,
     Object? likes = null,
     Object? comments = null,
     Object? bookMarked = freezed,
@@ -90,9 +90,9 @@ class _$PostModelCopyWithImpl<$Res, $Val extends PostModel>
           ? _value.postCreated
           : postCreated // ignore: cast_nullable_to_non_nullable
               as String?,
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
+      postedBy: null == postedBy
+          ? _value.postedBy
+          : postedBy // ignore: cast_nullable_to_non_nullable
               as PostUserModel,
       tags: freezed == tags
           ? _value.tags
@@ -102,18 +102,18 @@ class _$PostModelCopyWithImpl<$Res, $Val extends PostModel>
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      text: freezed == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
+      contentText: freezed == contentText
+          ? _value.contentText
+          : contentText // ignore: cast_nullable_to_non_nullable
               as String?,
       likes: null == likes
           ? _value.likes
           : likes // ignore: cast_nullable_to_non_nullable
-              as int,
+              as List<LikeModel>,
       comments: null == comments
           ? _value.comments
           : comments // ignore: cast_nullable_to_non_nullable
-              as int,
+              as List<CommentModel>,
       bookMarked: freezed == bookMarked
           ? _value.bookMarked
           : bookMarked // ignore: cast_nullable_to_non_nullable
@@ -127,9 +127,9 @@ class _$PostModelCopyWithImpl<$Res, $Val extends PostModel>
 
   @override
   @pragma('vm:prefer-inline')
-  $PostUserModelCopyWith<$Res> get user {
-    return $PostUserModelCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value) as $Val);
+  $PostUserModelCopyWith<$Res> get postedBy {
+    return $PostUserModelCopyWith<$Res>(_value.postedBy, (value) {
+      return _then(_value.copyWith(postedBy: value) as $Val);
     });
   }
 }
@@ -144,17 +144,17 @@ abstract class _$$_PostModelCopyWith<$Res> implements $PostModelCopyWith<$Res> {
   $Res call(
       {int id,
       String? postCreated,
-      PostUserModel user,
+      PostUserModel postedBy,
       List<String>? tags,
       List<String>? images,
-      String? text,
-      int likes,
-      int comments,
+      String? contentText,
+      List<LikeModel> likes,
+      List<CommentModel> comments,
       bool? bookMarked,
       bool? liked});
 
   @override
-  $PostUserModelCopyWith<$Res> get user;
+  $PostUserModelCopyWith<$Res> get postedBy;
 }
 
 /// @nodoc
@@ -170,10 +170,10 @@ class __$$_PostModelCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? postCreated = freezed,
-    Object? user = null,
+    Object? postedBy = null,
     Object? tags = freezed,
     Object? images = freezed,
-    Object? text = freezed,
+    Object? contentText = freezed,
     Object? likes = null,
     Object? comments = null,
     Object? bookMarked = freezed,
@@ -188,9 +188,9 @@ class __$$_PostModelCopyWithImpl<$Res>
           ? _value.postCreated
           : postCreated // ignore: cast_nullable_to_non_nullable
               as String?,
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
+      postedBy: null == postedBy
+          ? _value.postedBy
+          : postedBy // ignore: cast_nullable_to_non_nullable
               as PostUserModel,
       tags: freezed == tags
           ? _value._tags
@@ -200,18 +200,18 @@ class __$$_PostModelCopyWithImpl<$Res>
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      text: freezed == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
+      contentText: freezed == contentText
+          ? _value.contentText
+          : contentText // ignore: cast_nullable_to_non_nullable
               as String?,
       likes: null == likes
-          ? _value.likes
+          ? _value._likes
           : likes // ignore: cast_nullable_to_non_nullable
-              as int,
+              as List<LikeModel>,
       comments: null == comments
-          ? _value.comments
+          ? _value._comments
           : comments // ignore: cast_nullable_to_non_nullable
-              as int,
+              as List<CommentModel>,
       bookMarked: freezed == bookMarked
           ? _value.bookMarked
           : bookMarked // ignore: cast_nullable_to_non_nullable
@@ -226,21 +226,22 @@ class __$$_PostModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_PostModel extends _PostModel {
+class _$_PostModel implements _PostModel {
   const _$_PostModel(
       {required this.id,
       required this.postCreated,
-      required this.user,
+      required this.postedBy,
       required final List<String>? tags,
       required final List<String>? images,
-      this.text,
-      required this.likes,
-      required this.comments,
+      this.contentText,
+      required final List<LikeModel> likes,
+      required final List<CommentModel> comments,
       required this.bookMarked,
       required this.liked})
       : _tags = tags,
         _images = images,
-        super._();
+        _likes = likes,
+        _comments = comments;
 
   factory _$_PostModel.fromJson(Map<String, dynamic> json) =>
       _$$_PostModelFromJson(json);
@@ -250,7 +251,7 @@ class _$_PostModel extends _PostModel {
   @override
   final String? postCreated;
   @override
-  final PostUserModel user;
+  final PostUserModel postedBy;
   final List<String>? _tags;
   @override
   List<String>? get tags {
@@ -272,11 +273,23 @@ class _$_PostModel extends _PostModel {
   }
 
   @override
-  final String? text;
+  final String? contentText;
+  final List<LikeModel> _likes;
   @override
-  final int likes;
+  List<LikeModel> get likes {
+    if (_likes is EqualUnmodifiableListView) return _likes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_likes);
+  }
+
+  final List<CommentModel> _comments;
   @override
-  final int comments;
+  List<CommentModel> get comments {
+    if (_comments is EqualUnmodifiableListView) return _comments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_comments);
+  }
+
   @override
   final bool? bookMarked;
   @override
@@ -284,7 +297,7 @@ class _$_PostModel extends _PostModel {
 
   @override
   String toString() {
-    return 'PostModel(id: $id, postCreated: $postCreated, user: $user, tags: $tags, images: $images, text: $text, likes: $likes, comments: $comments, bookMarked: $bookMarked, liked: $liked)';
+    return 'PostModel(id: $id, postCreated: $postCreated, postedBy: $postedBy, tags: $tags, images: $images, contentText: $contentText, likes: $likes, comments: $comments, bookMarked: $bookMarked, liked: $liked)';
   }
 
   @override
@@ -295,13 +308,14 @@ class _$_PostModel extends _PostModel {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.postCreated, postCreated) ||
                 other.postCreated == postCreated) &&
-            (identical(other.user, user) || other.user == user) &&
+            (identical(other.postedBy, postedBy) ||
+                other.postedBy == postedBy) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
             const DeepCollectionEquality().equals(other._images, _images) &&
-            (identical(other.text, text) || other.text == text) &&
-            (identical(other.likes, likes) || other.likes == likes) &&
-            (identical(other.comments, comments) ||
-                other.comments == comments) &&
+            (identical(other.contentText, contentText) ||
+                other.contentText == contentText) &&
+            const DeepCollectionEquality().equals(other._likes, _likes) &&
+            const DeepCollectionEquality().equals(other._comments, _comments) &&
             (identical(other.bookMarked, bookMarked) ||
                 other.bookMarked == bookMarked) &&
             (identical(other.liked, liked) || other.liked == liked));
@@ -313,12 +327,12 @@ class _$_PostModel extends _PostModel {
       runtimeType,
       id,
       postCreated,
-      user,
+      postedBy,
       const DeepCollectionEquality().hash(_tags),
       const DeepCollectionEquality().hash(_images),
-      text,
-      likes,
-      comments,
+      contentText,
+      const DeepCollectionEquality().hash(_likes),
+      const DeepCollectionEquality().hash(_comments),
       bookMarked,
       liked);
 
@@ -336,19 +350,18 @@ class _$_PostModel extends _PostModel {
   }
 }
 
-abstract class _PostModel extends PostModel {
+abstract class _PostModel implements PostModel {
   const factory _PostModel(
       {required final int id,
       required final String? postCreated,
-      required final PostUserModel user,
+      required final PostUserModel postedBy,
       required final List<String>? tags,
       required final List<String>? images,
-      final String? text,
-      required final int likes,
-      required final int comments,
+      final String? contentText,
+      required final List<LikeModel> likes,
+      required final List<CommentModel> comments,
       required final bool? bookMarked,
       required final bool? liked}) = _$_PostModel;
-  const _PostModel._() : super._();
 
   factory _PostModel.fromJson(Map<String, dynamic> json) =
       _$_PostModel.fromJson;
@@ -358,17 +371,17 @@ abstract class _PostModel extends PostModel {
   @override
   String? get postCreated;
   @override
-  PostUserModel get user;
+  PostUserModel get postedBy;
   @override
   List<String>? get tags;
   @override
   List<String>? get images;
   @override
-  String? get text;
+  String? get contentText;
   @override
-  int get likes;
+  List<LikeModel> get likes;
   @override
-  int get comments;
+  List<CommentModel> get comments;
   @override
   bool? get bookMarked;
   @override
