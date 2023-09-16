@@ -6,19 +6,29 @@ part 'message_model.g.dart';
 
 @freezed
 @JsonSerializable()
-class ChatMessageModel with _$ChatMessageModel {
-  const factory ChatMessageModel({String? msg, DateTime? time, String? type}) =
-      _ChatMessageModel;
+class MessageModel with _$MessageModel {
+  const factory MessageModel({
+    String? id,
+    String? recipientId,
+    String? senderId,
+    String? content,
+    DateTime? time,
+    bool? isGroup,
+    bool? status,
+  }) = _MessageModel;
 
-  const ChatMessageModel._();
-  
+  const MessageModel._();
 
-  factory ChatMessageModel.fromJson(Map<String, dynamic> json) =>
-      _$ChatMessageModelFromJson(json);
+  factory MessageModel.fromJson(Map<String, dynamic> json) =>
+      _$MessageModelFromJson(json);
 
-  ChatMessage toEntity() => ChatMessage(
-        msg: msg,
+  Message toEntity() => Message(
+        id: id,
+        recipientId: recipientId,
+        senderId: senderId,
+        content: content,
         time: time,
-        type: type,
+        isGroup: isGroup,
+        status: status,
       );
 }

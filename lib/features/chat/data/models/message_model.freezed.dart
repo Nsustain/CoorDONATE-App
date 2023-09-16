@@ -14,35 +14,46 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-ChatMessageModel _$ChatMessageModelFromJson(Map<String, dynamic> json) {
-  return _ChatMessageModel.fromJson(json);
+MessageModel _$MessageModelFromJson(Map<String, dynamic> json) {
+  return _MessageModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ChatMessageModel {
-  String? get msg => throw _privateConstructorUsedError;
+mixin _$MessageModel {
+  String? get id => throw _privateConstructorUsedError;
+  String? get recipientId => throw _privateConstructorUsedError;
+  String? get senderId => throw _privateConstructorUsedError;
+  String? get content => throw _privateConstructorUsedError;
   DateTime? get time => throw _privateConstructorUsedError;
-  String? get type => throw _privateConstructorUsedError;
+  bool? get isGroup => throw _privateConstructorUsedError;
+  bool? get status => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ChatMessageModelCopyWith<ChatMessageModel> get copyWith =>
+  $MessageModelCopyWith<MessageModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ChatMessageModelCopyWith<$Res> {
-  factory $ChatMessageModelCopyWith(
-          ChatMessageModel value, $Res Function(ChatMessageModel) then) =
-      _$ChatMessageModelCopyWithImpl<$Res, ChatMessageModel>;
+abstract class $MessageModelCopyWith<$Res> {
+  factory $MessageModelCopyWith(
+          MessageModel value, $Res Function(MessageModel) then) =
+      _$MessageModelCopyWithImpl<$Res, MessageModel>;
   @useResult
-  $Res call({String? msg, DateTime? time, String? type});
+  $Res call(
+      {String? id,
+      String? recipientId,
+      String? senderId,
+      String? content,
+      DateTime? time,
+      bool? isGroup,
+      bool? status});
 }
 
 /// @nodoc
-class _$ChatMessageModelCopyWithImpl<$Res, $Val extends ChatMessageModel>
-    implements $ChatMessageModelCopyWith<$Res> {
-  _$ChatMessageModelCopyWithImpl(this._value, this._then);
+class _$MessageModelCopyWithImpl<$Res, $Val extends MessageModel>
+    implements $MessageModelCopyWith<$Res> {
+  _$MessageModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -52,136 +63,218 @@ class _$ChatMessageModelCopyWithImpl<$Res, $Val extends ChatMessageModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? msg = freezed,
+    Object? id = freezed,
+    Object? recipientId = freezed,
+    Object? senderId = freezed,
+    Object? content = freezed,
     Object? time = freezed,
-    Object? type = freezed,
+    Object? isGroup = freezed,
+    Object? status = freezed,
   }) {
     return _then(_value.copyWith(
-      msg: freezed == msg
-          ? _value.msg
-          : msg // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      recipientId: freezed == recipientId
+          ? _value.recipientId
+          : recipientId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      senderId: freezed == senderId
+          ? _value.senderId
+          : senderId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      content: freezed == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
               as String?,
       time: freezed == time
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String?,
+      isGroup: freezed == isGroup
+          ? _value.isGroup
+          : isGroup // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_ChatMessageModelCopyWith<$Res>
-    implements $ChatMessageModelCopyWith<$Res> {
-  factory _$$_ChatMessageModelCopyWith(
-          _$_ChatMessageModel value, $Res Function(_$_ChatMessageModel) then) =
-      __$$_ChatMessageModelCopyWithImpl<$Res>;
+abstract class _$$_MessageModelCopyWith<$Res>
+    implements $MessageModelCopyWith<$Res> {
+  factory _$$_MessageModelCopyWith(
+          _$_MessageModel value, $Res Function(_$_MessageModel) then) =
+      __$$_MessageModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? msg, DateTime? time, String? type});
+  $Res call(
+      {String? id,
+      String? recipientId,
+      String? senderId,
+      String? content,
+      DateTime? time,
+      bool? isGroup,
+      bool? status});
 }
 
 /// @nodoc
-class __$$_ChatMessageModelCopyWithImpl<$Res>
-    extends _$ChatMessageModelCopyWithImpl<$Res, _$_ChatMessageModel>
-    implements _$$_ChatMessageModelCopyWith<$Res> {
-  __$$_ChatMessageModelCopyWithImpl(
-      _$_ChatMessageModel _value, $Res Function(_$_ChatMessageModel) _then)
+class __$$_MessageModelCopyWithImpl<$Res>
+    extends _$MessageModelCopyWithImpl<$Res, _$_MessageModel>
+    implements _$$_MessageModelCopyWith<$Res> {
+  __$$_MessageModelCopyWithImpl(
+      _$_MessageModel _value, $Res Function(_$_MessageModel) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? msg = freezed,
+    Object? id = freezed,
+    Object? recipientId = freezed,
+    Object? senderId = freezed,
+    Object? content = freezed,
     Object? time = freezed,
-    Object? type = freezed,
+    Object? isGroup = freezed,
+    Object? status = freezed,
   }) {
-    return _then(_$_ChatMessageModel(
-      msg: freezed == msg
-          ? _value.msg
-          : msg // ignore: cast_nullable_to_non_nullable
+    return _then(_$_MessageModel(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      recipientId: freezed == recipientId
+          ? _value.recipientId
+          : recipientId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      senderId: freezed == senderId
+          ? _value.senderId
+          : senderId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      content: freezed == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
               as String?,
       time: freezed == time
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String?,
+      isGroup: freezed == isGroup
+          ? _value.isGroup
+          : isGroup // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_ChatMessageModel extends _ChatMessageModel {
-  const _$_ChatMessageModel({this.msg, this.time, this.type}) : super._();
+class _$_MessageModel extends _MessageModel {
+  const _$_MessageModel(
+      {this.id,
+      this.recipientId,
+      this.senderId,
+      this.content,
+      this.time,
+      this.isGroup,
+      this.status})
+      : super._();
 
-  factory _$_ChatMessageModel.fromJson(Map<String, dynamic> json) =>
-      _$$_ChatMessageModelFromJson(json);
+  factory _$_MessageModel.fromJson(Map<String, dynamic> json) =>
+      _$$_MessageModelFromJson(json);
 
   @override
-  final String? msg;
+  final String? id;
+  @override
+  final String? recipientId;
+  @override
+  final String? senderId;
+  @override
+  final String? content;
   @override
   final DateTime? time;
   @override
-  final String? type;
+  final bool? isGroup;
+  @override
+  final bool? status;
 
   @override
   String toString() {
-    return 'ChatMessageModel(msg: $msg, time: $time, type: $type)';
+    return 'MessageModel(id: $id, recipientId: $recipientId, senderId: $senderId, content: $content, time: $time, isGroup: $isGroup, status: $status)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ChatMessageModel &&
-            (identical(other.msg, msg) || other.msg == msg) &&
+            other is _$_MessageModel &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.recipientId, recipientId) ||
+                other.recipientId == recipientId) &&
+            (identical(other.senderId, senderId) ||
+                other.senderId == senderId) &&
+            (identical(other.content, content) || other.content == content) &&
             (identical(other.time, time) || other.time == time) &&
-            (identical(other.type, type) || other.type == type));
+            (identical(other.isGroup, isGroup) || other.isGroup == isGroup) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, msg, time, type);
+  int get hashCode => Object.hash(
+      runtimeType, id, recipientId, senderId, content, time, isGroup, status);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChatMessageModelCopyWith<_$_ChatMessageModel> get copyWith =>
-      __$$_ChatMessageModelCopyWithImpl<_$_ChatMessageModel>(this, _$identity);
+  _$$_MessageModelCopyWith<_$_MessageModel> get copyWith =>
+      __$$_MessageModelCopyWithImpl<_$_MessageModel>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ChatMessageModelToJson(
+    return _$$_MessageModelToJson(
       this,
     );
   }
 }
 
-abstract class _ChatMessageModel extends ChatMessageModel {
-  const factory _ChatMessageModel(
-      {final String? msg,
+abstract class _MessageModel extends MessageModel {
+  const factory _MessageModel(
+      {final String? id,
+      final String? recipientId,
+      final String? senderId,
+      final String? content,
       final DateTime? time,
-      final String? type}) = _$_ChatMessageModel;
-  const _ChatMessageModel._() : super._();
+      final bool? isGroup,
+      final bool? status}) = _$_MessageModel;
+  const _MessageModel._() : super._();
 
-  factory _ChatMessageModel.fromJson(Map<String, dynamic> json) =
-      _$_ChatMessageModel.fromJson;
+  factory _MessageModel.fromJson(Map<String, dynamic> json) =
+      _$_MessageModel.fromJson;
 
   @override
-  String? get msg;
+  String? get id;
+  @override
+  String? get recipientId;
+  @override
+  String? get senderId;
+  @override
+  String? get content;
   @override
   DateTime? get time;
   @override
-  String? get type;
+  bool? get isGroup;
+  @override
+  bool? get status;
   @override
   @JsonKey(ignore: true)
-  _$$_ChatMessageModelCopyWith<_$_ChatMessageModel> get copyWith =>
+  _$$_MessageModelCopyWith<_$_MessageModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
