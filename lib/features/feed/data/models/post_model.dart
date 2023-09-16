@@ -1,3 +1,5 @@
+import 'package:coordonate_app/features/feed/data/models/comment_model.dart';
+import 'package:coordonate_app/features/feed/data/models/like_model.dart';
 import 'package:coordonate_app/features/feed/data/models/post_user_response_model.dart';
 import 'package:coordonate_app/features/feed/domain/entities/post_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -10,17 +12,16 @@ class PostModel with _$PostModel {
   const factory PostModel({
     required int id,
     required String? postCreated,
-    required PostUserModel user,
+    required PostUserModel postedBy,
     required List<String>? tags,
     required List<String>? images,
-    String? text,
-    required int likes,
-    required int comments,
+    String? contentText,
+    required List<LikeModel> likes,
+    required List<CommentModel> comments,
     required bool? bookMarked,
     required bool? liked,
   }) = _PostModel;
 
-  const PostModel._();
   factory PostModel.fromJson(Map<String, dynamic> json) =>
       _$PostModelFromJson(json);
 }
@@ -28,15 +29,13 @@ class PostModel with _$PostModel {
 PostEntity toPostEntity(PostModel model) {
   return PostEntity(
       postId: model.id,
-      postUserEntity: toPostUserEntity(model.user),
+      postUserEntity: toPostUserEntity(model.postedBy),
       postImageUrl: model.images!,
-      postText: model.text,
-      postCreated: model.postCreated != null
-          ? model.postCreated!
-          : DateTime.now().toString(),
+      postText: model.contentText,
+      postCreated: model.postCreated != null ? model.postCreated! : "just now",
       tags: model.tags,
-      like: model.likes,
-      comments: model.comments,
+      likes: model.likes.length,
+      comments: model.comments.length,
       bookMarked: model.bookMarked != null ? false : true,
       liked: model.liked);
 }

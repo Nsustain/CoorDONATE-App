@@ -47,5 +47,11 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Allow CoorDonate to take Photos</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Allow CoorDonate to access your Gallery</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Allow CoorDonate to access your Mic</string>
 </dict>
 </plist>

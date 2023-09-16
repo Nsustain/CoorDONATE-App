@@ -17,7 +17,7 @@ class _ExpandableTextState extends State<ExpandableText>
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
       AnimatedSize(
-        duration: const Duration(milliseconds: 500),
+        duration: const Duration(milliseconds: 200),
         child: ConstrainedBox(
           constraints: widget.isExpanded
               ? BoxConstraints()

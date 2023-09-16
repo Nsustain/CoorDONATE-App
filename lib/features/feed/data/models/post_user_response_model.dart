@@ -11,7 +11,7 @@ class PostUserModel with _$PostUserModel {
     required String? name,
     required String? username,
     required String? photo,
-    required String? verified,
+    required bool? verified,
     required String? email,
     required String? role,
     required int? id,
@@ -26,7 +26,8 @@ PostUserEntity toPostUserEntity(PostUserModel model) {
     fullname: model.name != null ? model.name! : '',
     username: model.username != null ? model.username! : '',
     profileImageUrl: model.photo != null ? model.photo! : '',
-    isVerified: model.verified != null ? true : false,
+    isVerified:
+        (model.verified != null && model.verified != false) ? true : false,
     email: model.email != null ? model.email! : '',
     role: model.role != null ? model.role! : '',
     id: model.id != null ? model.id! : 0,

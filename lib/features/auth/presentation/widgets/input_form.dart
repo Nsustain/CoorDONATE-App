@@ -7,7 +7,7 @@ class InputForm extends StatefulWidget {
   final TextEditingController textInputController;
   final bool? isVisible;
   final void Function()? toggleVisibility;
-  const InputForm(
+  InputForm(
       {Key? key,
       required this.icon,
       required this.inputboxplaceholder,
@@ -35,8 +35,9 @@ class _InputFormState extends State<InputForm> {
   }
 
   bool _isPasswordValid(String value) {
-    final passwordRegExp = RegExp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$');
-    return passwordRegExp.hasMatch(value);
+    // final passwordRegExp = RegExp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$');
+    // return passwordRegExp.hasMatch(value);
+    return true;
   }
 
   void _validate(String? value) {
@@ -57,7 +58,6 @@ class _InputFormState extends State<InputForm> {
 
   @override
   Widget build(BuildContext context) {
-    print('overhere ${widget.isVisible!}');
     return Container(
       constraints: const BoxConstraints(maxWidth: double.infinity),
       child: Column(

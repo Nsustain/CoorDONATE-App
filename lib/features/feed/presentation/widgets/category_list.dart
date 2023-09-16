@@ -32,8 +32,9 @@ class _CategoryListState extends State<CategoryList> {
                   },
                   style: ElevatedButton.styleFrom(
                     splashFactory: NoSplash.splashFactory,
-                    backgroundColor:
-                        _selectedIndex == index ? Colors.red : Colors.white,
+                    backgroundColor: _selectedIndex == index
+                        ? Color.fromARGB(255, 214, 214, 214)
+                        : Colors.white,
                     shadowColor: Colors.black,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.h),

@@ -7,7 +7,6 @@ part of 'post_user_response_model.dart';
 // **************************************************************************
 
 
-
 Map<String, dynamic> _$PostUserModelToJson(PostUserModel instance) =>
     <String, dynamic>{
       'name': instance.name,
@@ -24,7 +23,7 @@ _$_PostUserModel _$$_PostUserModelFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String?,
       username: json['username'] as String?,
       photo: json['photo'] as String?,
-      verified: json['verified'] as String?,
+      verified: json['verified'] as bool?,
       email: json['email'] as String?,
       role: json['role'] as String?,
       id: json['id'] as int?,
