@@ -1,3 +1,4 @@
+import 'package:coordonate_app/utils/constants/styles.dart';
 import 'package:flutter/material.dart';
 
 class MessageBubble extends StatelessWidget {
@@ -18,9 +19,14 @@ class MessageBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final messageBubbleRadius = BorderRadius.circular(8.0);
-    final senderBubbleColor = Colors.blue;
-    final recipientBubbleColor = Colors.grey[300];
+    final messageBubbleRadius = const BorderRadius.only(
+      topLeft: Radius.circular(8),
+      topRight: Radius.circular(8),
+      bottomRight: Radius.circular(8),
+    );
+    final senderBubbleColor = Colors.grey[300];
+    ;
+    final recipientBubbleColor = kPrimaryColor;
 
     return Row(
       mainAxisAlignment:
@@ -28,12 +34,18 @@ class MessageBubble extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         if (!isSender)
-          CircleAvatar(
-            backgroundImage: NetworkImage(recipientAvatarUrl),
-            radius: 16.0,
+          Padding(
+            padding: const EdgeInsets.only(top: 6, bottom: 8, right: 3),
+            child: CircleAvatar(
+              backgroundImage: NetworkImage(recipientAvatarUrl),
+              radius: 20.0,
+            ),
           ),
         Flexible(
           child: Container(
+            constraints: BoxConstraints(
+              maxWidth: 250.0, // Set the maximum width for the container
+            ),
             decoration: BoxDecoration(
               color: isSender ? senderBubbleColor : recipientBubbleColor,
               borderRadius: messageBubbleRadius,
@@ -47,28 +59,51 @@ class MessageBubble extends StatelessWidget {
               horizontal: 12.0,
             ),
             child: Column(
-              crossAxisAlignment:
-                  isSender ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+              crossAxisAlignment: isSender
+                  ? CrossAxisAlignment.start
+                  : CrossAxisAlignment.start,
               children: [
-                Text(
-                  message,
-                  style: TextStyle(fontSize: 16.0),
+                Align(
+                  alignment: isSender ? Alignment.topLeft : Alignment.topLeft,
+                  child: Text(
+                    message,
+                    style: TextStyle(
+                        fontSize: 16.0,
+                        color: isSender ? Colors.black : Colors.white),
+                    textAlign: isSender ? TextAlign.end : TextAlign.start,
+                  ),
                 ),
                 SizedBox(height: 4.0),
-                Text(
-                  timestamp,
-                  style: TextStyle(fontSize: 12.0, color: Colors.grey[600]),
+                Row(
+                  mainAxisAlignment: isSender
+                      ? MainAxisAlignment.end
+                      : MainAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: isSender
+                          ? EdgeInsets.only(
+                              top: 0, bottom: 0, right: 0, left: 0)
+                          : EdgeInsets.only(
+                              top: 0, bottom: 0, right: 0, left: 187),
+                      child: Text(
+                        timestamp,
+                        style: TextStyle(
+                            fontSize: 10.0,
+                            color: isSender ? Colors.black : Colors.white),
+                      ),
+                    ),
+                    if (isSender)
+                      Icon(
+                        isRead ? Icons.done_all : Icons.done,
+                        size: 16.0,
+                        color: Colors.grey[600],
+                      ),
+                  ],
                 ),
               ],
             ),
           ),
         ),
-        if (isSender)
-          Icon(
-            isRead ? Icons.done_all : Icons.done,
-            size: 16.0,
-            color: Colors.grey[600],
-          ),
       ],
     );
   }
