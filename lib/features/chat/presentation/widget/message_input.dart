@@ -1,3 +1,4 @@
+import 'package:coordonate_app/utils/constants/styles.dart';
 import 'package:flutter/material.dart';
 
 class MessageInputWidget extends StatelessWidget {
@@ -15,9 +16,9 @@ class MessageInputWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20.0),
-      ),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20.0),
+          border: Border.all(color: kPrimaryColor, width: 1)),
       child: Row(
         children: [
           Expanded(
@@ -25,11 +26,12 @@ class MessageInputWidget extends StatelessWidget {
               controller: controller,
               decoration: InputDecoration(
                 hintText: hintText,
-                border: InputBorder.none,
+                // border: OutlineInputBorder(),
                 contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
               ),
             ),
           ),
+          IconButton(onPressed: () {}, icon: Icon(Icons.emoji_emotions)),
           IconButton(
             icon: Icon(Icons.send),
             onPressed: onSendPressed,
