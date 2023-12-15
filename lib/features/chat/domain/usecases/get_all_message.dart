@@ -14,7 +14,8 @@ class GetAllMessagesUseCase extends UseCase<List<Chat>, String> {
   @override
   Future<Either<Failure, List<Chat>>> call(String chatRoomId) async {
 
-      return await messageRepository.getAllMessages(chatRoomId);
+      // return await messageRepository.getAllMessages(chatRoomId);
+      return Left(ServerFailure('failed'));
    
   }
 }

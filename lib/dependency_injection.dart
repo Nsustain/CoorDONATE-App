@@ -1,5 +1,6 @@
 import 'package:coordonate_app/core/api/dio_client.dart';
 import 'package:coordonate_app/features/auth/presentation/bloc/login/login_bloc.dart';
+import 'package:coordonate_app/features/auth/presentation/bloc/otp/otp_bloc.dart';
 import 'package:coordonate_app/features/auth/presentation/bloc/register/register_bloc.dart';
 import 'package:coordonate_app/features/feed/data/datasources/posts_remote_datasource.dart';
 import 'package:coordonate_app/features/feed/data/repositories/get_all_posts_repository_impl.dart';
@@ -72,6 +73,10 @@ void useCase() {
 
   /// Posts
   sl.registerLazySingleton(() => GetAllPosts(sl()));
+  // sl.registerLazySingleton(() => ForgotPassword(email: sl()));
+  sl.registerLazySingleton(() => SendEmail(repository: sl()));
+  sl.registerLazySingleton(() => VerifyOTP(repository: sl()));
+  sl.registerLazySingleton(() => ResetPassword(repository: sl()));
 }
 
 void bloc() {
@@ -79,4 +84,7 @@ void bloc() {
   sl.registerFactory(() =>
       RegisterBloc(postRegister: sl(), prefManager: sl(), postLogin: sl()));
   sl.registerFactory(() => FeedBloc(getAllPosts: sl()));
+  sl.registerFactory(() => OTPBloc(sendEmail: sl()));
+  sl.registerFactory(() => VerifyOTPBloc(verifyOTP: sl()));
+  sl.registerFactory(() => ResetPasswordBloc(resetPassword: sl()));
 }

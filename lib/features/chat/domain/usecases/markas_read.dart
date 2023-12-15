@@ -12,7 +12,7 @@ class MarkAsReadUseCase implements UseCase<void, Chat> {
 
   @override
   Future<Either<Failure, void>> call(Chat chatEntity) async {
-    return await messageRepository.markAsRead(chatEntity);
-    // return Right(null);
+    await messageRepository.markAsRead(chatEntity);
+    return Right(null);
   }
 }

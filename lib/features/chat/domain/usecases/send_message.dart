@@ -14,9 +14,9 @@ class SendMessageUseCase implements UseCase<void, Chat> {
   Future<Either<Failure, void>> call(Chat chatEntity) async {
     try {
       await messageRepository.sendMessage(chatEntity);
-      return Right(null);
+      return const Right(null);
     } catch (e) {
-      return Left( Failure('Failed to send message.'));
+      return const Left( ServerFailure('Failed to send message.'));
     }
   }
 }

@@ -7,7 +7,7 @@ import 'package:dio/dio.dart';
 typedef ResponseConverter<T> = T Function(dynamic response);
 
 class DioClient {
-  String baseUrl = "https://coordonate-api-coordonatedevs-gmailcom.vercel.app";
+  String baseUrl = "https://coordonate-api.vercel.app/";
 
   String? _auth;
   bool _isUnitTest = false;

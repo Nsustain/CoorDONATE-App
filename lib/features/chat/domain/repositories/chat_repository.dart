@@ -23,6 +23,6 @@ class ChatRepositoryImpl implements ChatRepository {
     // Perform necessary operations to fetch messages from your data source
     // This method can use an API, database, or any other storage mechanism to retrieve the messages
     // Return the list of messages
-  
+    return [];
   }
 }

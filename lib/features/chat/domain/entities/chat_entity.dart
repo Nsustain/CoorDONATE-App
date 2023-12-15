@@ -7,12 +7,16 @@ part 'chat_entity.freezed.dart';
 class Chat with _$Chat {
   const factory Chat({
     String? id,
-    String? senderId,
-    String? recipientId,
-    String? chatMessage,
+    // String? senderId,
+    String? senderName,
+    // String? recipientId,
+    String? recipientName,
+    // String? chatMessage,
+    required ChatMessage msg,
     DateTime? time,
     bool? status,
     bool? isGroup,
-  
+    bool? selected,
+    String? icon,
   }) = _Chat;
 }

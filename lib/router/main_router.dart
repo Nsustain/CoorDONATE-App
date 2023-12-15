@@ -2,7 +2,10 @@ import 'package:coordonate_app/core/common/bottom_navigation_bar.dart';
 import 'package:coordonate_app/core/common/scaffold_with_nested_navigation.dart';
 import 'package:coordonate_app/dependency_injection.dart' as di;
 import 'package:coordonate_app/features/auth/auth.dart';
+import 'package:coordonate_app/features/auth/presentation/screen/forgot_password_page.dart';
 import 'package:coordonate_app/features/auth/presentation/screen/login_page.dart';
+import 'package:coordonate_app/features/auth/presentation/screen/otp_screen.dart';
+import 'package:coordonate_app/features/auth/presentation/screen/reset_screen.dart';
 import 'package:coordonate_app/features/feed/presentation/screen/create_post_page.dart';
 import 'package:coordonate_app/features/feed/presentation/screen/feeds_page.dart';
 import 'package:coordonate_app/features/feed/presentation/screen/notifications_page.dart';
@@ -36,9 +39,11 @@ class _MainRouterState extends State<MainRouter> {
     router = GoRouter(
         navigatorKey: _rootNavigatorKey,
         debugLogDiagnostics: true,
-        initialLocation: widget.prefManager.isLoggedin
-            ? AppRoutes.CreatePostPage
-            : AppRoutes.LoginPage,
+        initialLocation: AppRoutes.ForgotPasswordPage,
+        // initialLocation: widget.prefManager.isLoggedin
+        //     ? AppRoutes.CreatePostPage
+        //     // : AppRoutes.LoginPage,
+        //     : AppRoutes.LoginPage,
         routes: [
           StatefulShellRoute.indexedStack(
             builder: (context, state, navigationShell) {
@@ -110,6 +115,27 @@ class _MainRouterState extends State<MainRouter> {
             name: AppRoutes.LoginPage,
             builder: (context, state) => LoginPage(),
           ),
+          GoRoute(
+            path: AppRoutes.ForgotPasswordPage,
+            name: AppRoutes.ForgotPasswordPage,
+            builder: (context, state) => ForgotPasswordPage(),
+          ),
+          GoRoute(
+            path: AppRoutes.OTPPage,
+            name: AppRoutes.OTPPage,
+            builder: (context, state) { 
+              final obj = state.extra as Map;
+              return OTPScreen(email: obj['email']);},
+            ),
+          GoRoute(
+            path: AppRoutes.ResetPassword,
+            name: AppRoutes.ResetPassword,
+            builder: (context, state) {
+              final obj = state.extra as Map;
+              return ResetScreen(email: obj['email']);
+              }
+            )
+          
         ],
         errorBuilder: (context, state) => const Scaffold(
               body: Center(

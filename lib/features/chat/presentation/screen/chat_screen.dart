@@ -1,5 +1,6 @@
 import 'package:coordonate_app/features/chat/domain/entities/chat_entity.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 import '../../domain/entities/message_entity.dart';
 import '../widget/message_bubble.dart';
@@ -19,10 +20,14 @@ class _ChatRoomState extends State<ChatRoom> {
   void _sendMessage(String recipientId) {
     String messageText = _messageController.text;
     Chat message = Chat(
-      chatMessage: messageText,
+      // chatMessage: messageText,
       time: DateTime.now(),
-      senderId: senderId,
-      recipientId: recipientId,
+      msg: ChatMessage(
+        msg: messageText,
+        time: DateTime.now(),
+      )
+      // senderId: senderId,
+      // recipientId: recipientId,
     );
     setState(() {
       messages.add(message);
@@ -77,8 +82,9 @@ class _ChatRoomState extends State<ChatRoom> {
             child: ListView.builder(
               itemCount: messages.length,
               itemBuilder: (context, index) {
-                return MessageBubble(
-                  message: messages[index].chatMessage ??
+                return const MessageBubble(
+                  // message: messages[index].chatMessage ??
+                  message: "hello" ??
                       '', // Pass the message text
                   timestamp: "9:30 AM",
                   isSender: true, // false for recipient, true for sender
