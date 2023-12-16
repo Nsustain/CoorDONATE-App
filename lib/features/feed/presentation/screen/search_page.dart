@@ -1,3 +1,4 @@
+import 'package:coordonate_app/features/feed/presentation/widgets/post_reactions.dart';
 import 'package:flutter/material.dart';
 
 class SearchPage extends StatelessWidget {
@@ -7,7 +8,7 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text('Search Page'),
+        child: PostReactions(),
       ),
     );
   }
